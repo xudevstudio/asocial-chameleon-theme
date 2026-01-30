@@ -8573,3 +8573,21 @@ a.button,
     margin-top: 0 !important;
     padding-top: 0 !important;
 }
+
+/* ========================================
+   FOOTER & FAQ GAP REDUCTION
+   ======================================== */
+
+/* Reduce gap between FAQ and footer */
+.faq-section,
+[class*='faq'],
+section:last-of-type {
+    margin-bottom: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+.site-footer,
+footer {
+    margin-top: 0 !important;
+    padding-top: 30px !important;
+}
