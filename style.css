@@ -7843,3 +7843,153 @@ form.variations_form {
 .archive.post-type-archive-product ul.products li.product {
     min-height: 480px !important;
 }
+/* ========================================
+   SHOP PAGE - FORCE DISPLAY ALL ELEMENTS
+   ======================================== */
+
+/* Force Price Display */
+.woocommerce ul.products li.product .price,
+.woocommerce-page ul.products li.product .price,
+ul.products li.product .product-price,
+ul.products li.product .product-price .price,
+.product-card .product-price,
+.product-card .product-price .price {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #000 !important;
+    margin: 10px 0 !important;
+    line-height: 1.4 !important;
+}
+
+/* Force Category Display */
+.woocommerce ul.products li.product .product-category-hint,
+.woocommerce-page ul.products li.product .product-category-hint,
+ul.products li.product .product-category-hint,
+.product-card .product-category-hint {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 11px !important;
+    color: #9b59b6 !important;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    margin-bottom: 6px !important;
+}
+
+.product-category-hint a {
+    color: #9b59b6 !important;
+    text-decoration: none !important;
+}
+
+/* Force Title Display */
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.woocommerce ul.products li.product h3,
+.woocommerce ul.products li.product .product-title,
+ul.products li.product .product-title {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: #333 !important;
+    line-height: 1.3 !important;
+    margin: 8px 0 !important;
+}
+
+.product-title a {
+    color: #333 !important;
+    text-decoration: none !important;
+}
+
+/* Product Card Content Area */
+.product-card .product-content,
+ul.products li.product .product-content {
+    padding: 15px !important;
+    display: block !important;
+}
+
+/* Responsive Grid - Desktop */
+@media (min-width: 769px) {
+    .woocommerce ul.products,
+    .woocommerce-page ul.products,
+    ul.products {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 20px !important;
+        margin: 0 !important;
+        padding: 20px 0 !important;
+    }
+
+    .woocommerce ul.products li.product,
+    ul.products li.product {
+        width: 100% !important;
+        margin: 0 !important;
+        float: none !important;
+    }
+}
+
+/* Responsive Grid - Tablet */
+@media (min-width: 481px) and (max-width: 768px) {
+    .woocommerce ul.products,
+    .woocommerce-page ul.products,
+    ul.products {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 15px !important;
+        margin: 0 !important;
+        padding: 15px 0 !important;
+    }
+
+    .woocommerce ul.products li.product,
+    ul.products li.product {
+        width: 100% !important;
+        margin: 0 !important;
+        float: none !important;
+    }
+
+    .woocommerce ul.products li.product .price,
+    ul.products li.product .product-price {
+        font-size: 16px !important;
+    }
+
+    .woocommerce ul.products li.product .product-title {
+        font-size: 14px !important;
+    }
+}
+
+/* Responsive Grid - Mobile */
+@media (max-width: 480px) {
+    .woocommerce ul.products,
+    .woocommerce-page ul.products,
+    ul.products {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        margin: 0 !important;
+        padding: 10px 0 !important;
+    }
+
+    .woocommerce ul.products li.product,
+    ul.products li.product {
+        width: 100% !important;
+        margin: 0 !important;
+        float: none !important;
+    }
+
+    .woocommerce ul.products li.product .price,
+    ul.products li.product .product-price {
+        font-size: 14px !important;
+    }
+
+    .woocommerce ul.products li.product .product-title {
+        font-size: 13px !important;
+    }
+
+    .product-category-hint {
+        font-size: 9px !important;
+    }
+}
