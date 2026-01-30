@@ -8708,3 +8708,22 @@ footer {
         margin-bottom: 10px !important;
     }
 }
+
+/* ========================================
+   CATEGORY FONT - MATCH DESCRIPTION
+   ======================================== */
+
+/* Make category font same as description */
+.product-category-hint,
+.product-category-hint a,
+.woocommerce-loop-product__category,
+.product_cat,
+.posted_in,
+.posted_in a {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1.4 !important;
+}
