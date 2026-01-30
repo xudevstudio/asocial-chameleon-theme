@@ -393,3 +393,17 @@ function asocial_chameleon_remove_ajax_add_to_cart( $html, $product ) {
     $html = str_replace( 'ajax_add_to_cart', '', $html );
     return $html;
 }
+
+/**
+ * Hide Free Shipping from Cart and Checkout
+ */
+add_filter( 'woocommerce_package_rates', 'asocial_chameleon_hide_free_shipping', 100, 2 );
+function asocial_chameleon_hide_free_shipping( $rates, $package ) {
+    // Remove free shipping from available shipping methods
+    foreach ( $rates as $rate_id => $rate ) {
+        if ( 'free_shipping' === $rate->method_id ) {
+            unset( $rates[ $rate_id ] );
+        }
+    }
+    return $rates;
+}
