@@ -8516,3 +8516,41 @@ h3.section-title {
         grid-template-columns: 1fr !important;
     }
 }
+
+/* ========================================
+   BUTTON ICON & TEXT ALIGNMENT
+   ======================================== */
+
+/* Align icon and text vertically */
+.button,
+a.button,
+.premium-action-btn,
+.add_to_cart_button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    vertical-align: middle !important;
+}
+
+/* Icon alignment */
+.button .button-icon,
+.button i,
+.button svg,
+.premium-action-btn .button-icon,
+.add_to_cart_button .button-icon {
+    display: inline-flex !important;
+    align-items: center !important;
+    line-height: 1 !important;
+    vertical-align: middle !important;
+}
+
+/* Text alignment */
+.button .button-text,
+.button span,
+.premium-action-btn .button-text {
+    display: inline-flex !important;
+    align-items: center !important;
+    line-height: 1 !important;
+    vertical-align: middle !important;
+}
