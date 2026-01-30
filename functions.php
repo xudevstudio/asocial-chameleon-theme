@@ -145,7 +145,7 @@ function asocial_chameleon_auto_setup_nav() {
         $categories = array(
             'T-Shirts',
             'Sweatshirts & Hoodies / Jumpers',
-            'Hats',
+            'For your head',
             'Random Things'
         );
 

@@ -25,7 +25,7 @@
                         <li><a href="<?php echo esc_url( home_url( '/shop' ) ); ?>"><?php esc_html_e( 'All Products', 'asocial-chameleon' ); ?></a></li>
                         <li><a href="<?php echo esc_url( home_url( '/product-category/t-shirts' ) ); ?>"><?php esc_html_e( 'T-Shirts', 'asocial-chameleon' ); ?></a></li>
                         <li><a href="<?php echo esc_url( home_url( '/product-category/sweatshirts-hoodies-jumpers' ) ); ?>"><?php esc_html_e( 'Hoodies & Jumpers', 'asocial-chameleon' ); ?></a></li>
-                        <li><a href="<?php echo esc_url( home_url( '/product-category/hats' ) ); ?>"><?php esc_html_e( 'Hats', 'asocial-chameleon' ); ?></a></li>
+                        <li><a href="<?php echo esc_url( home_url( '/product-category/hats' ) ); ?>"><?php esc_html_e( 'For your head', 'asocial-chameleon' ); ?></a></li>
                         <li><a href="<?php echo esc_url( home_url( '/cart' ) ); ?>"><?php esc_html_e( 'Cart', 'asocial-chameleon' ); ?></a></li>
                     </ul>
                 </div>
