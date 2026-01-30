@@ -8231,3 +8231,33 @@ body.home div[class*='section'],
     padding-top: 0 !important;
     padding-bottom: 0 !important;
 }
+
+/* ========================================
+   OUR STORY SECTION - CENTER ALIGNMENT
+   ======================================== */
+
+/* Center Our Story section */
+.our-story-section,
+[class*='story'],
+section[class*='story'] {
+    text-align: center !important;
+}
+
+.our-story-section .container,
+[class*='story'] .container {
+    max-width: 900px !important;
+    margin: 0 auto !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+.our-story-section h2,
+.our-story-section h3,
+.our-story-section p,
+[class*='story'] h2,
+[class*='story'] h3,
+[class*='story'] p {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
