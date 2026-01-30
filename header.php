@@ -118,6 +118,7 @@
                 </div>
             </div>
 
+
             <!-- Bottom Row: Navigation -->
 			<nav id="site-navigation" class="main-navigation">
 				<?php
@@ -136,4 +137,74 @@
 
 		</div>
 	</header><!-- #masthead -->
+
+    <style>
+    /* Shop Page - Category, Price & Responsive Fixes */
+    .woocommerce ul.products li.product .product-category-hint,
+    .woocommerce ul.products li.product .product-category-hint a {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        font-size: 12px !important;
+        color: #9b59b6 !important;
+        text-transform: uppercase !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.5px !important;
+        margin-bottom: 8px !important;
+        text-decoration: none !important;
+    }
+
+    .woocommerce ul.products li.product .product-price,
+    .woocommerce ul.products li.product .product-price .price {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        font-size: 20px !important;
+        font-weight: 700 !important;
+        color: #000 !important;
+        margin: 12px 0 !important;
+    }
+
+    .woocommerce ul.products li.product .product-title,
+    .woocommerce ul.products li.product .product-title a {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        color: #333 !important;
+        line-height: 1.4 !important;
+        margin: 8px 0 !important;
+        text-decoration: none !important;
+    }
+
+    /* Responsive Grid */
+    @media (max-width: 768px) {
+        .woocommerce ul.products {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 15px !important;
+        }
+
+        .woocommerce ul.products li.product .product-title {
+            font-size: 14px !important;
+        }
+
+        .woocommerce ul.products li.product .product-price {
+            font-size: 16px !important;
+        }
+
+        .woocommerce ul.products li.product .product-category-hint {
+            font-size: 10px !important;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .woocommerce ul.products {
+            display: grid !important;
+            grid-template-columns: repeat(4, 1fr) !important;
+            gap: 25px !important;
+        }
+    }
+    </style>
 
