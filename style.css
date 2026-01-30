@@ -3960,7 +3960,7 @@ h2.section-title,
     font-size: clamp(28px, 5vw, 48px) !important;
     font-weight: 800 !important;
     line-height: 1.2 !important;
-    margin-bottom: 30px !important;
+    margin-bottom: 15px !important;
     color: #1a1a1a !important;
     text-align: center !important;
     letter-spacing: -0.5px !important;
@@ -3984,7 +3984,7 @@ h2.section-title,
     font-size: clamp(16px, 3vw, 20px) !important;
     color: #666 !important;
     line-height: 1.6 !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 10px !important;
 }
 
 /* Product Card Titles */
@@ -4001,7 +4001,7 @@ h2.section-title,
     .section-title,
     h2.section-title {
         font-size: 24px !important;
-        margin-bottom: 20px !important;
+        margin-bottom: 10px !important;
     }
 
     .hero-title {
@@ -5003,7 +5003,7 @@ h2.section-title,
         display: flex !important;
         flex-direction: column !important;
         gap: 24px !important;
-        margin-bottom: 40px !important;
+        margin-bottom: 15px !important;
     }
 
     /* Remove sticky on mobile */
@@ -5019,7 +5019,7 @@ h2.section-title,
 
     .product-price-modern {
         font-size: 24px !important;
-        margin-bottom: 20px !important;
+        margin-bottom: 10px !important;
     }
 
     /* Thumbnails */
@@ -5433,14 +5433,14 @@ h1.product_title {
 .upsells.products h2 {
     font-size: 32px !important;
     font-weight: 700 !important;
-    margin-bottom: 40px !important;
+    margin-bottom: 15px !important;
     color: #1a1a1a !important;
 }
 
 /* Mobile Optimizations */
 @media (max-width: 768px) {
     .single-product .site-main {
-        padding: 20px 0 !important;
+        padding: 10px 0 !important;
     }
 
     .product_title,
@@ -6424,7 +6424,7 @@ body {
         position: sticky !important;
         top: 40px !important;
         /* Sticky behavior for long image galleries */
-        padding-top: 20px !important;
+        padding-top: 10px !important;
     }
 
     /* 4. Fix Product Tabs/Related Products Width */
@@ -7710,7 +7710,7 @@ form.variations_form {
     display: flex !important;
     flex-direction: column !important;
     padding: 0 !important;
-    margin-bottom: 30px !important;
+    margin-bottom: 15px !important;
 }
 
 .woocommerce ul.products li.product:hover,
@@ -7747,7 +7747,7 @@ form.variations_form {
     font-weight: 800 !important;
     font-size: 1.25rem !important;
     text-align: center !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 10px !important;
     display: block !important;
 }
 
@@ -7921,7 +7921,7 @@ ul.products li.product .product-content {
         grid-template-columns: repeat(4, 1fr) !important;
         gap: 20px !important;
         margin: 0 !important;
-        padding: 20px 0 !important;
+        padding: 10px 0 !important;
     }
 
     .woocommerce ul.products li.product,
@@ -8095,9 +8095,9 @@ footer,
 .site-main section,
 .content-area section,
 main section {
-    margin-bottom: 40px !important;
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
+    margin-bottom: 15px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }
 
 /* Specific homepage sections */
@@ -8105,23 +8105,23 @@ main section {
 .our-story-section,
 .top-rated-section,
 .popular-products-section {
-    margin-bottom: 30px !important;
-    padding: 20px 0 !important;
+    margin-bottom: 15px !important;
+    padding: 10px 0 !important;
 }
 
 /* Reduce container padding */
 .container,
 .site-content {
-    padding-top: 20px !important;
-    padding-bottom: 20px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }
 
 /* Section headings - reduce spacing */
 h2.section-title,
 .section-heading,
 h2 {
-    margin-top: 20px !important;
-    margin-bottom: 20px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
 }
 
 /* Remove excessive padding from content */
@@ -8154,5 +8154,5 @@ body {
 /* Remove extra spacing from WordPress blocks */
 .wp-block-group,
 .wp-block-cover {
-    margin-bottom: 30px !important;
+    margin-bottom: 15px !important;
 }
