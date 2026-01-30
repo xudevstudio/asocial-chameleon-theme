@@ -8778,3 +8778,63 @@ footer {
 .product-card .product-price {
     margin: 10px 0 !important;
 }
+
+/* ========================================
+   LOGIN & REGISTER PAGE - REDUCE WHITE SPACE
+   ======================================== */
+
+/* My Account page container */
+.woocommerce-account .woocommerce,
+.woocommerce-account .woocommerce-MyAccount-content {
+    padding: 20px 0 !important;
+    margin: 0 !important;
+}
+
+/* Login/Register forms */
+.woocommerce-form-login,
+.woocommerce-form-register {
+    padding: 20px !important;
+    margin: 0 0 20px 0 !important;
+}
+
+/* Form rows */
+.woocommerce-form-row {
+    margin-bottom: 15px !important;
+}
+
+/* Remove excessive padding from form fields */
+.woocommerce-Input {
+    padding: 10px !important;
+}
+
+/* Button spacing */
+.woocommerce-Button {
+    margin-top: 10px !important;
+}
+
+/* Two column layout for login/register */
+.woocommerce-account .col2-set {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 30px !important;
+    margin: 0 !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .woocommerce-account .col2-set {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    .woocommerce-form-login,
+    .woocommerce-form-register {
+        padding: 15px !important;
+    }
+}
+
+/* Remove top/bottom spacing */
+.woocommerce-account .entry-content {
+    padding-top: 0 !important;
+    padding-bottom: 20px !important;
+}
