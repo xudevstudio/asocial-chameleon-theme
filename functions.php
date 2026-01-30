@@ -407,3 +407,16 @@ function asocial_chameleon_hide_free_shipping( $rates, $package ) {
     }
     return $rates;
 }
+
+/**
+ * Redirect Add to Cart button to Cart page
+ * Redirect Buy Now button to Checkout page
+ */
+add_filter( 'woocommerce_add_to_cart_redirect', 'asocial_chameleon_cart_redirect' );
+function asocial_chameleon_cart_redirect() {
+    // Redirect to cart page after adding to cart
+    return wc_get_cart_url();
+}
+
+// Buy Now functionality - handled by JavaScript in premium-product.js
+// The Buy Now button already redirects to checkout via AJAX
