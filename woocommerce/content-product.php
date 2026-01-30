@@ -52,8 +52,23 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         </div>
 
         <!-- Price -->
-        <div class="product-price" style="display: block !important; visibility: visible !important; opacity: 1 !important; font-size: 18px; font-weight: 700; color: #000; margin: 10px 0;">
-            <?php echo $product->get_price_html(); ?>
+        <div class="product-price" style="display: block !important; visibility: visible !important; opacity: 1 !important; font-size: 18px !important; font-weight: 700 !important; color: #000 !important; margin: 10px 0 !important; background: yellow !important; padding: 5px !important;">
+            <?php 
+            // Method 1: Standard WooCommerce
+            echo $product->get_price_html(); 
+            
+            // Method 2: Direct price display (fallback)
+            if (empty($product->get_price_html())) {
+                $price = $product->get_price();
+                if ($price) {
+                    echo '<span class="woocommerce-Price-amount amount">';
+                    echo '<bdi><span class="woocommerce-Price-currencySymbol">$</span>' . esc_html($price) . '</bdi>';
+                    echo '</span>';
+                } else {
+                    echo '<span style="color: red;">Price not set</span>';
+                }
+            }
+            ?>
         </div>
         
         <!-- Action Buttons -->
