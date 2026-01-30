@@ -8392,3 +8392,46 @@ h3.section-title {
     right: auto !important;
     left: auto !important;
 }
+
+/* ========================================
+   OUR STORY - FULL WIDTH WITH MARGINS
+   ======================================== */
+
+/* Full width container with side margins */
+.our-story-section,
+[class*='story'] {
+    max-width: 100% !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+}
+
+.our-story-section .container,
+[class*='story'] .container {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+}
+
+/* Larger images */
+.our-story-section img,
+[class*='story'] img {
+    width: 100% !important;
+    max-width: 800px !important;
+    height: auto !important;
+    margin: 20px auto !important;
+    display: block !important;
+    border-radius: 12px !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .our-story-section,
+    [class*='story'] {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    
+    .our-story-section img,
+    [class*='story'] img {
+        max-width: 100% !important;
+    }
+}
