@@ -8086,3 +8086,73 @@ footer,
 .site-footer {
     font-family: 'Outfit', sans-serif !important;
 }
+
+/* ========================================
+   HOMEPAGE SPACING OPTIMIZATION
+   ======================================== */
+
+/* Reduce section spacing */
+.site-main section,
+.content-area section,
+main section {
+    margin-bottom: 40px !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+/* Specific homepage sections */
+.newest-arrivals-section,
+.our-story-section,
+.top-rated-section,
+.popular-products-section {
+    margin-bottom: 30px !important;
+    padding: 20px 0 !important;
+}
+
+/* Reduce container padding */
+.container,
+.site-content {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+/* Section headings - reduce spacing */
+h2.section-title,
+.section-heading,
+h2 {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+/* Remove excessive padding from content */
+.entry-content,
+.page-content {
+    padding-top: 0 !important;
+}
+
+/* Responsive spacing */
+@media (max-width: 768px) {
+    .site-main section,
+    .content-area section {
+        margin-bottom: 25px !important;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+    }
+    
+    h2.section-title,
+    .section-heading {
+        margin-top: 15px !important;
+        margin-bottom: 15px !important;
+    }
+}
+
+/* Compact layout for modern UI */
+body {
+    line-height: 1.6 !important;
+}
+
+/* Remove extra spacing from WordPress blocks */
+.wp-block-group,
+.wp-block-cover {
+    margin-bottom: 30px !important;
+}
