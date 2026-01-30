@@ -8006,3 +8006,83 @@ ul.products li.product .product-content {
     font-family: 'Outfit', sans-serif !important;
     font-weight: 400 !important;
 }
+
+/* ========================================
+   GLOBAL FONT STANDARDIZATION - OUTFIT
+   ======================================== */
+
+/* Base - Apply to everything */
+* {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+body,
+html {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+/* Paragraphs and text */
+p, span, div, a, li, td, th {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+/* Buttons */
+button,
+input[type="button"],
+input[type="submit"],
+.button,
+.btn {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+/* Forms */
+input,
+textarea,
+select {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+/* WooCommerce specific */
+.woocommerce,
+.woocommerce-page,
+.woocommerce * {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+/* Product titles */
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.woocommerce div.product .product_title {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+/* Price */
+.woocommerce .price,
+.woocommerce-Price-amount {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+/* Category pages */
+.woocommerce-products-header__title,
+.page-title,
+.entry-title {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+/* Navigation */
+nav,
+.nav-menu,
+.menu {
+    font-family: 'Outfit', sans-serif !important;
+}
+
+/* Footer */
+footer,
+.site-footer {
+    font-family: 'Outfit', sans-serif !important;
+}
