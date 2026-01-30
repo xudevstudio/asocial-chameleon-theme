@@ -8352,3 +8352,43 @@ h3.section-title {
         grid-template-columns: 1fr !important;
     }
 }
+
+/* ========================================
+   OUR NEWEST ARRIVALS - CENTER BUTTONS
+   ======================================== */
+
+/* Center align Add to Cart buttons */
+.newest-arrivals-section .button,
+.newest-arrivals-section .add_to_cart_button,
+.newest-arrivals-section .premium-action-btn,
+[class*='newest'] .button,
+[class*='newest'] .add_to_cart_button,
+[class*='arrival'] .button,
+[class*='arrival'] .add_to_cart_button {
+    display: block !important;
+    margin: 10px auto !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 250px !important;
+}
+
+/* Product card button container */
+.newest-arrivals-section .product-card .button-container,
+[class*='newest'] .product-card .button-container,
+[class*='arrival'] .product-card .button-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+/* Fix button visibility */
+.newest-arrivals-section .button,
+[class*='newest'] .button,
+[class*='arrival'] .button {
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    right: auto !important;
+    left: auto !important;
+}
