@@ -52,7 +52,8 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         </div>
 
         <!-- Price -->
-        <div class="product-price" style="display: block !important; visibility: visible !important; opacity: 1 !important; font-size: 18px !important; font-weight: 700 !important; color: #000 !important; margin: 10px 0 !important; background: yellow !important; padding: 5px !important;">
+        <div class="product-price" style="display: block !important; visibility: visible !important; opacity: 1 !important; font-size: 18px !important; font-weight: 700 !important; margin: 10px 0 !important;">
+            <span style="color: #000 !important;">
             <?php 
             // Method 1: Standard WooCommerce
             echo $product->get_price_html(); 
@@ -69,6 +70,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                 }
             }
             ?>
+            </span>
         </div>
         
         <!-- Action Buttons -->
