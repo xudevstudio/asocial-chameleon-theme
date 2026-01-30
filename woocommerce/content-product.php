@@ -69,7 +69,62 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         </div>
         
         <style>
-        /* Force ALL price text to black */
+        /* ========================================
+           SHOP PAGE - RESPONSIVE PRODUCT CARDS
+           ======================================== */
+        
+        /* Product Card Base */
+        .product-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        
+        /* Product Content Area */
+        .product-card .product-content {
+            padding: 15px !important;
+            text-align: center !important;
+        }
+        
+        /* Category */
+        .product-category-hint,
+        .product-category-hint a {
+            display: block !important;
+            font-size: 11px !important;
+            color: #9b59b6 !important;
+            text-transform: uppercase !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.5px !important;
+            margin-bottom: 8px !important;
+            text-decoration: none !important;
+        }
+        
+        /* Title */
+        .product-title {
+            font-size: 15px !important;
+            font-weight: 600 !important;
+            line-height: 1.4 !important;
+            margin: 8px 0 12px 0 !important;
+            min-height: 40px !important;
+        }
+        
+        .product-title a {
+            color: #333 !important;
+            text-decoration: none !important;
+        }
+        
+        .product-title a:hover {
+            color: #9b59b6 !important;
+        }
+        
+        /* Price - Centered with spacing */
         .product-price,
         .product-price *,
         .product-price span,
@@ -78,6 +133,83 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         .product-price bdi,
         .product-price .woocommerce-Price-currencySymbol {
             color: #000 !important;
+            text-align: center !important;
+        }
+        
+        .product-price {
+            display: block !important;
+            font-size: 20px !important;
+            font-weight: 700 !important;
+            margin: 15px 0 !important;
+            text-align: center !important;
+        }
+        
+        /* Desktop - 4 columns */
+        @media (min-width: 769px) {
+            .woocommerce ul.products {
+                display: grid !important;
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 25px !important;
+            }
+            
+            .product-title {
+                font-size: 16px !important;
+            }
+            
+            .product-price {
+                font-size: 22px !important;
+            }
+        }
+        
+        /* Tablet - 3 columns */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .woocommerce ul.products {
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 20px !important;
+            }
+            
+            .product-title {
+                font-size: 14px !important;
+                min-height: 35px !important;
+            }
+            
+            .product-price {
+                font-size: 18px !important;
+            }
+            
+            .product-category-hint {
+                font-size: 10px !important;
+            }
+        }
+        
+        /* Mobile - 2 columns */
+        @media (max-width: 480px) {
+            .woocommerce ul.products {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 15px !important;
+            }
+            
+            .product-card .product-content {
+                padding: 10px !important;
+            }
+            
+            .product-title {
+                font-size: 13px !important;
+                min-height: 32px !important;
+                margin: 6px 0 10px 0 !important;
+            }
+            
+            .product-price {
+                font-size: 16px !important;
+                margin: 10px 0 !important;
+            }
+            
+            .product-category-hint {
+                font-size: 9px !important;
+                margin-bottom: 6px !important;
+            }
         }
         </style>
         
