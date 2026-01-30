@@ -8156,3 +8156,78 @@ body {
 .wp-block-cover {
     margin-bottom: 15px !important;
 }
+
+/* ========================================
+   ULTRA AGGRESSIVE SPACING REMOVAL
+   Override ALL inline styles and page builders
+   ======================================== */
+
+/* Target ALL possible section containers */
+body.home section,
+body.home .section,
+body.home .elementor-section,
+body.home .vc_row,
+body.home .wp-block-group,
+body.home div[class*='section'],
+.home .site-main > *,
+.home .entry-content > * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+/* Force minimal spacing */
+.home .container,
+.home .site-content,
+.home .content-area {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Remove all WordPress block spacing */
+.home .wp-block-spacer {
+    height: 0 !important;
+    margin: 0 !important;
+}
+
+/* Override Elementor spacing */
+.home .elementor-section {
+    margin: 0 !important;
+    padding: 5px 0 !important;
+}
+
+.home .elementor-column-gap-default > .elementor-column > .elementor-element-populated {
+    padding: 5px !important;
+}
+
+/* Override Visual Composer spacing */
+.home .vc_row {
+    margin-bottom: 0 !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+/* Target specific homepage sections by common class names */
+.home [class*='newest'],
+.home [class*='story'],
+.home [class*='rated'],
+.home [class*='popular'],
+.home [class*='arrival'] {
+    margin: 0 !important;
+    padding: 5px 0 !important;
+}
+
+/* Remove paragraph spacing on homepage */
+.home p {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+/* Remove heading spacing on homepage */
+.home h1, .home h2, .home h3, .home h4, .home h5, .home h6 {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
