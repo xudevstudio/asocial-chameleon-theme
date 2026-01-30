@@ -8879,3 +8879,79 @@ footer {
 .top-rated-section .product-content {
     padding: 10px !important;
 }
+
+/* ========================================
+   SINGLE PRODUCT PAGE - ISOLATED RESPONSIVE FIX
+   Only affects single product pages, no other pages
+   ======================================== */
+
+/* Target ONLY single product pages */
+body.single-product .product {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+}
+
+/* Product images - responsive */
+body.single-product .woocommerce-product-gallery {
+    width: 100% !important;
+    max-width: 500px !important;
+}
+
+body.single-product .woocommerce-product-gallery img {
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* Product summary - responsive */
+body.single-product .summary {
+    width: 100% !important;
+    padding: 20px !important;
+}
+
+/* Mobile - single product only */
+@media (max-width: 768px) {
+    body.single-product .product {
+        padding: 15px !important;
+    }
+    
+    body.single-product .woocommerce-product-gallery {
+        max-width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+    
+    body.single-product .summary {
+        padding: 15px 10px !important;
+    }
+    
+    body.single-product .product-title,
+    body.single-product .product_title {
+        font-size: 22px !important;
+        line-height: 1.3 !important;
+    }
+    
+    body.single-product .price {
+        font-size: 20px !important;
+    }
+    
+    body.single-product .button {
+        width: 100% !important;
+        margin-bottom: 10px !important;
+    }
+}
+
+/* Extra small mobile - single product only */
+@media (max-width: 480px) {
+    body.single-product .product {
+        padding: 10px !important;
+    }
+    
+    body.single-product .summary {
+        padding: 10px 5px !important;
+    }
+    
+    body.single-product .product-title,
+    body.single-product .product_title {
+        font-size: 18px !important;
+    }
+}
