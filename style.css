@@ -8261,3 +8261,30 @@ section[class*='story'] {
     margin-left: auto !important;
     margin-right: auto !important;
 }
+
+/* ========================================
+   HEADING TO CONTENT SPACING
+   ======================================== */
+
+/* Add gap between section headings and their content */
+.home h2,
+.home h3 {
+    margin-bottom: 20px !important;
+}
+
+/* Section title spacing */
+.section-title,
+.section-heading,
+h2.section-title,
+h3.section-title {
+    margin-bottom: 25px !important;
+    padding-bottom: 10px !important;
+}
+
+/* Specific homepage sections */
+.newest-arrivals-section h2,
+.our-story-section h2,
+.top-rated-section h2,
+.popular-products-section h2 {
+    margin-bottom: 30px !important;
+}
