@@ -7941,7 +7941,7 @@ ul.products li.product .product-content {
         grid-template-columns: repeat(3, 1fr) !important;
         gap: 15px !important;
         margin: 0 !important;
-        padding: 15px 0 !important;
+        padding: 25px 0 !important;
     }
 
     .woocommerce ul.products li.product,
@@ -8135,8 +8135,8 @@ h2 {
     .site-main section,
     .content-area section {
         margin-bottom: 25px !important;
-        padding-top: 15px !important;
-        padding-bottom: 15px !important;
+        padding-top: 25px !important;
+        padding-bottom: 25px !important;
     }
     
     h2.section-title,
@@ -8173,8 +8173,8 @@ body.home div[class*='section'],
 .home .entry-content > * {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
 }
 
 /* Force minimal spacing */
@@ -8194,7 +8194,7 @@ body.home div[class*='section'],
 /* Override Elementor spacing */
 .home .elementor-section {
     margin: 0 !important;
-    padding: 15px 0 !important;
+    padding: 25px 0 !important;
 }
 
 .home .elementor-column-gap-default > .elementor-column > .elementor-element-populated {
@@ -8204,8 +8204,8 @@ body.home div[class*='section'],
 /* Override Visual Composer spacing */
 .home .vc_row {
     margin-bottom: 0 !important;
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
 }
 
 /* Target specific homepage sections by common class names */
@@ -8215,7 +8215,7 @@ body.home div[class*='section'],
 .home [class*='popular'],
 .home [class*='arrival'] {
     margin: 0 !important;
-    padding: 15px 0 !important;
+    padding: 25px 0 !important;
 }
 
 /* Remove paragraph spacing on homepage */
