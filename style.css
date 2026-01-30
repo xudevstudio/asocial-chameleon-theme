@@ -8739,3 +8739,42 @@ footer {
 .posted_in {
     display: none !important;
 }
+
+/* ========================================
+   SHOP PAGE - EQUAL HEIGHT PRODUCT CARDS
+   Fix alignment when text varies
+   ======================================== */
+
+/* Make all product cards equal height */
+.woocommerce ul.products li.product,
+.product-card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
+/* Product content takes remaining space */
+.product-card .product-content {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important;
+}
+
+/* Title area grows to push buttons down */
+.product-card .product-title {
+    flex-grow: 1 !important;
+    min-height: 60px !important;
+    display: flex !important;
+    align-items: flex-start !important;
+}
+
+/* Buttons stay at bottom */
+.product-card .button-group,
+.product-card .premium-action-btn {
+    margin-top: auto !important;
+}
+
+/* Price stays consistent */
+.product-card .product-price {
+    margin: 10px 0 !important;
+}
