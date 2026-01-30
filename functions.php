@@ -421,47 +421,16 @@ function asocial_chameleon_cart_redirect() {
 // Buy Now functionality - handled by JavaScript in premium-product.js
 // The Buy Now button already redirects to checkout via AJAX
 
-/**
- * Add First Name and Last Name fields to WooCommerce Account Details
- */
-add_action( 'woocommerce_edit_account_form_start', 'asocial_chameleon_add_name_fields' );
-function asocial_chameleon_add_name_fields() {
-    $user = wp_get_current_user();
-    ?>
-    <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
-        <label for="account_first_name"><?php esc_html_e( 'First name', 'woocommerce' ); ?> <span class="required">*</span></label>
-        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_first_name" id="account_first_name" value="<?php echo esc_attr( $user->first_name ); ?>" />
-    </p>
-    <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-last">
-        <label for="account_last_name"><?php esc_html_e( 'Last name', 'woocommerce' ); ?> <span class="required">*</span></label>
-        <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="account_last_name" id="account_last_name" value="<?php echo esc_attr( $user->last_name ); ?>" />
-    </p>
-    <div class="clear"></div>
-    <?php
-}
 
 /**
- * Save First Name and Last Name fields
+ * Enable WooCommerce default First Name and Last Name fields
+ * Remove custom duplicate fields
  */
-add_action( 'woocommerce_save_account_details', 'asocial_chameleon_save_name_fields' );
-function asocial_chameleon_save_name_fields( $user_id ) {
-    if ( isset( $_POST['account_first_name'] ) ) {
-        update_user_meta( $user_id, 'first_name', sanitize_text_field( $_POST['account_first_name'] ) );
-    }
-    if ( isset( $_POST['account_last_name'] ) ) {
-        update_user_meta( $user_id, 'last_name', sanitize_text_field( $_POST['account_last_name'] ) );
-    }
+add_filter( 'woocommerce_save_account_details_required_fields', 'asocial_chameleon_enable_name_fields' );
+function asocial_chameleon_enable_name_fields( $required_fields ) {
+    // Add first_name and last_name to required fields
+    $required_fields['account_first_name'] = __( 'First name', 'woocommerce' );
+    $required_fields['account_last_name'] = __( 'Last name', 'woocommerce' );
+    return $required_fields;
 }
 
-/**
- * Validate First Name and Last Name fields
- */
-add_action( 'woocommerce_save_account_details_errors', 'asocial_chameleon_validate_name_fields', 10, 1 );
-function asocial_chameleon_validate_name_fields( $args ) {
-    if ( empty( $_POST['account_first_name'] ) ) {
-        $args->add( 'error', __( 'First name is required!', 'woocommerce' ) );
-    }
-    if ( empty( $_POST['account_last_name'] ) ) {
-        $args->add( 'error', __( 'Last name is required!', 'woocommerce' ) );
-    }
-}
