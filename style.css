@@ -8435,3 +8435,84 @@ h3.section-title {
         max-width: 100% !important;
     }
 }
+
+/* ========================================
+   OUR NEWEST ARRIVALS - RESPONSIVE FIX
+   ======================================== */
+
+/* Product grid responsive */
+.newest-arrivals-section .products,
+.newest-arrivals-section ul.products,
+[class*='newest'] .products,
+[class*='arrival'] .products {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 20px !important;
+}
+
+/* Product card styling */
+.newest-arrivals-section .product,
+[class*='newest'] .product,
+[class*='arrival'] .product {
+    text-align: center !important;
+    padding: 15px !important;
+}
+
+/* Center all buttons */
+.newest-arrivals-section .button,
+.newest-arrivals-section a.button,
+[class*='newest'] .button,
+[class*='arrival'] .button {
+    display: inline-block !important;
+    margin: 5px auto !important;
+    text-align: center !important;
+    width: auto !important;
+    min-width: 120px !important;
+}
+
+/* Button container */
+.newest-arrivals-section .product .button-group,
+[class*='newest'] .product .button-group,
+[class*='arrival'] .product .button-group {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+}
+
+/* Tablet - 3 columns */
+@media (max-width: 1024px) {
+    .newest-arrivals-section .products,
+    [class*='newest'] .products,
+    [class*='arrival'] .products {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 15px !important;
+    }
+}
+
+/* Mobile - 2 columns */
+@media (max-width: 768px) {
+    .newest-arrivals-section .products,
+    [class*='newest'] .products,
+    [class*='arrival'] .products {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+    
+    .newest-arrivals-section .button,
+    [class*='newest'] .button,
+    [class*='arrival'] .button {
+        font-size: 12px !important;
+        padding: 8px 12px !important;
+        min-width: 100px !important;
+    }
+}
+
+/* Small mobile - 1 column */
+@media (max-width: 480px) {
+    .newest-arrivals-section .products,
+    [class*='newest'] .products,
+    [class*='arrival'] .products {
+        grid-template-columns: 1fr !important;
+    }
+}
