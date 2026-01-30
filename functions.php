@@ -361,3 +361,11 @@ function asocial_chameleon_live_search_handler() {
     }
 }
 
+/**
+ * Redirect to Cart Page after Add to Cart
+ * Fixes issue where Add to Cart redirects to homepage
+ */
+add_filter( 'woocommerce_add_to_cart_redirect', 'asocial_chameleon_redirect_to_cart' );
+function asocial_chameleon_redirect_to_cart() {
+    return wc_get_cart_url();
+}
