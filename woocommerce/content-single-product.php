@@ -20,11 +20,11 @@ if ( post_password_required() ) {
 
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'premium-single-product font-sans text-slate-900 bg-white', $product ); ?>>
 
-	<!-- Full Width Container for maximum impact -->
-	<main class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 py-8 lg:py-16">
+	<!-- Full Width Container -->
+	<main class="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 py-4 lg:py-8">
 		
-		<!-- Breadcrumb (Minimalist) -->
-		<nav class="flex mb-6 lg:mb-12 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
+		<!-- Breadcrumb -->
+		<nav class="flex mb-4 lg:mb-6 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
 			<?php
 			$terms = get_the_terms( $product->get_id(), 'product_cat' );
 			?>
@@ -86,7 +86,7 @@ if ( post_password_required() ) {
 
 			<!-- Right: Product Details (Sticky, Takes 5 cols) -->
 			<div class="lg:col-span-5 relative">
-				<div class="sticky top-32 space-y-4">
+				<div class="lg:sticky lg:top-20 space-y-4">
 					
 					<!-- Header Info -->
 					<div class="space-y-2">
@@ -226,16 +226,16 @@ if ( post_password_required() ) {
 			</div>
 		</div>
 
-		<!-- Product Tabs (Below Fold) -->
-		<section class="mt-24 lg:mt-40 border-t border-slate-200 pt-24">
+		<!-- Product Tabs -->
+		<section class="mt-12 lg:mt-20 border-t border-slate-200 pt-12 lg:pt-16">
 			<div class="max-w-4xl mx-auto">
 				<?php woocommerce_output_product_data_tabs(); ?>
 			</div>
 		</section>
 
 		<!-- Related Products -->
-		<section class="mt-24">
-			<h3 class="text-3xl font-black text-center mb-12 uppercase">You May Also Like</h3>
+		<section class="mt-12 lg:mt-16">
+			<h3 class="text-2xl lg:text-3xl font-black text-center mb-8 lg:mb-12 uppercase">You May Also Like</h3>
 			<?php woocommerce_output_related_products(); ?>
 		</section>
 
