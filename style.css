@@ -8854,3 +8854,28 @@ footer {
     margin-top: 0 !important;
     padding-top: 0 !important;
 }
+
+/* ========================================
+   TOP RATED COLLECTION - AGGRESSIVE SPACING FIX
+   ======================================== */
+
+/* Further reduce title/price gap */
+.top-rated-section .product-title h3,
+.top-rated-section .swiper-slide h3 {
+    margin-bottom: 5px !important;
+    padding-bottom: 0 !important;
+}
+
+.top-rated-section .product-price,
+.top-rated-section .swiper-slide .product-price,
+.top-rated-section .price {
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+    padding-top: 0 !important;
+    line-height: 1.2 !important;
+}
+
+/* Remove any extra spacing from product content */
+.top-rated-section .product-content {
+    padding: 10px !important;
+}
