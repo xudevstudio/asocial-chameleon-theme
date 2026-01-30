@@ -8591,3 +8591,120 @@ footer {
     margin-top: 0 !important;
     padding-top: 30px !important;
 }
+
+/* ========================================
+   COMPREHENSIVE MOBILE RESPONSIVE FIX
+   All Sections - Mobile Optimized
+   ======================================== */
+
+/* Mobile - All sections spacing */
+@media (max-width: 768px) {
+    /* Reduce all section spacing */
+    body.home section,
+    .home .section,
+    .site-main section {
+        padding: 15px 10px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    /* Container padding */
+    .container,
+    .site-content {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
+    /* Our Story - Mobile */
+    .our-story-section,
+    [class*='story'] {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
+    .our-story-section h2,
+    [class*='story'] h2 {
+        font-size: 22px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .our-story-section p,
+    [class*='story'] p {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+    }
+    
+    .our-story-section img,
+    [class*='story'] img {
+        max-width: 100% !important;
+        margin: 15px 0 !important;
+    }
+    
+    /* Our Newest Arrivals - Mobile */
+    .newest-arrivals-section,
+    [class*='newest'],
+    [class*='arrival'] {
+        padding: 15px 10px !important;
+    }
+    
+    .newest-arrivals-section h2,
+    [class*='newest'] h2,
+    [class*='arrival'] h2 {
+        font-size: 20px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .newest-arrivals-section .products,
+    [class*='newest'] .products,
+    [class*='arrival'] .products {
+        gap: 12px !important;
+        padding: 0 !important;
+    }
+    
+    /* Product cards mobile */
+    .newest-arrivals-section .product,
+    [class*='newest'] .product,
+    [class*='arrival'] .product {
+        padding: 10px !important;
+    }
+    
+    /* Buttons mobile */
+    .newest-arrivals-section .button,
+    [class*='newest'] .button,
+    [class*='arrival'] .button {
+        font-size: 12px !important;
+        padding: 8px 12px !important;
+    }
+    
+    /* All headings mobile */
+    .home h2 {
+        font-size: 20px !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .home h3 {
+        font-size: 18px !important;
+    }
+    
+    /* Remove excessive gaps */
+    .home .wp-block-spacer {
+        height: 10px !important;
+    }
+}
+
+/* Extra small mobile */
+@media (max-width: 480px) {
+    body.home section {
+        padding: 10px 8px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    
+    .home h2 {
+        font-size: 18px !important;
+        margin-bottom: 10px !important;
+    }
+}
