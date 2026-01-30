@@ -8838,3 +8838,19 @@ footer {
     padding-top: 0 !important;
     padding-bottom: 20px !important;
 }
+
+/* ========================================
+   TOP RATED COLLECTION - REDUCE TITLE/PRICE GAP
+   ======================================== */
+
+/* Reduce gap between title and price */
+.top-rated-section .product-title,
+.top-rated-section .swiper-slide .product-title {
+    margin-bottom: 8px !important;
+}
+
+.top-rated-section .product-price,
+.top-rated-section .swiper-slide .product-price {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
