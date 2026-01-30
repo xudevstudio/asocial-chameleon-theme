@@ -52,26 +52,34 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         </div>
 
         <!-- Price -->
-        <div class="product-price" style="display: block !important; visibility: visible !important; opacity: 1 !important; font-size: 18px !important; font-weight: 700 !important; margin: 10px 0 !important;">
-            <span style="color: #000 !important;">
+        <div class="product-price" style="display: block !important; visibility: visible !important; opacity: 1 !important; font-size: 18px !important; font-weight: 700 !important; margin: 10px 0 !important; color: #000 !important;">
             <?php 
-            // Method 1: Standard WooCommerce
-            echo $product->get_price_html(); 
-            
-            // Method 2: Direct price display (fallback)
-            if (empty($product->get_price_html())) {
+            $price_html = $product->get_price_html();
+            // Force all price text to black by wrapping in styled span
+            if (!empty($price_html)) {
+                echo '<span style="color: #000 !important;">' . $price_html . '</span>';
+            } else {
+                // Fallback
                 $price = $product->get_price();
                 if ($price) {
-                    echo '<span class="woocommerce-Price-amount amount">';
-                    echo '<bdi><span class="woocommerce-Price-currencySymbol">$</span>' . esc_html($price) . '</bdi>';
-                    echo '</span>';
-                } else {
-                    echo '<span style="color: red;">Price not set</span>';
+                    echo '<span style="color: #000 !important;"><bdi><span style="color: #000 !important;">$</span>' . esc_html($price) . '</bdi></span>';
                 }
             }
             ?>
-            </span>
         </div>
+        
+        <style>
+        /* Force ALL price text to black */
+        .product-price,
+        .product-price *,
+        .product-price span,
+        .product-price .price,
+        .product-price .woocommerce-Price-amount,
+        .product-price bdi,
+        .product-price .woocommerce-Price-currencySymbol {
+            color: #000 !important;
+        }
+        </style>
         
         <!-- Action Buttons -->
         <?php 
