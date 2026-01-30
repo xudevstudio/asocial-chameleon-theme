@@ -8554,3 +8554,22 @@ a.button,
     line-height: 1 !important;
     vertical-align: middle !important;
 }
+
+/* ========================================
+   NEWEST ARRIVALS - REDUCE HEADING GAP
+   ======================================== */
+
+/* Reduce gap between heading and products */
+.newest-arrivals-section h2,
+[class*='newest'] h2,
+[class*='arrival'] h2 {
+    margin-bottom: 15px !important;
+    padding-bottom: 0 !important;
+}
+
+.newest-arrivals-section .products,
+[class*='newest'] .products,
+[class*='arrival'] .products {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
