@@ -35,7 +35,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
     <!-- Content Section -->
     <div class="product-content">
         <!-- Category -->
-        <div class="product-category-hint">
+        <div class="product-category-hint" style="display: block !important; visibility: visible !important; opacity: 1 !important; font-size: 11px; color: #9b59b6; text-transform: uppercase; font-weight: 600; margin-bottom: 6px;">
             <?php echo wc_get_product_category_list( $product->get_id(), ', ', '', '' ); ?>
         </div>
 
@@ -52,7 +52,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         </div>
 
         <!-- Price -->
-        <div class="product-price">
+        <div class="product-price" style="display: block !important; visibility: visible !important; opacity: 1 !important; font-size: 18px; font-weight: 700; color: #000; margin: 10px 0;">
             <?php echo $product->get_price_html(); ?>
         </div>
         
