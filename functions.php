@@ -44,6 +44,14 @@ add_action( 'after_setup_theme', 'asocial_chameleon_setup' );
 function asocial_chameleon_scripts() {
     wp_enqueue_style( 'asocial-chameleon-style', get_stylesheet_uri(), array(), time() );
     
+    // Enqueue Single Product Page CSS
+    if ( is_product() ) {
+        wp_enqueue_style( 'single-product-fixes', get_template_directory_uri() . '/single-product-fixes.css', array(), time() );
+        
+        // Enqueue Gallery Fix JS
+        wp_enqueue_script( 'gallery-fix', get_template_directory_uri() . '/assets/js/gallery-fix.js', array( 'jquery' ), '1.0.0', true );
+    }
+    
     // Swiper CSS (CDN)
     wp_enqueue_style( 
         'swiper-css', 
@@ -238,6 +246,23 @@ function asocial_chameleon_add_product_buttons() {
     echo '<span class="button-icon">⚡</span>';
     echo '<span class="button-text">' . esc_html__( 'Buy Now', 'asocial-chameleon' ) . '</span>';
     echo '</a>';
+
+    // ShopEngine Component Icons (Manually Added)
+    // These need to use the ShopEngine classes to potentially trigger their JS, or just display the icon if that's what the user wants.
+    // Assuming the user just wants the visual buttons for now or standard ShopEngine functionality if JS allows.
+    // We wrap them in links or divs as appropriate.
+    
+    echo '<div class="shopengine-actions">';
+        // Wishlist
+        echo '<a href="#" class="shopengine-wishlist-btn" title="Add to Wishlist">';
+        echo '<i class="shopengine-icon-add_to_favourite_1"></i>';
+        echo '</a>';
+        
+        // Compare
+        echo '<a href="#" class="shopengine-compare-btn" title="Compare">';
+        echo '<i class="shopengine-icon-product_compare_1"></i>';
+        echo '</a>';
+    echo '</div>';
     
     // End button group wrapper
     echo '</div>';
@@ -297,6 +322,65 @@ function asocial_chameleon_force_shop_template( $template ) {
         }
     }
     return $template;
+}
+
+/**
+ * Disable ShopEngine Single Product Template Override
+ * Force our custom template to load
+ */
+add_filter( 'template_include', 'asocial_chameleon_force_single_product_template', 9999 );
+function asocial_chameleon_force_single_product_template( $template ) {
+    if ( is_product() ) {
+        // Remove ShopEngine filters
+        remove_all_filters( 'wc_get_template_part' );
+        
+        // Force our custom template
+        $custom_template = locate_template( 'woocommerce/content-single-product.php' );
+        if ( $custom_template ) {
+            // Use WooCommerce default single-product.php wrapper
+            $wrapper_template = locate_template( 'woocommerce/single-product.php' );
+            if ( $wrapper_template ) {
+                return $wrapper_template;
+            }
+        }
+    }
+    return $template;
+}
+
+/**
+ * Disable ShopEngine template parts for single products
+ */
+add_filter( 'shopengine/template/get_template_part', '__return_false', 9999 );
+
+/**
+ * Remove ShopEngine hooks that duplicate the add-to-cart form
+ */
+add_action( 'wp', 'asocial_chameleon_remove_shopengine_hooks', 999 );
+function asocial_chameleon_remove_shopengine_hooks() {
+    if ( is_product() ) {
+        // Remove all ShopEngine actions from single product hooks
+        remove_all_actions( 'woocommerce_single_product_summary' );
+        remove_all_actions( 'woocommerce_before_single_product_summary' );
+        
+        // Re-add only the core WooCommerce hooks we need
+        add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+        add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+        add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+        add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+        add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+        add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+        add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
+    }
+}
+
+/**
+ * Enable WooCommerce Product Gallery Features
+ */
+add_action( 'after_setup_theme', 'asocial_chameleon_enable_gallery_features', 20 );
+function asocial_chameleon_enable_gallery_features() {
+    add_theme_support( 'wc-product-gallery-zoom' );
+    add_theme_support( 'wc-product-gallery-lightbox' );
+    add_theme_support( 'wc-product-gallery-slider' );
 }
 
 
@@ -433,4 +517,48 @@ function asocial_chameleon_enable_name_fields( $required_fields ) {
     $required_fields['account_last_name'] = __( 'Last name', 'woocommerce' );
     return $required_fields;
 }
+
+/**
+ * Rescue Missing Product Components for ShopEngine Template
+ * Outputs standard WC templates into a hidden container to be moved via JS
+ * DISABLED: This was causing duplicate forms
+ */
+/*
+add_action( 'wp_footer', 'asocial_chameleon_rescue_product_components' );
+function asocial_chameleon_rescue_product_components() {
+    if ( ! is_product() ) return;
+    
+    global $product;
+    if ( ! $product ) return;
+    
+    echo '<div id="rescue-product-data" style="display:none;">';
+    
+    // 1. Rating
+    echo '<div id="rescue-rating">';
+    woocommerce_template_single_rating();
+    echo '</div>';
+    
+    // 2. Short Description
+    echo '<div id="rescue-excerpt">';
+    woocommerce_template_single_excerpt();
+    echo '</div>';
+    
+    // 3. Add to Cart Form (Variations etc)
+    echo '<div id="rescue-add-to-cart">';
+    woocommerce_template_single_add_to_cart();
+    echo '</div>';
+    
+    // 4. Meta (SKU, Categories, Tags)
+    echo '<div id="rescue-meta">';
+    woocommerce_template_single_meta();
+    echo '</div>';
+    
+    // 5. Sharing (Standard)
+    echo '<div id="rescue-sharing">';
+    woocommerce_template_single_sharing();
+    echo '</div>';
+
+    echo '</div>';
+}
+*/
 

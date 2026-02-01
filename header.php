@@ -76,6 +76,91 @@
                         <!-- Desktop Logo -->
                         <img src="<?php echo esc_url( $logo_src ); ?>" alt="<?php bloginfo( 'name' ); ?>" class="logo-image desktop-logo">
                         
+                        <!-- ShopEngine Fix: Hydrate Missing Components -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!document.body.classList.contains('single-product')) return;
+
+            console.log('ShopEngine Fix: Hydrating components...');
+
+            // Helper to insert after
+            function insertAfter(newNode, referenceNode) {
+                if (referenceNode && referenceNode.parentNode) {
+                    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+                }
+            }
+
+            // 1. Locate Targets in ShopEngine Template
+            const title = document.querySelector('.product_title, .shopengine-product-title');
+            const price = document.querySelector('.price, .shopengine-product-price');
+            
+            // 2. Hydrate Rating & Excerpt (Below Title)
+            const rescueRating = document.getElementById('rescue-rating');
+            const rescueExcerpt = document.getElementById('rescue-excerpt');
+            
+            if (title) {
+                if (rescueExcerpt && rescueExcerpt.innerHTML.trim() !== '') {
+                    rescueExcerpt.style.display = 'block';
+                    rescueExcerpt.style.marginTop = '10px';
+                    rescueExcerpt.style.marginBottom = '15px';
+                    insertAfter(rescueExcerpt, title);
+                }
+                if (rescueRating && rescueRating.innerHTML.trim() !== '') {
+                    rescueRating.style.display = 'block';
+                    rescueRating.style.marginBottom = '5px';
+                    insertAfter(rescueRating, title);
+                }
+            }
+
+            // 3. Hydrate Add to Cart Form (Below Price)
+            const rescueCart = document.getElementById('rescue-add-to-cart');
+            
+            if (price && rescueCart) {
+                // Remove existing broken buttons if any
+                const existingBtn = document.querySelector('.shopengine-fix-buttons');
+                if (existingBtn) existingBtn.remove();
+
+                rescueCart.style.display = 'block';
+                rescueCart.style.marginTop = '20px';
+                insertAfter(rescueCart, price);
+            }
+
+            // 4. Hydrate Meta (Below Add to Cart)
+            const rescueMeta = document.getElementById('rescue-meta');
+            if (rescueCart && rescueMeta) {
+                rescueMeta.style.display = 'block';
+                rescueMeta.style.marginTop = '20px';
+                rescueMeta.style.borderTop = '1px solid #eee';
+                rescueMeta.style.paddingTop = '10px';
+                insertAfter(rescueMeta, rescueCart);
+            } else if (price && rescueMeta) {
+                insertAfter(rescueMeta, price);
+            }
+
+            // 5. Fix In Stock Icon Styling
+            const stockElements = document.querySelectorAll('.stock.in-stock');
+            stockElements.forEach(function(stock) {
+                if (!stock.innerHTML.includes('fa-check')) {
+                    // Prepend icon if missing
+                    const icon = document.createElement('i');
+                    icon.className = 'fas fa-check-circle';
+                    icon.style.marginRight = '8px';
+                    icon.style.color = '#27ae60';
+                    stock.insertBefore(icon, stock.firstChild);
+                }
+                stock.style.color = '#27ae60';
+                stock.style.fontWeight = 'bold';
+                stock.style.display = 'inline-flex';
+                stock.style.alignItems = 'center';
+            });
+            
+            // 6. Force Variations Form to Show
+            const variationsForm = document.querySelector('.variations_form');
+            if (variationsForm) {
+                variationsForm.style.display = 'block';
+            }
+        });
+    </script>
                         <?php if ( $mobile_logo ) : ?>
                             <!-- Mobile Logo (if set) -->
                             <img src="<?php echo esc_url( $mobile_logo ); ?>" alt="<?php bloginfo( 'name' ); ?>" class="logo-image mobile-logo" style="display: none;">
@@ -207,4 +292,5 @@
         }
     }
     </style>
+
 
