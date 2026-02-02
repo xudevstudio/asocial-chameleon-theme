@@ -373,78 +373,106 @@
     }
 
     /* 4. Fix Gallery Images (Thumbnails were hidden) */
-    /* Restore standard block display for wrapper to allow FlexSlider to work */
+    /* Restore standard relative positioning for the gallery */
     .woocommerce-product-gallery {
-        display: block !important;
         position: relative !important;
         opacity: 1 !important;
-        overflow: visible !important;
+        display: block !important;
     }
 
-    .woocommerce-product-gallery__wrapper {
-        margin: 0 !important;
-        padding: 0 !important;
+    /* FIX: Ensure the viewport doesn't collapse */
+    .woocommerce-product-gallery .flex-viewport {
+        height: auto !important;
+        overflow: hidden !important;
     }
 
-    /* Force thumbnails to show below */
+    /* Force proper image display */
+    .woocommerce-product-gallery .woocommerce-product-gallery__image {
+        display: block !important; /* Ensure it's not flexed */
+    }
+    
+    .woocommerce-product-gallery .woocommerce-product-gallery__image img {
+        display: block !important;
+        height: auto !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+
+    /* Force thumbnails strip layout */
     .woocommerce-product-gallery .flex-control-nav.flex-control-thumbs {
         display: flex !important;
         flex-wrap: wrap !important;
-        margin: 20px -5px 0 !important; /* Add top margin */
-        padding: 0 !important;
-        position: relative !important;
-        width: 100% !important;
         justify-content: center !important;
+        margin: 20px 0 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        position: relative !important;
     }
 
     .woocommerce-product-gallery .flex-control-thumbs li {
-        width: 20% !important;
-        padding: 5px !important;
-        float: left !important;
-        list-style: none !important;
+        width: 20% !important; /* 5 per row max */
+        float: none !important; /* Disable float which breaks flex */
         display: block !important;
-    }
-    
-    .woocommerce-product-gallery .flex-control-thumbs li img {
-        width: 100% !important;
-        height: auto !important;
-        opacity: 0.6 !important;
-        transition: opacity 0.3s !important;
+        margin: 0 5px 5px !important;
         cursor: pointer !important;
     }
 
-    .woocommerce-product-gallery .flex-control-thumbs li img.flex-active,
-    .woocommerce-product-gallery .flex-control-thumbs li img:hover {
-        opacity: 1 !important;
+    .woocommerce-product-gallery .flex-control-thumbs li img {
+        opacity: 0.5 !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 0 0 1px #eee !important;
     }
 
-    /* 5. Shop Page Price Visibility */
-    .woocommerce ul.products li.product .price,
-    .woocommerce ul.products li.product span.price {
-        display: block !important;
-        visibility: visible !important;
+    .woocommerce-product-gallery .flex-control-thumbs li img.flex-active, 
+    .woocommerce-product-gallery .flex-control-thumbs li img:hover {
         opacity: 1 !important;
-        color: #000 !important;
+        box-shadow: 0 0 0 2px #000 !important; /* Highlight active */
+    }
+
+    /* 5. Shop Page Price Visibility & Styling */
+    /* Force ALL price elements to be black */
+    .woocommerce ul.products li.product .price,
+    .woocommerce ul.products li.product .price *,
+    .woocommerce ul.products li.product .price span,
+    .woocommerce ul.products li.product .price bdi,
+    .price span.woocommerce-Price-amount,
+    .price span.woocommerce-Price-currencySymbol {
+        color: #000000 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        text-shadow: none !important;
+    }
+    
+    .woocommerce ul.products li.product .price {
+        display: block !important;
         font-weight: 700 !important;
         font-size: 16px !important;
         margin-bottom: 10px !important;
+        background: transparent !important; /* Ensure no white bg overlay */
     }
 
     /* 6. Responsive Related Products */
-    /* Mobile (Phone) - 1 Column */
-    @media (max-width: 480px) {
-        .related.products ul.products,
-        .related.products ul.products.columns-4,
-        .related.products ul.products.columns-3 {
-            grid-template-columns: 1fr !important;
+    .related.products ul.products {
+        display: grid !important;
+        grid-gap: 20px !important;
+    }
+    
+    /* Desktop: 3 Columns */
+    @media (min-width: 769px) {
+        .related.products ul.products {
+            grid-template-columns: repeat(3, 1fr) !important;
         }
     }
-    /* Tablet/Small Laptop - 2 Columns */
+    /* Tablet: 2 Columns */
     @media (min-width: 481px) and (max-width: 768px) {
-        .related.products ul.products,
-        .related.products ul.products.columns-4,
-        .related.products ul.products.columns-3 {
+        .related.products ul.products {
             grid-template-columns: repeat(2, 1fr) !important;
+        }
+    }
+    /* Mobile: 1 Column */
+    @media (max-width: 480px) {
+        .related.products ul.products {
+            grid-template-columns: 1fr !important;
         }
     }
     </style>
