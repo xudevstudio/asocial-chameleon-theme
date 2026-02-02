@@ -294,20 +294,30 @@
 
     /* --- Single Product Page Fixes --- */
 
-    /* 1. Related Products - Force 3 Columns & Fix Overflow */
+    /* 1. Related Products - Force 4 Columns & Fix Overflow */
     @media (min-width: 769px) {
-        /* Target specifically to override theme's column classes */
-        .related.products ul.products,
-        .related.products ul.products.columns-4,
-        .related.products ul.products.columns-3 {
-            grid-template-columns: repeat(3, 1fr) !important;
+        /* NUCLEAR FIX: Force 4 columns with high specificity */
+        body.single-product .related.products ul.products,
+        body.single-product .related.products ul.products.columns-4,
+        body.single-product section.related.products ul.products {
+            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
             display: grid !important;
             width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            grid-gap: 20px !important;
+            justify-content: center !important;
+            box-sizing: border-box !important;
         }
         
-        .related.products ul.products li.product {
-            width: 100% !important;
+        /* Reset items to ensure they fit */
+        body.single-product .related.products ul.products li.product {
+            width: auto !important; /* Let Grid control width */
             max-width: 100% !important;
+            min-width: 0 !important; /* Allow shrinking */
+            margin: 0 !important;
+            padding: 0 !important;
+            float: none !important;
         }
     }
 
@@ -509,13 +519,13 @@
         margin-top: 20px !important;
     }
     
-    /* Desktop: 3 Columns Stiff Enforcement */
+    /* Desktop: 4 Columns Stiff Enforcement */
     @media (min-width: 769px) {
         .related.products ul.products,
         .related.products ul.products.columns-3,
         .related.products ul.products.columns-4,
         .up-sells ul.products {
-            grid-template-columns: repeat(3, 1fr) !important;
+            grid-template-columns: repeat(4, 1fr) !important;
         }
         
         /* Ensure product items take full width of their grid cell */
