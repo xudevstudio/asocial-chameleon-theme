@@ -95,7 +95,7 @@ function asocial_chameleon_scripts() {
 
     // Enqueue Premium Product JS only on single product pages
     // Enqueue Premium Product JS
-    wp_enqueue_script( 'premium-product-js', get_template_directory_uri() . '/assets/js/premium-product.js', array( 'jquery' ), '1.0.0', true );
+    wp_enqueue_script( 'premium-product-js', get_template_directory_uri() . '/assets/js/premium-product.js', array( 'jquery' ), '1.0.1', true );
     
     // Pass AJAX URL and Checkout URL to script
     wp_localize_script( 'premium-product-js', 'wc_add_to_cart_params', array(
