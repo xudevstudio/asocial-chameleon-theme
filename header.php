@@ -380,22 +380,17 @@
         display: block !important;
     }
 
-    /* FIX: Ensure the viewport doesn't collapse */
+    /* FIX: Ensure the viewport doesn't collapse but let JS handle overflow */
     .woocommerce-product-gallery .flex-viewport {
         height: auto !important;
-        overflow: hidden !important;
     }
 
-    /* Force proper image display */
-    .woocommerce-product-gallery .woocommerce-product-gallery__image {
-        display: block !important; /* Ensure it's not flexed */
-    }
-    
+    /* REMOVED: display: block !important on images. This broke the slider. */
+    /* Only ensure images fill their container */
     .woocommerce-product-gallery .woocommerce-product-gallery__image img {
-        display: block !important;
-        height: auto !important;
         width: 100% !important;
-        margin: 0 auto !important;
+        height: auto !important;
+        display: block !important;
     }
 
     /* Force thumbnails strip layout */
@@ -430,17 +425,16 @@
     }
 
     /* 5. Shop Page Price Visibility & Styling */
-    /* Force ALL price elements to be black */
+    /* Force ALL price elements to be black using body scope to win specificity wars */
+    body.woocommerce-shop .price,
+    body.woocommerce-shop .amount,
+    body.archive .price,
+    body.archive .amount,
     .woocommerce ul.products li.product .price,
-    .woocommerce ul.products li.product .price *,
-    .woocommerce ul.products li.product .price span,
-    .woocommerce ul.products li.product .price bdi,
-    .price span.woocommerce-Price-amount,
-    .price span.woocommerce-Price-currencySymbol {
+    .woocommerce ul.products li.product .price * {
         color: #000000 !important;
-        opacity: 1 !important;
         visibility: visible !important;
-        text-shadow: none !important;
+        opacity: 1 !important; 
     }
     
     .woocommerce ul.products li.product .price {
@@ -448,7 +442,6 @@
         font-weight: 700 !important;
         font-size: 16px !important;
         margin-bottom: 10px !important;
-        background: transparent !important; /* Ensure no white bg overlay */
     }
 
     /* 6. Responsive Related Products */
