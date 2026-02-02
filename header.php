@@ -416,14 +416,24 @@
     // JS Fallback to force hide icons if CSS fails
     document.addEventListener('DOMContentLoaded', function() {
         var hideIcons = function() {
-            var icons = document.querySelectorAll('.shopengine-wishlist, .shopengine-comparison');
+            // Select indiscriminately
+            var icons = document.querySelectorAll('.shopengine-wishlist, .shopengine-comparison, .shopengine-wishlist-btn, .shopengine-compare-btn, [class*="shopengine-wishlist"], [class*="shopengine-compare"]');
+            
             icons.forEach(function(icon) {
-                icon.style.display = 'none';
-                icon.style.visibility = 'hidden';
+                // Use setProperty to set !important inline
+                icon.style.setProperty('display', 'none', 'important');
+                icon.style.setProperty('visibility', 'hidden', 'important');
+                icon.style.setProperty('opacity', '0', 'important');
+                icon.style.setProperty('width', '0', 'important');
+                icon.style.setProperty('height', '0', 'important');
+                icon.style.setProperty('margin', '0', 'important');
+                icon.style.setProperty('padding', '0', 'important');
             });
         };
+        
         hideIcons();
-        // Retry just in case of dynamic loading
+        // Retry for dynamic content
+        setTimeout(hideIcons, 500);
         setTimeout(hideIcons, 1000);
         setTimeout(hideIcons, 3000);
     });
