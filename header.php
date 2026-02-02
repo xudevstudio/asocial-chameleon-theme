@@ -444,29 +444,57 @@
         margin-bottom: 10px !important;
     }
 
-    /* 6. Responsive Related Products */
-    .related.products ul.products {
+    /* 6. Responsive Related Products & Top Rated */
+    .related.products ul.products,
+    .up-sells ul.products {
         display: grid !important;
         grid-gap: 20px !important;
+        width: 100% !important;
+        margin-top: 20px !important;
     }
     
-    /* Desktop: 3 Columns */
+    /* Desktop: 3 Columns Stiff Enforcement */
     @media (min-width: 769px) {
-        .related.products ul.products {
+        .related.products ul.products,
+        .related.products ul.products.columns-3,
+        .related.products ul.products.columns-4,
+        .up-sells ul.products {
             grid-template-columns: repeat(3, 1fr) !important;
         }
-    }
-    /* Tablet: 2 Columns */
-    @media (min-width: 481px) and (max-width: 768px) {
-        .related.products ul.products {
-            grid-template-columns: repeat(2, 1fr) !important;
+        
+        /* Ensure product items take full width of their grid cell */
+        .related.products ul.products li.product,
+        .up-sells ul.products li.product {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
         }
     }
-    /* Mobile: 1 Column */
+    
+    /* Mobile/Tablet Responsive */
+    @media (max-width: 768px) {
+        .related.products ul.products,
+        .up-sells ul.products {
+            grid-template-columns: repeat(2, 1fr) !important; /* 2 cols on tablet/mobile for better density */
+        }
+    }
+    
     @media (max-width: 480px) {
-        .related.products ul.products {
-            grid-template-columns: 1fr !important;
+        .related.products ul.products,
+        .up-sells ul.products {
+            grid-template-columns: repeat(2, 1fr) !important; /* Keep 2 cols on mobile as requested for "best adjust" */
         }
+    }
+
+    /* 7. Gallery Lightbox Trigger Visibility */
+    .woocommerce-product-gallery__trigger {
+        z-index: 100 !important;
+        background: #fff !important;
+        border-radius: 50% !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+        right: 15px !important;
+        top: 15px !important;
+        display: block !important;
     }
     </style>
 
