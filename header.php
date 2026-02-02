@@ -318,6 +318,14 @@
     body .shopengine-wishlist-btn,
     body .yith-wcwl-add-to-wishlist,
     body .favorites-icon,
+    body .wpc-compare-button,
+    /* Broad attribute selectors for stubborn icons */
+    [class*="shopengine-wishlist"],
+    [class*="shopengine-compare"],
+    [class*="shopengine-comparison"],
+    a[href*="wishlist"],
+    a[href*="compare"],
+    .shopengine-actions,
     .shopengine-wishlist,
     .shopengine-comparison { 
         display: none !important;
