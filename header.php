@@ -294,36 +294,63 @@
 
     /* --- Single Product Page Fixes --- */
 
-    /* 1. Related Products - 3 per row & Adjusted Width */
+    /* 1. Related Products - Force 3 Columns & Fix Overflow */
     @media (min-width: 769px) {
-        .related.products ul.products {
+        /* Target specifically to override theme's column classes */
+        .related.products ul.products,
+        .related.products ul.products.columns-4,
+        .related.products ul.products.columns-3 {
             grid-template-columns: repeat(3, 1fr) !important;
             display: grid !important;
+            width: 100% !important;
         }
+        
         .related.products ul.products li.product {
             width: 100% !important;
             max-width: 100% !important;
         }
-        /* Adjust card font sizes just for related products to make them "smaller" visually */
-        .related.products ul.products li.product .product-title {
-            font-size: 14px !important;
-        }
     }
 
-    /* 2. Hide Specific Icons (Compare, Wishlist/Favorite) */
-    .shopengine-icon-product_compare_1,
-    .shopengine-wishlist-btn,
-    .yith-wcwl-add-to-wishlist,
-    .favorites-icon { /* Generic class just in case */
+    /* 2. Hide Specific Icons (Compare, Wishlist/Favorite) - Target Containers */
+    body .shopengine-wishlist,
+    body .shopengine-comparison,
+    body .shopengine-icon-product_compare_1,
+    body .shopengine-wishlist-btn,
+    body .yith-wcwl-add-to-wishlist,
+    body .favorites-icon,
+    .shopengine-wishlist,
+    .shopengine-comparison { 
         display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        width: 0 !important;
+        height: 0 !important;
+        pointer-events: none !important; 
     }
+    </style>
+    <script>
+    // JS Fallback to force hide icons if CSS fails
+    document.addEventListener('DOMContentLoaded', function() {
+        var hideIcons = function() {
+            var icons = document.querySelectorAll('.shopengine-wishlist, .shopengine-comparison');
+            icons.forEach(function(icon) {
+                icon.style.display = 'none';
+                icon.style.visibility = 'hidden';
+            });
+        };
+        hideIcons();
+        // Retry just in case of dynamic loading
+        setTimeout(hideIcons, 1000);
+        setTimeout(hideIcons, 3000);
+    });
+    </script>
 
     /* 3. Center Tabs & Description with Margins */
     .product-tabs-wrapper, 
     .woocommerce-tabs {
         max-width: 1100px !important;
-        margin: 40px auto !important;
-        padding: 0 15px !important;
+        margin: 50px auto !important; /* Increased margin */
+        padding: 0 20px !important;    /* Increased padding */
         float: none !important;
         width: 100% !important;
     }
@@ -331,7 +358,7 @@
     .woocommerce-tabs ul.tabs {
         justify-content: center !important;
         display: flex !important;
-        margin: 0 0 20px !important;
+        margin: 0 0 30px !important;
         padding: 0 !important;
         border-bottom: 2px solid #eee !important;
     }
@@ -339,14 +366,14 @@
     .woocommerce-tabs ul.tabs li {
         border: none !important;
         background: transparent !important;
-        margin: 0 20px !important;
+        margin: 0 25px !important;
     }
 
     .woocommerce-tabs ul.tabs li a {
         font-weight: 600 !important;
         font-size: 16px !important;
         color: #555 !important;
-        padding-bottom: 10px !important;
+        padding-bottom: 12px !important;
     }
 
     .woocommerce-tabs ul.tabs li.active a {
@@ -354,36 +381,30 @@
         border-bottom: 2px solid #000 !important;
     }
 
-    .woocommerce-tabs .panel {
-        text-align: left !important; /* Keep text left aligned even if container is centered */
-        max-width: 900px !important;
-        margin: 0 auto !important;
-    }
-
-    /* 4. Fix Gallery Images (Show below main image) */
+    /* 4. Fix Gallery Images (Thumbnails were hidden) */
     .woocommerce-product-gallery {
         display: flex !important;
         flex-direction: column !important;
-        opacity: 1 !important; /* Ensure it's not hidden by JS init delay */
+        opacity: 1 !important;
+        overflow: visible !important;
     }
 
-    .woocommerce-product-gallery .woocommerce-product-gallery__image:first-child {
-        margin-bottom: 10px !important;
-    }
-
-    .woocommerce-product-gallery .flex-control-thumbs {
-        display: flex !important;
+    /* Force thumbnails to show */
+    .woocommerce-product-gallery .flex-control-nav.flex-control-thumbs {
+        display: flex !important; /* Was display: none */
         flex-wrap: wrap !important;
-        margin: 10px -5px 0 !important; /* Negative margin to offset padding */
+        margin: 15px -5px 0 !important;
         padding: 0 !important;
-        order: 2 !important; /* Force below main image */
+        order: 2 !important;
+        visibility: visible !important;
     }
 
     .woocommerce-product-gallery .flex-control-thumbs li {
-        width: 20% !important; /* 5 thumbnails row */
+        width: 20% !important;
         padding: 5px !important;
         float: left !important;
         list-style: none !important;
+        display: block !important;
     }
     
     .woocommerce-product-gallery .flex-control-thumbs li img {
