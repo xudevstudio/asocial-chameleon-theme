@@ -393,22 +393,39 @@
         display: block !important;
     }
 
-    /* Force thumbnails strip layout */
+    /* Force thumbnails strip layout - SINGLE ROW SLIDER */
     .woocommerce-product-gallery .flex-control-nav.flex-control-thumbs {
         display: flex !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
+        flex-wrap: nowrap !important; /* Prevent wrapping */
+        overflow-x: auto !important;  /* Allow scrolling */
+        justify-content: flex-start !important;
         margin: 20px 0 0 !important;
-        padding: 0 !important;
+        padding: 0 0 10px 0 !important; /* Space for scrollbar */
         width: 100% !important;
         position: relative !important;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Custom Scrollbar for Thumbnails */
+    .woocommerce-product-gallery .flex-control-thumbs::-webkit-scrollbar {
+        height: 6px;
+    }
+    .woocommerce-product-gallery .flex-control-thumbs::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 3px;
+    }
+    .woocommerce-product-gallery .flex-control-thumbs::-webkit-scrollbar-track {
+        background: #f1f1f1;
     }
 
     .woocommerce-product-gallery .flex-control-thumbs li {
-        width: 20% !important; /* 5 per row max */
-        float: none !important; /* Disable float which breaks flex */
+        flex: 0 0 80px !important; /* Fixed width */
+        width: 80px !important;
+        min-width: 80px !important;
+        float: none !important;
         display: block !important;
-        margin: 0 5px 5px !important;
+        margin: 0 10px 0 0 !important;
         cursor: pointer !important;
     }
 
@@ -416,12 +433,51 @@
         opacity: 0.5 !important;
         transition: all 0.2s ease !important;
         box-shadow: 0 0 0 1px #eee !important;
+        height: auto !important;
+        width: 100% !important;
     }
 
     .woocommerce-product-gallery .flex-control-thumbs li img.flex-active, 
     .woocommerce-product-gallery .flex-control-thumbs li img:hover {
         opacity: 1 !important;
         box-shadow: 0 0 0 2px #000 !important; /* Highlight active */
+    }
+
+    /* MAIN SLIDER ARROWS - Force Visible */
+    .woocommerce-product-gallery .flex-direction-nav {
+        display: block !important;
+        visibility: visible !important;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        transform: translateY(-50%);
+        z-index: 20;
+        pointer-events: none; /* Let clicks pass through container but not links */
+    }
+
+    .woocommerce-product-gallery .flex-direction-nav a {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 40px !important;
+        height: 40px !important;
+        line-height: 40px !important;
+        text-align: center !important;
+        background: rgba(255,255,255,0.9) !important;
+        color: #000 !important;
+        border-radius: 50% !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+        margin: -20px 0 0 !important;
+        position: absolute !important;
+        top: 50% !important;
+        pointer-events: auto !important; /* Re-enable clicks */
+    }
+
+    .woocommerce-product-gallery .flex-direction-nav a.flex-prev {
+        left: 10px !important;
+    }
+    .woocommerce-product-gallery .flex-direction-nav a.flex-next {
+        right: 10px !important;
     }
 
     /* 5. Shop Page Price Visibility & Styling */
