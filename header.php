@@ -373,21 +373,28 @@
     }
 
     /* 4. Fix Gallery Images (Thumbnails were hidden) */
+    /* Restore standard block display for wrapper to allow FlexSlider to work */
     .woocommerce-product-gallery {
-        display: flex !important;
-        flex-direction: column !important;
+        display: block !important;
+        position: relative !important;
         opacity: 1 !important;
         overflow: visible !important;
     }
 
-    /* Force thumbnails to show */
-    .woocommerce-product-gallery .flex-control-nav.flex-control-thumbs {
-        display: flex !important; /* Was display: none */
-        flex-wrap: wrap !important;
-        margin: 15px -5px 0 !important;
+    .woocommerce-product-gallery__wrapper {
+        margin: 0 !important;
         padding: 0 !important;
-        order: 2 !important;
-        visibility: visible !important;
+    }
+
+    /* Force thumbnails to show below */
+    .woocommerce-product-gallery .flex-control-nav.flex-control-thumbs {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        margin: 20px -5px 0 !important; /* Add top margin */
+        padding: 0 !important;
+        position: relative !important;
+        width: 100% !important;
+        justify-content: center !important;
     }
 
     .woocommerce-product-gallery .flex-control-thumbs li {
@@ -409,6 +416,36 @@
     .woocommerce-product-gallery .flex-control-thumbs li img.flex-active,
     .woocommerce-product-gallery .flex-control-thumbs li img:hover {
         opacity: 1 !important;
+    }
+
+    /* 5. Shop Page Price Visibility */
+    .woocommerce ul.products li.product .price,
+    .woocommerce ul.products li.product span.price {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color: #000 !important;
+        font-weight: 700 !important;
+        font-size: 16px !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* 6. Responsive Related Products */
+    /* Mobile (Phone) - 1 Column */
+    @media (max-width: 480px) {
+        .related.products ul.products,
+        .related.products ul.products.columns-4,
+        .related.products ul.products.columns-3 {
+            grid-template-columns: 1fr !important;
+        }
+    }
+    /* Tablet/Small Laptop - 2 Columns */
+    @media (min-width: 481px) and (max-width: 768px) {
+        .related.products ul.products,
+        .related.products ul.products.columns-4,
+        .related.products ul.products.columns-3 {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
     }
     </style>
 
