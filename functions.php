@@ -461,19 +461,8 @@ function asocial_chameleon_redirect_to_cart( $url ) {
     return wc_get_cart_url();
 }
 
-// Force redirect even for AJAX requests
-add_action( 'wp_loaded', 'asocial_chameleon_force_cart_redirect' );
-function asocial_chameleon_force_cart_redirect() {
-    // Check if add-to-cart parameter exists in URL
-    if ( isset( $_REQUEST['add-to-cart'] ) && ! wp_doing_ajax() ) {
-        // Get the cart URL
-        $cart_url = wc_get_cart_url();
-        
-        // Redirect to cart
-        wp_safe_redirect( $cart_url );
-        exit;
-    }
-}
+// Force redirect handled by standard WooCommerce filters
+// asocial_chameleon_force_cart_redirect removed to prevent conflicts with WC form handling
 
 // Disable AJAX add to cart on all pages
 add_filter( 'woocommerce_loop_add_to_cart_link', 'asocial_chameleon_remove_ajax_add_to_cart', 10, 2 );
