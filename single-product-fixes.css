@@ -642,23 +642,37 @@ body.single-product .upsells.products ul.products {
 /* Force 4 Columns on Desktop */
 @media (min-width: 1024px) {
 
+    body.single-product section.related.products ul.products,
     body.single-product .related.products ul.products,
     body.single-product .upsells.products ul.products,
     .woocommerce ul.products {
         /* Global targeting to be safe */
         display: grid !important;
-        grid-template-columns: repeat(4, 1fr) !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
         gap: 20px !important;
+        background: transparent !important;
         width: 100% !important;
+        float: none !important;
+        justify-content: center !important;
     }
 
-    /* Ensure they fit */
+    /* Ensure they fit and don't wrap oddly */
+    body.single-product section.related.products ul.products li.product,
     body.single-product .related.products ul.products li.product,
-    body.single-product .upsells.products ul.products li.product {
+    body.single-product .upsells.products ul.products li.product,
+    .woocommerce ul.products li.product {
         width: auto !important;
+        max-width: 100% !important;
         margin: 0 !important;
+        padding: 0 !important;
+        /* Remove padding that might add to width */
+        float: none !important;
+        /* Prevent float interference */
+        clear: none !important;
     }
 }
+
+
 
 /* Product Card Styling Updates */
 body.single-product .related.products li.product,

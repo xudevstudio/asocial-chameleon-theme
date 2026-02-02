@@ -1,33 +1,125 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     /* ==========================================================================
-       1. Thumbnail Gallery Logic
+       1. Thumbnail Gallery Logic (FlexSlider / Theme Specific)
        ========================================================================== */
-    const mainImage = document.querySelector('.main-product-image');
-    const thumbnails = document.querySelectorAll('.thumbnail-item');
+    // Used when theme uses FlexSlider for thumbnails
+    const flexThumbnails = document.querySelectorAll('.flex-control-thumbs img');
+    const mainImages = document.querySelectorAll('.woocommerce-product-gallery__image img'); // Usually one visible, key one first
 
-    if (mainImage && thumbnails.length > 0) {
-        thumbnails.forEach(thumb => {
-            thumb.addEventListener('click', function () {
-                // Remove active class from all
-                thumbnails.forEach(t => t.classList.remove('active', 'ring-2', 'ring-slate-900'));
+    if (flexThumbnails.length > 0) {
+        flexThumbnails.forEach(thumb => {
+            thumb.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
 
-                // Add active class to clicked
-                this.classList.add('active', 'ring-2', 'ring-slate-900');
+                // Get the high-res image source
+                // Often FlexSlider puts the main image src in 'src' of the thumb or a data attribute
+                // Inspection showed standard img tags. 
+                // We'll try to find the 'data-large_image' or matching index behavior.
 
-                // Switch main image
-                const newSrc = this.getAttribute('data-image');
-                if (newSrc) {
-                    mainImage.src = newSrc;
-                    // Optional: Add simple fade effect
-                    mainImage.style.opacity = 0.5;
-                    setTimeout(() => mainImage.style.opacity = 1, 150);
+                // Strategy: Update the VISIBLE main image
+                // The main gallery usually has multiple images if it's a slider.
+                // But if it's a static main image + thumbs, we update the main img.
+
+                const newSrc = this.getAttribute('src').replace('-100x100', ''); // Heuristic to remove thumb sizing if present
+                // Or better, if the thumb is just a small version, use its base src
+                // But standard WC thumbs might be different files.
+                // Let's rely on standard WC attributes if available
+
+                // Try to get the large version. If not, use src.
+                const largeEnv = this.getAttribute('data-large_image') || this.src;
+
+                // Find all potential main images and update them (in case of slider duplication)
+                const mainImg = document.querySelector('.woocommerce-product-gallery__image.flex-active-slide img')
+                    || document.querySelector('.woocommerce-product-gallery__image img')
+                    || document.querySelector('.wp-post-image');
+
+                if (mainImg) {
+                    mainImg.style.opacity = 0.5;
+                    mainImg.src = largeEnv;
+                    // Try to set srcset to empty to force browser to use src, or update it if we knew it
+                    mainImg.srcset = '';
+                    mainImg.setAttribute('data-large_image', largeEnv);
+
+                    // Update parent link if it exists (LightBox link)
+                    const parentLink = mainImg.closest('a');
+                    if (parentLink) {
+                        parentLink.href = largeEnv;
+                    }
+
+                    // Visual feedback on thumbs
+                    flexThumbnails.forEach(t => t.classList.remove('active-thumb', 'ring-2', 'ring-slate-900'));
+                    this.classList.add('active-thumb', 'ring-2', 'ring-slate-900');
+
+                    setTimeout(() => mainImg.style.opacity = 1, 200);
                 }
             });
         });
+    }
 
-        // Set first thumbnail active by default
-        thumbnails[0].classList.add('active', 'ring-2', 'ring-slate-900');
+    // Fallback/Standard logic from previous attempt (kept just in case structure changes)
+    const galleryWrapper = document.querySelector('.woocommerce-product-gallery__wrapper');
+    const galleryImages = document.querySelectorAll('.woocommerce-product-gallery__image');
+
+    if (galleryWrapper && galleryImages.length > 1) {
+        // Assume first image is Main.
+        const mainImageContainer = galleryImages[0];
+        const mainImgTag = mainImageContainer.querySelector('img');
+
+        // Loop through all images
+        galleryImages.forEach((imageContainer, index) => {
+            // Skip if it's the main image itself (index 0) - though clicking it might open lightbox (default WC behavior)
+            if (index === 0) return;
+
+            // Target the anchor tag if it exists, otherwise the image container
+            const link = imageContainer.querySelector('a') || imageContainer;
+            const imgTag = imageContainer.querySelector('img');
+
+            if (!imgTag) return;
+
+            // Make it clickable
+            link.addEventListener('click', function (e) {
+                // Prevent default behavior (like opening lightbox immediately if that's not desired, or following link)
+                e.preventDefault(); // Stop link from opening
+                e.stopPropagation();
+
+                // Get source from the clicked thumbnail (it might be full size if using standard WC HTML)
+                // WC usually puts the full size URL in 'data-large_image' or 'href' of anchor, and 'src' is also available.
+                // We want to update the main image's src and srcset.
+
+                const newSrc = imgTag.getAttribute('src');
+                const newSrcSet = imgTag.getAttribute('srcset');
+                // Use data-large_image if available for better quality, else src
+                const newLargeImage = imgTag.getAttribute('data-large_image') || newSrc;
+
+                if (mainImgTag && newSrc) {
+                    mainImgTag.style.opacity = 0.5;
+
+                    // Update main image attributes
+                    mainImgTag.src = newLargeImage; // Use larger version for main view
+                    if (newSrcSet) mainImgTag.srcset = newSrcSet;
+
+                    // Update main image data attributes for lightbox/zoom if needed
+                    mainImgTag.setAttribute('data-large_image', newLargeImage);
+                    mainImgTag.setAttribute('data-src', newLargeImage);
+
+                    if (mainImgTag.parentElement.tagName === 'A') {
+                        mainImgTag.parentElement.href = newLargeImage;
+                    }
+
+                    // Add active state styling
+                    galleryImages.forEach(g => {
+                        const img = g.querySelector('img');
+                        if (img) img.classList.remove('active-thumb', 'ring-2', 'ring-slate-900', 'border-blue-500');
+                    });
+
+                    imgTag.classList.add('active-thumb', 'ring-2', 'ring-slate-900', 'border-blue-500');
+
+                    setTimeout(() => mainImgTag.style.opacity = 1, 200);
+                }
+            });
+        });
     }
 
     /* ==========================================================================

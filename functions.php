@@ -536,3 +536,14 @@ function asocial_chameleon_rescue_product_components() {
 }
 */
 
+
+/**
+ * Limit Related Products to 4
+ * Ensures strictly one row of 4 products.
+ */
+add_filter( 'woocommerce_output_related_products_args', 'asocial_chameleon_related_products_limit', 20 );
+function asocial_chameleon_related_products_limit( $args ) {
+    $args['posts_per_page'] = 4;
+    $args['columns'] = 4;
+    return $args;
+}
