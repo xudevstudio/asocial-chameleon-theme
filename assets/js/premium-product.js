@@ -59,77 +59,15 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ==========================================================================
        3. AJAX Add to Cart (Single Product)
        ========================================================================== */
+    /* 
+    // AJAX Add to Cart (Single Product) - DISABLED to allow standard redirect
     const addToCartBtn = document.querySelector('.single_add_to_cart_button');
     if (addToCartBtn) {
         addToCartBtn.addEventListener('click', function (e) {
-
-            // Allow default form submission if it's not a button type="button" (i.e., let standard WC handle if needed)
-            // But we want AJAX, so we prevent default.
-            // However, we must validate variations first.
-
-            const form = document.querySelector('form.cart');
-            if (form && form.classList.contains('variations_form')) {
-                const variationInput = form.querySelector('input[name="variation_id"]');
-                // Check if variation is selected (value non-empty and not 0)
-                if (!variationInput || !variationInput.value || variationInput.value == '0') {
-                    // Let the default browser/WC handling notify the user (usually bubbling up standard alert)
-                    // We don't prevent default here essentially if we want WC to catch it, 
-                    // BUT WC's default behavior might reload page.
-                    // Better to check ourselves:
-                    alert('Please select some product options before adding to this product to your cart.');
-                    return;
-                }
-            }
-
-            e.preventDefault();
-
-            const productId = this.value;
-            const quantity = document.querySelector('input.qty-input') ? document.querySelector('input.qty-input').value : 1;
-
-            // Gather variation data if present
-            let formData = new FormData();
-            formData.append('add-to-cart', productId);
-            formData.append('quantity', quantity);
-
-            if (form) {
-                const data = new FormData(form);
-                for (var pair of data.entries()) {
-                    formData.append(pair[0], pair[1]);
-                }
-            }
-
-            // Visual Loading State
-            const originalText = this.innerText;
-            this.innerText = 'Adding...';
-            this.classList.add('opacity-75', 'cursor-not-allowed');
-
-            fetch(wc_add_to_cart_params.wc_ajax_url.toString().replace('%%endpoint%%', 'add_to_cart'), {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error && data.product_url) {
-                        window.location = data.product_url;
-                        return;
-                    }
-
-                    // Trigger WooCommerce fragments refresh
-                    document.body.dispatchEvent(new Event('wc_fragment_refresh'));
-
-                    this.innerText = 'Added!';
-                    setTimeout(() => {
-                        this.innerText = originalText;
-                        this.classList.remove('opacity-75', 'cursor-not-allowed');
-                    }, 2000);
-                })
-                .catch(err => {
-                    console.error(err);
-                    this.innerText = originalText;
-                    this.classList.remove('opacity-75', 'cursor-not-allowed');
-                });
+             // ... existing logic disabled ...   
         });
     }
+    */
 
     /* ==========================================================================
        4. Variation Swatches Generator

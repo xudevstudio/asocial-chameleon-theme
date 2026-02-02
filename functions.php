@@ -247,22 +247,9 @@ function asocial_chameleon_add_product_buttons() {
     echo '<span class="button-text">' . esc_html__( 'Buy Now', 'asocial-chameleon' ) . '</span>';
     echo '</a>';
 
-    // ShopEngine Component Icons (Manually Added)
-    // These need to use the ShopEngine classes to potentially trigger their JS, or just display the icon if that's what the user wants.
-    // Assuming the user just wants the visual buttons for now or standard ShopEngine functionality if JS allows.
-    // We wrap them in links or divs as appropriate.
-    
-    echo '<div class="shopengine-actions">';
-        // Wishlist
-        echo '<a href="#" class="shopengine-wishlist-btn" title="Add to Wishlist">';
-        echo '<i class="shopengine-icon-add_to_favourite_1"></i>';
-        echo '</a>';
-        
-        // Compare
-        echo '<a href="#" class="shopengine-compare-btn" title="Compare">';
-        echo '<i class="shopengine-icon-product_compare_1"></i>';
-        echo '</a>';
-    echo '</div>';
+    // ShopEngine Component Icons (Manually Added) - REMOVED per user request
+    // These were causing raw text "favorite_border" etc to appear.
+
     
     // End button group wrapper
     echo '</div>';
@@ -451,25 +438,21 @@ function asocial_chameleon_live_search_handler() {
 }
 
 /**
- * Redirect to Cart Page after Add to Cart - All Methods
- * Handles AJAX, URL parameters, and form submissions
+ * Redirect to Cart Page after Add to Cart
+ * Ensures users are taken to the cart page after adding a product.
  */
-// Disable AJAX add to cart to ensure redirect works
 add_filter( 'woocommerce_add_to_cart_redirect', 'asocial_chameleon_redirect_to_cart' );
 function asocial_chameleon_redirect_to_cart( $url ) {
-    // Always redirect to cart page
     return wc_get_cart_url();
 }
 
-// Force redirect handled by standard WooCommerce filters
-// asocial_chameleon_force_cart_redirect removed to prevent conflicts with WC form handling
-
-// Disable AJAX add to cart on all pages
+/**
+ * Disable AJAX add to cart on shop loop to force reload and redirect
+ */
 add_filter( 'woocommerce_loop_add_to_cart_link', 'asocial_chameleon_remove_ajax_add_to_cart', 10, 2 );
 function asocial_chameleon_remove_ajax_add_to_cart( $html, $product ) {
     // Remove ajax_add_to_cart class to disable AJAX
-    $html = str_replace( 'ajax_add_to_cart', '', $html );
-    return $html;
+    return str_replace( 'ajax_add_to_cart', '', $html );
 }
 
 /**
@@ -490,11 +473,8 @@ function asocial_chameleon_hide_free_shipping( $rates, $package ) {
  * Redirect Add to Cart button to Cart page
  * Redirect Buy Now button to Checkout page
  */
-add_filter( 'woocommerce_add_to_cart_redirect', 'asocial_chameleon_cart_redirect' );
-function asocial_chameleon_cart_redirect() {
-    // Redirect to cart page after adding to cart
-    return wc_get_cart_url();
-}
+// Duplicate redirect removed
+
 
 // Buy Now functionality - handled by JavaScript in premium-product.js
 // The Buy Now button already redirects to checkout via AJAX

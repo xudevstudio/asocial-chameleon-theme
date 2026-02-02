@@ -291,6 +291,113 @@
             gap: 25px !important;
         }
     }
+
+    /* --- Single Product Page Fixes --- */
+
+    /* 1. Related Products - 3 per row & Adjusted Width */
+    @media (min-width: 769px) {
+        .related.products ul.products {
+            grid-template-columns: repeat(3, 1fr) !important;
+            display: grid !important;
+        }
+        .related.products ul.products li.product {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+        /* Adjust card font sizes just for related products to make them "smaller" visually */
+        .related.products ul.products li.product .product-title {
+            font-size: 14px !important;
+        }
+    }
+
+    /* 2. Hide Specific Icons (Compare, Wishlist/Favorite) */
+    .shopengine-icon-product_compare_1,
+    .shopengine-wishlist-btn,
+    .yith-wcwl-add-to-wishlist,
+    .favorites-icon { /* Generic class just in case */
+        display: none !important;
+    }
+
+    /* 3. Center Tabs & Description with Margins */
+    .product-tabs-wrapper, 
+    .woocommerce-tabs {
+        max-width: 1100px !important;
+        margin: 40px auto !important;
+        padding: 0 15px !important;
+        float: none !important;
+        width: 100% !important;
+    }
+    
+    .woocommerce-tabs ul.tabs {
+        justify-content: center !important;
+        display: flex !important;
+        margin: 0 0 20px !important;
+        padding: 0 !important;
+        border-bottom: 2px solid #eee !important;
+    }
+    
+    .woocommerce-tabs ul.tabs li {
+        border: none !important;
+        background: transparent !important;
+        margin: 0 20px !important;
+    }
+
+    .woocommerce-tabs ul.tabs li a {
+        font-weight: 600 !important;
+        font-size: 16px !important;
+        color: #555 !important;
+        padding-bottom: 10px !important;
+    }
+
+    .woocommerce-tabs ul.tabs li.active a {
+        color: #000 !important;
+        border-bottom: 2px solid #000 !important;
+    }
+
+    .woocommerce-tabs .panel {
+        text-align: left !important; /* Keep text left aligned even if container is centered */
+        max-width: 900px !important;
+        margin: 0 auto !important;
+    }
+
+    /* 4. Fix Gallery Images (Show below main image) */
+    .woocommerce-product-gallery {
+        display: flex !important;
+        flex-direction: column !important;
+        opacity: 1 !important; /* Ensure it's not hidden by JS init delay */
+    }
+
+    .woocommerce-product-gallery .woocommerce-product-gallery__image:first-child {
+        margin-bottom: 10px !important;
+    }
+
+    .woocommerce-product-gallery .flex-control-thumbs {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        margin: 10px -5px 0 !important; /* Negative margin to offset padding */
+        padding: 0 !important;
+        order: 2 !important; /* Force below main image */
+    }
+
+    .woocommerce-product-gallery .flex-control-thumbs li {
+        width: 20% !important; /* 5 thumbnails row */
+        padding: 5px !important;
+        float: left !important;
+        list-style: none !important;
+    }
+    
+    .woocommerce-product-gallery .flex-control-thumbs li img {
+        width: 100% !important;
+        height: auto !important;
+        opacity: 0.6 !important;
+        transition: opacity 0.3s !important;
+        cursor: pointer !important;
+    }
+
+    .woocommerce-product-gallery .flex-control-thumbs li img.flex-active,
+    .woocommerce-product-gallery .flex-control-thumbs li img:hover {
+        opacity: 1 !important;
+    }
     </style>
 
 
