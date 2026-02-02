@@ -223,10 +223,10 @@ function asocial_chameleon_add_product_buttons() {
     // Start button group wrapper
     echo '<div class="product-buttons-group premium-loop-actions">';
     
-    // Add to Cart Button (Customized Premium)
+    // Add to Cart Button (Customized Premium - Standard Redirect)
     echo '<a href="?add-to-cart=' . esc_attr( $product->get_id() ) . '" 
              data-quantity="1" 
-             class="button add-to-cart-button ajax_add_to_cart premium-action-btn" 
+             class="button add-to-cart-button premium-action-btn" 
              data-product_id="' . esc_attr( $product->get_id() ) . '" 
              data-product_sku="' . esc_attr( $product->get_sku() ) . '" 
              aria-label="' . esc_attr__( 'Add to cart', 'asocial-chameleon' ) . '" 
@@ -247,10 +247,6 @@ function asocial_chameleon_add_product_buttons() {
     echo '<span class="button-text">' . esc_html__( 'Buy Now', 'asocial-chameleon' ) . '</span>';
     echo '</a>';
 
-    // ShopEngine Component Icons (Manually Added) - REMOVED per user request
-    // These were causing raw text "favorite_border" etc to appear.
-
-    
     // End button group wrapper
     echo '</div>';
 }
@@ -259,21 +255,46 @@ remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_ad
 add_action( 'woocommerce_after_shop_loop_item', 'asocial_chameleon_add_product_buttons', 15 );
 
 /**
- * Global Redirect to Checkout for Buy Now actions
- * Catch both the hook and the template redirect
+ * Global Redirect to Cart (Default) or Checkout (Buy Now)
  */
-add_filter( 'woocommerce_add_to_cart_redirect', 'asocial_chameleon_buy_now_checkout_redirect', 999 );
-function asocial_chameleon_buy_now_checkout_redirect( $url ) {
+/**
+ * Global Redirect Configuration
+ * 1. Force "Redirect to cart after successful addition" option to be YES.
+ * 2. Handle the destination URL (Cart vs Checkout).
+ */
+add_filter( 'option_woocommerce_cart_redirect_after_add', 'asocial_chameleon_force_cart_redirect_option' );
+function asocial_chameleon_force_cart_redirect_option( $option ) {
+    return 'yes';
+}
+
+add_filter( 'woocommerce_add_to_cart_redirect', 'asocial_chameleon_custom_add_to_cart_redirect', 999 );
+function asocial_chameleon_custom_add_to_cart_redirect( $url ) {
+    // If it's a Buy Now action, go to Checkout
     if ( isset( $_REQUEST['buy-now'] ) || isset( $_GET['buy-now'] ) || ( isset($_SERVER['REQUEST_URI']) && strpos( $_SERVER['REQUEST_URI'], 'buy-now=1' ) !== false ) ) {
         return wc_get_checkout_url();
     }
-    return $url;
+    
+    // Otherwise, ALWAYS redirect to Cart
+    return wc_get_cart_url();
 }
 
 add_action( 'template_redirect', 'asocial_chameleon_force_buy_now_redirect', 1 );
 function asocial_chameleon_force_buy_now_redirect() {
     if ( (is_cart() || is_shop()) && (isset( $_REQUEST['buy-now'] )) ) {
         wp_safe_redirect( wc_get_checkout_url() . '?add-to-cart=' . absint($_REQUEST['add-to-cart']) . '&buy-now=1' );
+        exit;
+    }
+}
+
+/**
+ * Force Redirect to Cart if ?add-to-cart is present in URL
+ * This acts as a fallback if the standard WooCommerce option fails.
+ */
+add_action( 'template_redirect', 'asocial_chameleon_force_add_to_cart_redirect', 20 );
+function asocial_chameleon_force_add_to_cart_redirect() {
+    // If 'add-to-cart' is in URL and it's NOT a 'buy-now' action
+    if ( isset( $_GET['add-to-cart'] ) && ! isset( $_GET['buy-now'] ) ) {
+        wp_safe_redirect( wc_get_cart_url() );
         exit;
     }
 }
