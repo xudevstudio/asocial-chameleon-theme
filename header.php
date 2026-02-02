@@ -327,23 +327,6 @@
         height: 0 !important;
         pointer-events: none !important; 
     }
-    </style>
-    <script>
-    // JS Fallback to force hide icons if CSS fails
-    document.addEventListener('DOMContentLoaded', function() {
-        var hideIcons = function() {
-            var icons = document.querySelectorAll('.shopengine-wishlist, .shopengine-comparison');
-            icons.forEach(function(icon) {
-                icon.style.display = 'none';
-                icon.style.visibility = 'hidden';
-            });
-        };
-        hideIcons();
-        // Retry just in case of dynamic loading
-        setTimeout(hideIcons, 1000);
-        setTimeout(hideIcons, 3000);
-    });
-    </script>
 
     /* 3. Center Tabs & Description with Margins */
     .product-tabs-wrapper, 
@@ -421,4 +404,19 @@
     }
     </style>
 
-
+    <script>
+    // JS Fallback to force hide icons if CSS fails
+    document.addEventListener('DOMContentLoaded', function() {
+        var hideIcons = function() {
+            var icons = document.querySelectorAll('.shopengine-wishlist, .shopengine-comparison');
+            icons.forEach(function(icon) {
+                icon.style.display = 'none';
+                icon.style.visibility = 'hidden';
+            });
+        };
+        hideIcons();
+        // Retry just in case of dynamic loading
+        setTimeout(hideIcons, 1000);
+        setTimeout(hideIcons, 3000);
+    });
+    </script>
