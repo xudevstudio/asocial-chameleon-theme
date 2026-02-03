@@ -44,6 +44,9 @@ add_action( 'after_setup_theme', 'asocial_chameleon_setup' );
 function asocial_chameleon_scripts() {
     wp_enqueue_style( 'asocial-chameleon-style', get_stylesheet_uri(), array(), time() );
     
+    // Enqueue Custom CSS (Fixes & Overrides)
+    wp_enqueue_style( 'asocial-chameleon-custom', get_template_directory_uri() . '/custom-css.css', array('asocial-chameleon-style'), time() );
+    
     // Enqueue Single Product Page CSS
     if ( is_product() ) {
         wp_enqueue_style( 'single-product-fixes', get_template_directory_uri() . '/single-product-fixes.css', array(), time() );
