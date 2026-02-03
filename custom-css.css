@@ -7503,3 +7503,44 @@ body.single-product div.product {
     background-image: none !important; /* Hide native background arrow */
 }
 
+
+/* ========================================
+   FIX FRONT PAGE HOVER ISSUE
+   Prevent images from covering text on hover
+   ======================================== */
+.woocommerce ul.products li.product .woocommerce-LoopProduct-link {
+    display: block;
+    overflow: hidden; /* Clips the zooming image */
+    position: relative;
+    border-radius: 8px; /* Optional: smooth corners if needed */
+}
+
+.woocommerce ul.products li.product .product-content-wrap {
+    position: relative;
+    z-index: 5; /* Keeps text above image */
+    background: #ffffff; /* Ensures transparency doesn't show image */
+}
+
+/* Ensure image stays below text specifically on hover */
+.woocommerce ul.products li.product:hover img {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* Improved Fix for Front Page Hover (Removed .woocommerce prefix for broader support) */
+ul.products li.product .woocommerce-LoopProduct-link,
+.woocommerce ul.products li.product .woocommerce-LoopProduct-link {
+    display: block;
+    overflow: hidden !important; /* Force clipping */
+    position: relative;
+    border-radius: 8px;
+}
+
+ul.products li.product .product-content-wrap,
+.woocommerce ul.products li.product .product-content-wrap {
+    position: relative;
+    z-index: 5;
+    background: #ffffff;
+}
+
