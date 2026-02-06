@@ -229,13 +229,28 @@ function asocial_chameleon_add_product_buttons() {
     // Check if product is variable (has variations like size, color, etc.)
     $is_variable = $product->is_type('variable');
     
+    // Get the first available variation ID for variable products
+    $variation_id = null;
     if ($is_variable) {
-        // For variable products: Link to product page to select options
-        echo '<a href="' . esc_url( get_permalink( $product->get_id() ) ) . '" 
+        $available_variations = $product->get_available_variations();
+        if (!empty($available_variations)) {
+            // Get the first available variation
+            $variation_id = $available_variations[0]['variation_id'];
+        }
+    }
+    
+    // Add to Cart Button
+    if ($is_variable && $variation_id) {
+        // For variable products: Use first variation for direct add to cart
+        echo '<a href="?add-to-cart=' . esc_attr( $variation_id ) . '" 
+                 data-quantity="1" 
                  class="button add-to-cart-button premium-action-btn" 
-                 aria-label="' . esc_attr__( 'Select options', 'asocial-chameleon' ) . '">';
+                 data-product_id="' . esc_attr( $product->get_id() ) . '" 
+                 data-variation_id="' . esc_attr( $variation_id ) . '" 
+                 aria-label="' . esc_attr__( 'Add to cart', 'asocial-chameleon' ) . '" 
+                 rel="nofollow">';
         echo '<span class="button-icon">🛒</span>';
-        echo '<span class="button-text">' . esc_html__( 'Select Options', 'asocial-chameleon' ) . '</span>';
+        echo '<span class="button-text">' . esc_html__( 'Add to Cart', 'asocial-chameleon' ) . '</span>';
         echo '</a>';
     } else {
         // For simple products: Direct add to cart
@@ -252,14 +267,17 @@ function asocial_chameleon_add_product_buttons() {
     }
     
     // Buy Now Button (Direct Checkout Premium)
-    if ($is_variable) {
-        // For variable products: Link to product page
-        echo '<a href="' . esc_url( get_permalink( $product->get_id() ) ) . '" 
-                 class="button buy-now-button premium-action-btn" 
-                 data-product_id="' . esc_attr( $product->get_id() ) . '" 
-                 rel="nofollow">';
+    if ($is_variable && $variation_id) {
+        // For variable products: Use first variation for direct buy now
+        $checkout_url = wc_get_checkout_url();
+        $buy_now_url = add_query_arg( array(
+            'add-to-cart' => $variation_id,
+            'buy-now'     => '1'
+        ), $checkout_url );
+        
+        echo '<a href="' . esc_url( $buy_now_url ) . '" class="button buy-now-button premium-action-btn" data-product_id="' . esc_attr( $product->get_id() ) . '" data-variation_id="' . esc_attr( $variation_id ) . '" rel="nofollow">';
         echo '<span class="button-icon">⚡</span>';
-        echo '<span class="button-text">' . esc_html__( 'Select Options', 'asocial-chameleon' ) . '</span>';
+        echo '<span class="button-text">' . esc_html__( 'Buy Now', 'asocial-chameleon' ) . '</span>';
         echo '</a>';
     } else {
         // For simple products: Direct buy now
@@ -321,6 +339,42 @@ function asocial_chameleon_force_add_to_cart_redirect() {
         wp_safe_redirect( wc_get_cart_url() );
         exit;
     }
+}
+
+/**
+ * Redirect "Continue Shopping" button to Homepage
+ */
+add_filter( 'woocommerce_return_to_shop_redirect', 'asocial_chameleon_continue_shopping_redirect' );
+function asocial_chameleon_continue_shopping_redirect() {
+    return home_url();
+}
+
+/**
+ * Add Continue Shopping Button to Checkout Page
+ */
+add_action( 'woocommerce_before_checkout_form', 'asocial_chameleon_checkout_continue_shopping_button', 5 );
+function asocial_chameleon_checkout_continue_shopping_button() {
+    echo '<div style="margin-top: 40px; margin-bottom: 30px; text-align: center;">';
+    echo '<a href="' . esc_url( home_url() ) . '" class="button premium-continue-shopping-btn" style="
+        display: inline-block;
+        padding: 18px 50px;
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        cursor: pointer;
+    " onmouseover="this.style.transform=\'translateY(-3px)\'; this.style.boxShadow=\'0 15px 40px rgba(102, 126, 234, 0.5)\';" onmouseout="this.style.transform=\'translateY(0)\'; this.style.boxShadow=\'0 10px 30px rgba(102, 126, 234, 0.4)\';">';
+    echo '<span style="margin-right: 10px;">🛍️</span>';
+    echo esc_html__( 'Continue Shopping', 'asocial-chameleon' );
+    echo '</a>';
+    echo '</div>';
 }
 
 /**
