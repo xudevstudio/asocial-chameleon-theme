@@ -7843,6 +7843,7 @@ form.variations_form {
 .archive.post-type-archive-product ul.products li.product {
     min-height: 480px !important;
 }
+
 /* ========================================
    SHOP PAGE - FORCE DISPLAY ALL ELEMENTS
    ======================================== */
@@ -7914,6 +7915,7 @@ ul.products li.product .product-content {
 
 /* Responsive Grid - Desktop */
 @media (min-width: 769px) {
+
     .woocommerce ul.products,
     .woocommerce-page ul.products,
     ul.products {
@@ -7934,6 +7936,7 @@ ul.products li.product .product-content {
 
 /* Responsive Grid - Tablet */
 @media (min-width: 481px) and (max-width: 768px) {
+
     .woocommerce ul.products,
     .woocommerce-page ul.products,
     ul.products {
@@ -7963,6 +7966,7 @@ ul.products li.product .product-content {
 
 /* Responsive Grid - Mobile */
 @media (max-width: 480px) {
+
     .woocommerce ul.products,
     .woocommerce-page ul.products,
     ul.products {
@@ -8022,13 +8026,29 @@ html {
 }
 
 /* Headings */
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
     font-family: 'Outfit', sans-serif !important;
 }
 
 /* Paragraphs and text */
-p, span, div, a, li, td, th {
+p,
+span,
+div,
+a,
+li,
+td,
+th {
     font-family: 'Outfit', sans-serif !important;
 }
 
@@ -8132,13 +8152,14 @@ h2 {
 
 /* Responsive spacing */
 @media (max-width: 768px) {
+
     .site-main section,
     .content-area section {
         margin-bottom: 25px !important;
         padding-top: 30px !important;
         padding-bottom: 30px !important;
     }
-    
+
     h2.section-title,
     .section-heading {
         margin-top: 15px !important;
@@ -8169,8 +8190,8 @@ body.home .elementor-section,
 body.home .vc_row,
 body.home .wp-block-group,
 body.home div[class*='section'],
-.home .site-main > *,
-.home .entry-content > * {
+.home .site-main>*,
+.home .entry-content>* {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     padding-top: 30px !important;
@@ -8197,7 +8218,7 @@ body.home div[class*='section'],
     padding: 30px 0 !important;
 }
 
-.home .elementor-column-gap-default > .elementor-column > .elementor-element-populated {
+.home .elementor-column-gap-default>.elementor-column>.elementor-element-populated {
     padding: 5px !important;
 }
 
@@ -8225,7 +8246,12 @@ body.home div[class*='section'],
 }
 
 /* Remove heading spacing on homepage */
-.home h1, .home h2, .home h3, .home h4, .home h5, .home h6 {
+.home h1,
+.home h2,
+.home h3,
+.home h4,
+.home h5,
+.home h6 {
     margin-top: 5px !important;
     margin-bottom: 5px !important;
     padding-top: 0 !important;
@@ -8323,17 +8349,18 @@ h3.section-title {
 
 /* Mobile responsive */
 @media (max-width: 768px) {
+
     .our-story-section h2,
     [class*='story'] h2 {
         font-size: 24px !important;
     }
-    
+
     .our-story-section p,
     [class*='story'] p {
         font-size: 14px !important;
         line-height: 1.6 !important;
     }
-    
+
     .our-story-section .stats,
     [class*='story'] .stats {
         grid-template-columns: repeat(2, 1fr) !important;
@@ -8342,11 +8369,12 @@ h3.section-title {
 }
 
 @media (max-width: 480px) {
+
     .our-story-section h2,
     [class*='story'] h2 {
         font-size: 20px !important;
     }
-    
+
     .our-story-section .stats,
     [class*='story'] .stats {
         grid-template-columns: 1fr !important;
@@ -8424,12 +8452,13 @@ h3.section-title {
 
 /* Mobile responsive */
 @media (max-width: 768px) {
+
     .our-story-section,
     [class*='story'] {
         padding-left: 20px !important;
         padding-right: 20px !important;
     }
-    
+
     .our-story-section img,
     [class*='story'] img {
         max-width: 100% !important;
@@ -8482,6 +8511,7 @@ h3.section-title {
 
 /* Tablet - 3 columns */
 @media (max-width: 1024px) {
+
     .newest-arrivals-section .products,
     [class*='newest'] .products,
     [class*='arrival'] .products {
@@ -8492,13 +8522,14 @@ h3.section-title {
 
 /* Mobile - 2 columns */
 @media (max-width: 768px) {
+
     .newest-arrivals-section .products,
     [class*='newest'] .products,
     [class*='arrival'] .products {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 12px !important;
     }
-    
+
     .newest-arrivals-section .button,
     [class*='newest'] .button,
     [class*='arrival'] .button {
@@ -8510,6 +8541,7 @@ h3.section-title {
 
 /* Small mobile - 1 column */
 @media (max-width: 480px) {
+
     .newest-arrivals-section .products,
     [class*='newest'] .products,
     [class*='arrival'] .products {
@@ -8599,6 +8631,7 @@ footer {
 
 /* Mobile - All sections spacing */
 @media (max-width: 768px) {
+
     /* Reduce all section spacing */
     body.home section,
     .home .section,
@@ -8606,67 +8639,67 @@ footer {
         padding: 15px 10px !important;
         margin-bottom: 20px !important;
     }
-    
+
     /* Container padding */
     .container,
     .site-content {
         padding-left: 15px !important;
         padding-right: 15px !important;
     }
-    
+
     /* Our Story - Mobile */
     .our-story-section,
     [class*='story'] {
         padding-left: 15px !important;
         padding-right: 15px !important;
     }
-    
+
     .our-story-section h2,
     [class*='story'] h2 {
         font-size: 22px !important;
         margin-bottom: 15px !important;
     }
-    
+
     .our-story-section p,
     [class*='story'] p {
         font-size: 14px !important;
         line-height: 1.6 !important;
     }
-    
+
     .our-story-section img,
     [class*='story'] img {
         max-width: 100% !important;
         margin: 15px 0 !important;
     }
-    
+
     /* Our Newest Arrivals - Mobile */
     .newest-arrivals-section,
     [class*='newest'],
     [class*='arrival'] {
         padding: 15px 10px !important;
     }
-    
+
     .newest-arrivals-section h2,
     [class*='newest'] h2,
     [class*='arrival'] h2 {
         font-size: 20px !important;
         margin-bottom: 12px !important;
     }
-    
+
     .newest-arrivals-section .products,
     [class*='newest'] .products,
     [class*='arrival'] .products {
         gap: 12px !important;
         padding: 0 !important;
     }
-    
+
     /* Product cards mobile */
     .newest-arrivals-section .product,
     [class*='newest'] .product,
     [class*='arrival'] .product {
         padding: 10px !important;
     }
-    
+
     /* Buttons mobile */
     .newest-arrivals-section .button,
     [class*='newest'] .button,
@@ -8674,17 +8707,17 @@ footer {
         font-size: 12px !important;
         padding: 8px 12px !important;
     }
-    
+
     /* All headings mobile */
     .home h2 {
         font-size: 20px !important;
         margin-bottom: 12px !important;
     }
-    
+
     .home h3 {
         font-size: 18px !important;
     }
-    
+
     /* Remove excessive gaps */
     .home .wp-block-spacer {
         height: 10px !important;
@@ -8697,12 +8730,12 @@ footer {
         padding: 10px 8px !important;
         margin-bottom: 15px !important;
     }
-    
+
     .container {
         padding-left: 10px !important;
         padding-right: 10px !important;
     }
-    
+
     .home h2 {
         font-size: 18px !important;
         margin-bottom: 10px !important;
@@ -8826,7 +8859,7 @@ footer {
         grid-template-columns: 1fr !important;
         gap: 20px !important;
     }
-    
+
     .woocommerce-form-login,
     .woocommerce-form-register {
         padding: 15px !important;
@@ -8914,26 +8947,26 @@ body.single-product .summary {
     body.single-product .product {
         padding: 15px !important;
     }
-    
+
     body.single-product .woocommerce-product-gallery {
         max-width: 100% !important;
         margin-bottom: 20px !important;
     }
-    
+
     body.single-product .summary {
         padding: 15px 10px !important;
     }
-    
+
     body.single-product .product-title,
     body.single-product .product_title {
         font-size: 22px !important;
         line-height: 1.3 !important;
     }
-    
+
     body.single-product .price {
         font-size: 20px !important;
     }
-    
+
     body.single-product .button {
         width: 100% !important;
         margin-bottom: 10px !important;
@@ -8945,13 +8978,59 @@ body.single-product .summary {
     body.single-product .product {
         padding: 10px !important;
     }
-    
+
     body.single-product .summary {
         padding: 10px 5px !important;
     }
-    
+
     body.single-product .product-title,
     body.single-product .product_title {
         font-size: 18px !important;
     }
+}
+
+/* --- Footer Social Icons --- */
+.footer-socials {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.footer-socials .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    /* Bada karo circle */
+    height: 60px;
+    background: #000;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid #9b59b6;
+    /* Brand accent border */
+    overflow: hidden;
+    padding: 0;
+    /* Clear padding if any */
+}
+
+.footer-socials .social-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Pura logo dikhe clean */
+    display: block;
+    padding: 5px;
+    /* Subtle space around logos */
+}
+
+.footer-socials .social-icon:hover {
+    background: #1a1a1a;
+    border-color: #fff;
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 8px 25px rgba(155, 89, 182, 0.5);
 }

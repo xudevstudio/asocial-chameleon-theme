@@ -11,10 +11,18 @@
                     <h3 class="footer-heading"><?php esc_html_e( 'Asocial Chameleon', 'asocial-chameleon' ); ?></h3>
                     <p><?php esc_html_e( 'Blending in with the shadows, standing out in the light. Premium streetwear for the unseen.', 'asocial-chameleon' ); ?></p>
                     <div class="footer-socials">
-                        <!-- Placeholders for social icons -->
-                        <span class="social-icon">IG</span>
-                        <span class="social-icon">TK</span>
-                        <span class="social-icon">YT</span>
+                        <a href="https://www.facebook.com/asocialchameleonclub" target="_blank" class="social-icon" title="Facebook">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social/facebook.png" alt="Facebook">
+                        </a>
+                        <a href="https://uk.pinterest.com/asocialchameleonclub/" target="_blank" class="social-icon" title="Pinterest">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social/pinterest-icon.png" alt="Pinterest">
+                        </a>
+                        <a href="https://www.instagram.com/asocialchameleonclub" target="_blank" class="social-icon" title="Instagram">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social/instagram-icon.png" alt="Instagram">
+                        </a>
+                        <a href="https://www.youtube.com/@AsocialChameleonclub" target="_blank" class="social-icon" title="YouTube">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/social/youtube-icon.png" alt="YouTube">
+                        </a>
                     </div>
                 </div>
 

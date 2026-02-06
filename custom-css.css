@@ -7544,3 +7544,41 @@ ul.products li.product .product-content-wrap,
     background: #ffffff;
 }
 
+
+/* Mobile Responsiveness Fixes */
+@media (max-width: 767px) {
+    /* Fix Our Story Stats Overflow */
+    .elementor-section .elementor-container {
+        flex-wrap: wrap !important;
+    }
+    .elementor-section .elementor-column {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+
+    /* Fix Newest Arrivals Buttons */
+    ul.products li.product .add_to_cart_button,
+    ul.products li.product .button.buy-now,
+    ul.products li.product .xoo-wsc-ft-btn-checkout {
+        width: 100% !important;
+        display: block !important;
+        margin-bottom: 10px !important;
+        padding: 12px 0 !important;
+    }
+}
+
+
+/* Refined Mobile Stats Fix */
+@media (max-width: 767px) {
+    .brand-stats {
+        display: block !important;
+        width: 100% !important;
+        overflow: visible !important;
+    }
+    .stat-item {
+        width: 100% !important;
+        margin-bottom: 30px !important;
+        display: block !important;
+    }
+}
+

@@ -226,29 +226,54 @@ function asocial_chameleon_add_product_buttons() {
     // Start button group wrapper
     echo '<div class="product-buttons-group premium-loop-actions">';
     
-    // Add to Cart Button (Customized Premium - Standard Redirect)
-    echo '<a href="?add-to-cart=' . esc_attr( $product->get_id() ) . '" 
-             data-quantity="1" 
-             class="button add-to-cart-button premium-action-btn" 
-             data-product_id="' . esc_attr( $product->get_id() ) . '" 
-             data-product_sku="' . esc_attr( $product->get_sku() ) . '" 
-             aria-label="' . esc_attr__( 'Add to cart', 'asocial-chameleon' ) . '" 
-             rel="nofollow">';
-    echo '<span class="button-icon">🛒</span>';
-    echo '<span class="button-text">' . esc_html__( 'Add to Cart', 'asocial-chameleon' ) . '</span>';
-    echo '</a>';
+    // Check if product is variable (has variations like size, color, etc.)
+    $is_variable = $product->is_type('variable');
+    
+    if ($is_variable) {
+        // For variable products: Link to product page to select options
+        echo '<a href="' . esc_url( get_permalink( $product->get_id() ) ) . '" 
+                 class="button add-to-cart-button premium-action-btn" 
+                 aria-label="' . esc_attr__( 'Select options', 'asocial-chameleon' ) . '">';
+        echo '<span class="button-icon">🛒</span>';
+        echo '<span class="button-text">' . esc_html__( 'Select Options', 'asocial-chameleon' ) . '</span>';
+        echo '</a>';
+    } else {
+        // For simple products: Direct add to cart
+        echo '<a href="?add-to-cart=' . esc_attr( $product->get_id() ) . '" 
+                 data-quantity="1" 
+                 class="button add-to-cart-button premium-action-btn" 
+                 data-product_id="' . esc_attr( $product->get_id() ) . '" 
+                 data-product_sku="' . esc_attr( $product->get_sku() ) . '" 
+                 aria-label="' . esc_attr__( 'Add to cart', 'asocial-chameleon' ) . '" 
+                 rel="nofollow">';
+        echo '<span class="button-icon">🛒</span>';
+        echo '<span class="button-text">' . esc_html__( 'Add to Cart', 'asocial-chameleon' ) . '</span>';
+        echo '</a>';
+    }
     
     // Buy Now Button (Direct Checkout Premium)
-    $checkout_url = wc_get_checkout_url();
-    $buy_now_url = add_query_arg( array(
-        'add-to-cart' => $product->get_id(),
-        'buy-now'     => '1'
-    ), $checkout_url );
-    
-    echo '<a href="' . esc_url( $buy_now_url ) . '" class="button buy-now-button premium-action-btn" data-product_id="' . esc_attr( $product->get_id() ) . '" rel="nofollow">';
-    echo '<span class="button-icon">⚡</span>';
-    echo '<span class="button-text">' . esc_html__( 'Buy Now', 'asocial-chameleon' ) . '</span>';
-    echo '</a>';
+    if ($is_variable) {
+        // For variable products: Link to product page
+        echo '<a href="' . esc_url( get_permalink( $product->get_id() ) ) . '" 
+                 class="button buy-now-button premium-action-btn" 
+                 data-product_id="' . esc_attr( $product->get_id() ) . '" 
+                 rel="nofollow">';
+        echo '<span class="button-icon">⚡</span>';
+        echo '<span class="button-text">' . esc_html__( 'Select Options', 'asocial-chameleon' ) . '</span>';
+        echo '</a>';
+    } else {
+        // For simple products: Direct buy now
+        $checkout_url = wc_get_checkout_url();
+        $buy_now_url = add_query_arg( array(
+            'add-to-cart' => $product->get_id(),
+            'buy-now'     => '1'
+        ), $checkout_url );
+        
+        echo '<a href="' . esc_url( $buy_now_url ) . '" class="button buy-now-button premium-action-btn" data-product_id="' . esc_attr( $product->get_id() ) . '" rel="nofollow">';
+        echo '<span class="button-icon">⚡</span>';
+        echo '<span class="button-text">' . esc_html__( 'Buy Now', 'asocial-chameleon' ) . '</span>';
+        echo '</a>';
+    }
 
     // End button group wrapper
     echo '</div>';
@@ -262,29 +287,25 @@ add_action( 'woocommerce_after_shop_loop_item', 'asocial_chameleon_add_product_b
  */
 /**
  * Global Redirect Configuration
- * 1. Force "Redirect to cart after successful addition" option to be YES.
- * 2. Handle the destination URL (Cart vs Checkout).
+ * Handle Buy Now redirects to checkout
  */
-add_filter( 'option_woocommerce_cart_redirect_after_add', 'asocial_chameleon_force_cart_redirect_option' );
-function asocial_chameleon_force_cart_redirect_option( $option ) {
-    return 'yes';
-}
-
 add_filter( 'woocommerce_add_to_cart_redirect', 'asocial_chameleon_custom_add_to_cart_redirect', 999 );
 function asocial_chameleon_custom_add_to_cart_redirect( $url ) {
-    // If it's a Buy Now action, go to Checkout
-    if ( isset( $_REQUEST['buy-now'] ) || isset( $_GET['buy-now'] ) || ( isset($_SERVER['REQUEST_URI']) && strpos( $_SERVER['REQUEST_URI'], 'buy-now=1' ) !== false ) ) {
+    // If it's a Buy Now action, go directly to Checkout
+    if ( isset( $_REQUEST['buy-now'] ) || isset( $_POST['buy-now'] ) ) {
         return wc_get_checkout_url();
     }
     
-    // Otherwise, ALWAYS redirect to Cart
+    // Otherwise, redirect to Cart
     return wc_get_cart_url();
 }
 
-add_action( 'template_redirect', 'asocial_chameleon_force_buy_now_redirect', 1 );
-function asocial_chameleon_force_buy_now_redirect() {
-    if ( (is_cart() || is_shop()) && (isset( $_REQUEST['buy-now'] )) ) {
-        wp_safe_redirect( wc_get_checkout_url() . '?add-to-cart=' . absint($_REQUEST['add-to-cart']) . '&buy-now=1' );
+// Force redirect to checkout on template load if buy-now is set
+add_action( 'template_redirect', 'asocial_chameleon_force_buy_now_checkout', 5 );
+function asocial_chameleon_force_buy_now_checkout() {
+    // If buy-now parameter exists and we're on cart page, redirect to checkout
+    if ( isset( $_GET['buy-now'] ) && is_cart() ) {
+        wp_safe_redirect( wc_get_checkout_url() );
         exit;
     }
 }

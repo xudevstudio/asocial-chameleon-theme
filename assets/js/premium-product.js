@@ -257,22 +257,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* ==========================================================================
-       5. Buy Now Logic (Direct Checkout)
+       5. Buy Now Logic (Direct Form Submission)
        ========================================================================== */
-    // Use querySelectorAll to catch ALL buy now buttons (Related products, etc.)
     const buyNowButtons = document.querySelectorAll('.buy-now-button');
 
     buyNowButtons.forEach(button => {
         button.addEventListener('click', function (e) {
-            // For simple <a> tags that point directly to checkout, let the browser handle it
-            if (this.tagName === 'A' && this.getAttribute('href').includes('checkout')) {
-                return;
-            }
-
             e.preventDefault();
 
-            // Form Validation (For the main product form only if this button is part of it)
+            // Get the product form
             const form = this.closest('form.cart') || document.querySelector('form.cart');
+
+            // Validation for variable products
             if (form && form.classList.contains('variations_form')) {
                 const variationInput = form.querySelector('input[name="variation_id"]');
                 if (!variationInput || !variationInput.value || variationInput.value == '0') {
@@ -281,45 +277,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            // Visual Loading
-            const originalText = this.innerText;
-            this.innerText = 'Processing...';
-            this.classList.add('opacity-75', 'cursor-not-allowed');
+            // Visual Loading State
+            const originalHTML = this.innerHTML;
+            this.innerHTML = '<span class="button-text">Processing...</span>';
+            this.disabled = true;
 
-            let productId = this.value || this.getAttribute('data-product_id');
-            const quantityInput = document.querySelector('input.qty-input');
-            const quantity = quantityInput ? quantityInput.value : 1;
-
-            // Use the localized checkout URL passed from PHP
-            let baseCheckoutUrl = (typeof wc_add_to_cart_params !== 'undefined' && wc_add_to_cart_params.checkout_url)
-                ? wc_add_to_cart_params.checkout_url
-                : '/checkout/';
-
-            // Build redirection URL
-            let finalUrl = new URL(baseCheckoutUrl, window.location.origin);
-            finalUrl.searchParams.append('add-to-cart', productId);
-            finalUrl.searchParams.append('quantity', quantity);
-            finalUrl.searchParams.append('buy-now', '1'); // Force redirect on server too
-
-            // Handle Variations specifically
-            if (form && form.classList.contains('variations_form')) {
-                const variationIdField = form.querySelector('input[name="variation_id"]');
-                const variationId = variationIdField ? variationIdField.value : null;
-                if (variationId) {
-                    finalUrl.searchParams.set('add-to-cart', variationId);
-
-                    // Add attributes to URL for extra robustness
-                    const data = new FormData(form);
-                    for (var pair of data.entries()) {
-                        if (pair[0].startsWith('attribute_')) {
-                            finalUrl.searchParams.append(pair[0], pair[1]);
-                        }
-                    }
+            if (form) {
+                // Add a hidden input to mark this as a Buy Now action
+                let buyNowInput = form.querySelector('input[name="buy-now"]');
+                if (!buyNowInput) {
+                    buyNowInput = document.createElement('input');
+                    buyNowInput.type = 'hidden';
+                    buyNowInput.name = 'buy-now';
+                    buyNowInput.value = '1';
+                    form.appendChild(buyNowInput);
                 }
-            }
 
-            // Final Redirect
-            window.location.href = finalUrl.toString();
+                // Submit the form - WooCommerce will handle add to cart and our server-side code will redirect to checkout
+                form.submit();
+            } else {
+                // Fallback for products without forms (simple products in loops)
+                const productId = this.getAttribute('data-product-id') || this.getAttribute('data-product_id');
+                const checkoutUrl = (typeof wc_add_to_cart_params !== 'undefined' && wc_add_to_cart_params.checkout_url)
+                    ? wc_add_to_cart_params.checkout_url
+                    : '/checkout/';
+
+                window.location.href = checkoutUrl + '?add-to-cart=' + productId + '&quantity=1&buy-now=1';
+            }
         });
     });
 
