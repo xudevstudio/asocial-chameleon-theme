@@ -249,8 +249,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
         button.addEventListener('click', function (e) {
             e.preventDefault();
-            const form = this.closest('form.cart');
-            if (!form) return;
+
+            // Try to find the form - first check if button is inside form, then check siblings
+            let form = this.closest('form.cart');
+            if (!form) {
+                // Button is outside form, look for form in the same wrapper
+                const wrapper = this.closest('.product-add-to-cart-wrapper') || this.closest('.product');
+                if (wrapper) {
+                    form = wrapper.querySelector('form.cart');
+                }
+            }
+
+            if (!form) {
+                console.error('Buy Now: Could not find cart form');
+                alert('Error: Could not find product form. Please try again.');
+                return;
+            }
 
             if (form.classList.contains('variations_form')) {
                 const vId = form.querySelector('input[name="variation_id"]');
