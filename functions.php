@@ -301,16 +301,13 @@ remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_ad
 add_action( 'woocommerce_after_shop_loop_item', 'asocial_chameleon_add_product_buttons', 15 );
 
 /**
- * Global Redirect to Cart (Default) or Checkout (Buy Now)
- */
-/**
  * Global Redirect Configuration
  * Handle Buy Now redirects to checkout
  */
 add_filter( 'woocommerce_add_to_cart_redirect', 'asocial_chameleon_custom_add_to_cart_redirect', 999 );
 function asocial_chameleon_custom_add_to_cart_redirect( $url ) {
     // If it's a Buy Now action, go directly to Checkout
-    if ( isset( $_REQUEST['buy-now'] ) || isset( $_POST['buy-now'] ) ) {
+    if ( isset( $_REQUEST['buy-now'] ) || isset( $_POST['buy-now'] ) || isset( $_GET['buy-now'] ) ) {
         return wc_get_checkout_url();
     }
     
@@ -321,10 +318,13 @@ function asocial_chameleon_custom_add_to_cart_redirect( $url ) {
 // Force redirect to checkout on template load if buy-now is set
 add_action( 'template_redirect', 'asocial_chameleon_force_buy_now_checkout', 5 );
 function asocial_chameleon_force_buy_now_checkout() {
-    // If buy-now parameter exists and we're on cart page, redirect to checkout
-    if ( isset( $_GET['buy-now'] ) && is_cart() ) {
-        wp_safe_redirect( wc_get_checkout_url() );
-        exit;
+    // If buy-now parameter exists in GET or POST, redirect to checkout
+    if ( ( isset( $_GET['buy-now'] ) || isset( $_POST['buy-now'] ) ) && ! is_checkout() ) {
+        // Only redirect if we're not already on checkout and cart has items
+        if ( ! WC()->cart->is_empty() ) {
+            wp_safe_redirect( wc_get_checkout_url() );
+            exit;
+        }
     }
 }
 
