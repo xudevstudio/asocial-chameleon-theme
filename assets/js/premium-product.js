@@ -254,15 +254,20 @@ document.addEventListener('DOMContentLoaded', function () {
             let form = this.closest('form.cart');
             if (!form) {
                 // Button is outside form, look for form in the same wrapper
-                const wrapper = this.closest('.product-add-to-cart-wrapper') || this.closest('.product');
+                const wrapper = this.closest('.product-add-to-cart-wrapper') || this.closest('.product') || this.closest('.summary');
                 if (wrapper) {
                     form = wrapper.querySelector('form.cart');
                 }
             }
 
+            // Last resort: search the entire page for the form
+            if (!form) {
+                form = document.querySelector('form.cart') || document.querySelector('.variations_form');
+            }
+
             if (!form) {
                 console.error('Buy Now: Could not find cart form');
-                alert('Error: Could not find product form. Please try again.');
+                // Don't show alert, just return silently
                 return;
             }
 
