@@ -537,13 +537,10 @@ function asocial_chameleon_live_search_handler() {
 }
 
 /**
- * Redirect to Cart Page after Add to Cart
- * Ensures users are taken to the cart page after adding a product.
+ * NOTE: Redirect to Cart Page is handled by asocial_chameleon_custom_add_to_cart_redirect (line 310)
+ * which properly handles both regular add-to-cart (redirect to cart) and buy-now (redirect to checkout)
+ * This duplicate filter has been removed to prevent conflicts.
  */
-add_filter( 'woocommerce_add_to_cart_redirect', 'asocial_chameleon_redirect_to_cart' );
-function asocial_chameleon_redirect_to_cart( $url ) {
-    return wc_get_cart_url();
-}
 
 /**
  * Disable AJAX add to cart on shop loop to force reload and redirect
