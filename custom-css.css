@@ -7582,3 +7582,195 @@ ul.products li.product .product-content-wrap,
     }
 }
 
+/* ==========================================================================
+   PREMIUM SELECTION MODAL STYLES
+   ========================================================================== */
+.asocial-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.asocial-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.asocial-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+}
+
+.asocial-modal-container {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1;
+}
+
+.asocial-modal.active .asocial-modal-container {
+    transform: translateY(0);
+}
+
+.asocial-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #f3f4f6;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.asocial-modal-close:hover {
+    background: #e5e7eb;
+    transform: rotate(90deg);
+}
+
+.asocial-modal-content-wrapper {
+    padding: 40px 30px;
+    min-height: 200px;
+}
+
+.asocial-modal-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    z-index: 5;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #9b59b6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#asocial-modal-dynamic-content {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Modal Content Interior */
+.product-selection-modal-content .modal-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.product-selection-modal-content h3 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 5px;
+}
+
+.product-selection-modal-content .modal-price {
+    font-size: 18px;
+    font-weight: 600;
+    color: #9b59b6;
+}
+
+.selection-popup-form .variations {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.selection-popup-form .variations .label {
+    padding: 10px 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #4b5563;
+}
+
+.selection-popup-form .variations .value select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #e5e7eb;
+    background: #f9fafb;
+    font-weight: 600;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.selection-popup-form .variations .value select:focus {
+    border-color: #9b59b6;
+}
+
+.premium-popup-submit {
+    width: 100%;
+    padding: 18px !important;
+    border-radius: 15px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%) !important;
+    border: none !important;
+    box-shadow: 0 10px 20px rgba(155, 89, 182, 0.3) !important;
+    transition: all 0.3s !important;
+    cursor: pointer !important;
+}
+
+.premium-popup-submit:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 15px 30px rgba(155, 89, 182, 0.4) !important;
+}
+
+@media (max-width: 480px) {
+    .asocial-modal-container {
+        padding-bottom: 20px;
+    }
+    .asocial-modal-content-wrapper {
+        padding: 30px 20px;
+    }
+}
+

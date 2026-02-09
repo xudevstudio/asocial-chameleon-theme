@@ -98,12 +98,15 @@ function asocial_chameleon_scripts() {
 
     // Enqueue Premium Product JS only on single product pages
     // Enqueue Premium Product JS
-    wp_enqueue_script( 'premium-product-js', get_template_directory_uri() . '/assets/js/premium-product.js', array( 'jquery' ), '1.0.1', true );
+    wp_enqueue_script( 'premium-product-js', get_template_directory_uri() . '/assets/js/premium-product.js', array( 'jquery' ), '1.0.2', true );
     
     // Pass AJAX URL and Checkout URL to script
-    wp_localize_script( 'premium-product-js', 'wc_add_to_cart_params', array(
+    wp_localize_script( 'premium-product-js', 'asocial_ajax_obj', array(
+        'ajax_url' => admin_url( 'admin-ajax.php' ),
         'wc_ajax_url' => WC()->ajax_url(), 
-        'checkout_url' => wc_get_checkout_url()
+        'checkout_url' => wc_get_checkout_url(),
+        'cart_url' => wc_get_cart_url(),
+        'nonce' => wp_create_nonce( 'asocial_add_to_cart_nonce' )
     ) );
 }
 add_action( 'wp_enqueue_scripts', 'asocial_chameleon_scripts' );
@@ -240,14 +243,13 @@ function asocial_chameleon_add_product_buttons() {
     }
     
     // Add to Cart Button
-    if ($is_variable && $variation_id) {
-        // For variable products: Use first variation for direct add to cart
-        echo '<a href="?add-to-cart=' . esc_attr( $variation_id ) . '" 
-                 data-quantity="1" 
-                 class="button add-to-cart-button premium-action-btn" 
+    if ($is_variable) {
+        // For variable products: Open Selection Popup
+        echo '<a href="' . esc_url( get_permalink() ) . '" 
+                 class="button add-to-cart-button premium-action-btn variable-selection-trigger" 
                  data-product_id="' . esc_attr( $product->get_id() ) . '" 
-                 data-variation_id="' . esc_attr( $variation_id ) . '" 
-                 aria-label="' . esc_attr__( 'Add to cart', 'asocial-chameleon' ) . '" 
+                 data-action="add-to-cart"
+                 aria-label="' . esc_attr__( 'Select options', 'asocial-chameleon' ) . '" 
                  rel="nofollow">';
         echo '<span class="button-icon">🛒</span>';
         echo '<span class="button-text">' . esc_html__( 'Add to Cart', 'asocial-chameleon' ) . '</span>';
@@ -267,15 +269,13 @@ function asocial_chameleon_add_product_buttons() {
     }
     
     // Buy Now Button (Direct Checkout Premium)
-    if ($is_variable && $variation_id) {
-        // For variable products: Use first variation for direct buy now
-        $checkout_url = wc_get_checkout_url();
-        $buy_now_url = add_query_arg( array(
-            'add-to-cart' => $variation_id,
-            'buy-now'     => '1'
-        ), $checkout_url );
-        
-        echo '<a href="' . esc_url( $buy_now_url ) . '" class="button buy-now-button premium-action-btn" data-product_id="' . esc_attr( $product->get_id() ) . '" data-variation_id="' . esc_attr( $variation_id ) . '" rel="nofollow">';
+    if ($is_variable) {
+        // For variable products: Open Selection Popup
+        echo '<a href="' . esc_url( get_permalink() ) . '" 
+                 class="button buy-now-button premium-action-btn variable-selection-trigger" 
+                 data-product_id="' . esc_attr( $product->get_id() ) . '" 
+                 data-action="buy-now"
+                 rel="nofollow">';
         echo '<span class="button-icon">⚡</span>';
         echo '<span class="button-text">' . esc_html__( 'Buy Now', 'asocial-chameleon' ) . '</span>';
         echo '</a>';
@@ -635,6 +635,94 @@ function asocial_chameleon_rescue_product_components() {
 }
 */
 
+
+/**
+ * AJAX Handler to Fetch Product Variations for Shop Loop Popup
+ */
+add_action( 'wp_ajax_asocial_get_product_variations', 'asocial_chameleon_get_product_variations' );
+add_action( 'wp_ajax_nopriv_asocial_get_product_variations', 'asocial_chameleon_get_product_variations' );
+
+/**
+ * Enqueue variation scripts on shop page for modal functionality
+ */
+function asocial_chameleon_enqueue_variation_scripts() {
+    if ( is_shop() || is_product_category() || is_product_tag() || is_front_page() ) {
+        wp_enqueue_script( 'wc-add-to-cart-variation' );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'asocial_chameleon_enqueue_variation_scripts' );
+
+function asocial_chameleon_get_product_variations() {
+    $product_id = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
+    
+    if ( ! $product_id ) {
+        wp_send_json_error( array( 'message' => 'Invalid Product ID' ) );
+    }
+
+    $product = wc_get_product( $product_id );
+
+    if ( ! $product || ! $product->is_type( 'variable' ) ) {
+        wp_send_json_error( array( 'message' => 'Product not found or not variable' ) );
+    }
+
+    // Get available variations
+    $available_variations = $product->get_available_variations();
+    $attributes = $product->get_variation_attributes();
+    
+    // Get attribute labels
+    $attribute_labels = array();
+    foreach ( $attributes as $name => $options ) {
+        $attribute_labels[$name] = wc_attribute_label( $name );
+    }
+
+    ob_start();
+    ?>
+    <div class="product-selection-modal-content" data-product_id="<?php echo esc_attr( $product_id ); ?>">
+        <div class="modal-header">
+            <h3><?php echo esc_html( $product->get_name() ); ?></h3>
+            <p class="modal-price"><?php echo $product->get_price_html(); ?></p>
+        </div>
+        
+        <div class="modal-body">
+            <form class="variations_form selection-popup-form cart" method="post" enctype="multipart/form-data" data-product_id="<?php echo esc_attr( $product_id ); ?>" data-product_variations="<?php echo esc_attr( wp_json_encode( $available_variations ) ); ?>">
+                <table class="variations" cellspacing="0">
+                    <tbody>
+                        <?php foreach ( $attributes as $attribute_name => $options ) : ?>
+                            <tr>
+                                <td class="label"><label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo esc_html( $attribute_labels[$attribute_name] ); ?></label></td>
+                                <td class="value">
+                                    <?php
+                                        wc_dropdown_variation_attribute_options( array(
+                                            'options'   => $options,
+                                            'attribute' => $attribute_name,
+                                            'product'   => $product,
+                                        ) );
+                                    ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <div class="single_variation_wrap">
+                    <div class="woocommerce-variation single_variation"></div>
+                    <div class="woocommerce-variation-add-to-cart variations_button">
+                        <input type="hidden" name="add-to-cart" value="<?php echo absint( $product_id ); ?>" />
+                        <input type="hidden" name="product_id" value="<?php echo absint( $product_id ); ?>" />
+                        <input type="hidden" name="variation_id" class="variation_id" value="0" />
+                        <button type="submit" class="single_add_to_cart_button button alt premium-popup-submit"><?php echo esc_html__( 'Confirm Selection', 'asocial-chameleon' ); ?></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <?php
+    $html = ob_get_clean();
+
+    wp_send_json_success( array(
+        'html' => $html,
+        'variations' => $available_variations
+    ) );
+}
 
 /**
  * Limit Related Products to 4
