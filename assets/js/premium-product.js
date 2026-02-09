@@ -195,76 +195,42 @@ document.addEventListener('DOMContentLoaded', function () {
                             submitBtn.text('Processing...').prop('disabled', true);
 
                             if (action === 'buy-now') {
-                                // For Buy Now: Add to cart via AJAX first, then redirect to checkout
-                                let ajaxData = {
-                                    'product_id': productId,
-                                    'variation_id': variationId,
-                                    'quantity': form.find('input[name="quantity"]').val() || 1
-                                };
+                                // For Buy Now: Add hidden input and submit form to add to cart, then redirect
+                                // Remove any existing buy-now input
+                                form.find('input[name="buy-now"]').remove();
 
-                                // Add all variation attributes
-                                form.find('select[name^="attribute_"]').each(function () {
-                                    ajaxData[jQuery(this).attr('name')] = jQuery(this).val();
+                                // Add buy-now flag
+                                const buyNowInput = jQuery('<input>').attr({
+                                    type: 'hidden',
+                                    name: 'buy-now',
+                                    value: '1'
                                 });
+                                form.append(buyNowInput);
 
-                                jQuery.ajax({
-                                    url: typeof asocial_ajax_obj !== 'undefined' ? asocial_ajax_obj.wc_ajax_url : '/?wc-ajax=add_to_cart',
-                                    type: 'POST',
-                                    data: ajaxData,
-                                    dataType: 'json',
-                                    success: function (response) {
-                                        if (response && response.error) {
-                                            alert('Error adding product to cart: ' + (response.error_message || 'Unknown error'));
-                                            submitBtn.text('Buy Now').prop('disabled', false);
-                                            return;
-                                        }
-                                        // Trigger cart update
-                                        jQuery(document.body).trigger('wc_fragment_refresh');
-                                        // Redirect to checkout
-                                        const checkoutUrl = typeof asocial_ajax_obj !== 'undefined' ? asocial_ajax_obj.checkout_url : '/checkout/';
-                                        window.location.href = checkoutUrl;
-                                    },
-                                    error: function (xhr, status, error) {
-                                        console.error('AJAX Error:', status, error);
-                                        alert('Error adding product to cart. Please try again.');
-                                        submitBtn.text('Buy Now').prop('disabled', false);
-                                    }
-                                });
+                                // Ensure add-to-cart is present
+                                if (form.find('input[name="add-to-cart"]').length === 0) {
+                                    const addToCartInput = jQuery('<input>').attr({
+                                        type: 'hidden',
+                                        name: 'add-to-cart',
+                                        value: productId
+                                    });
+                                    form.append(addToCartInput);
+                                }
+
+                                // Submit the form - WooCommerce will handle adding to cart and our redirect filter will send to checkout
+                                form[0].submit();
                             } else {
-                                // For Add to Cart: Add via AJAX and show success message
-                                let ajaxData = {
-                                    'product_id': productId,
-                                    'variation_id': variationId,
-                                    'quantity': form.find('input[name="quantity"]').val() || 1
-                                };
+                                // For Add to Cart: Use AJAX to add and show success message
+                                const formData = form.serialize();
 
-                                // Add all variation attributes
-                                form.find('select[name^="attribute_"]').each(function () {
-                                    ajaxData[jQuery(this).attr('name')] = jQuery(this).val();
-                                });
-
-                                jQuery.ajax({
-                                    url: typeof asocial_ajax_obj !== 'undefined' ? asocial_ajax_obj.wc_ajax_url : '/?wc-ajax=add_to_cart',
-                                    type: 'POST',
-                                    data: ajaxData,
-                                    dataType: 'json',
-                                    success: function (response) {
-                                        if (response && response.error) {
-                                            alert('Error adding product to cart: ' + (response.error_message || 'Unknown error'));
-                                            submitBtn.text('Confirm Selection').prop('disabled', false);
-                                            return;
-                                        }
-                                        // Trigger cart update
-                                        jQuery(document.body).trigger('wc_fragment_refresh');
-                                        jQuery(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, submitBtn]);
-                                        closeModal();
-                                        showToast('Product added to cart!');
-                                    },
-                                    error: function (xhr, status, error) {
-                                        console.error('AJAX Error:', status, error);
-                                        alert('Error adding to cart. Please try again.');
-                                        submitBtn.text('Confirm Selection').prop('disabled', false);
-                                    }
+                                jQuery.post(window.location.href, formData + '&add-to-cart=' + productId, function (response) {
+                                    // Trigger cart update
+                                    jQuery(document.body).trigger('wc_fragment_refresh');
+                                    closeModal();
+                                    showToast('Product added to cart!');
+                                }).fail(function () {
+                                    alert('Error adding to cart. Please try again.');
+                                    submitBtn.text('Confirm Selection').prop('disabled', false);
                                 });
                             }
                         });
