@@ -19,18 +19,35 @@
 
         if (isExpanded) {
             // Close menu
-            button.setAttribute('aria-expanded', 'false');
-            navigation.classList.remove('toggled');
-            if (menu) {
-                menu.setAttribute('aria-expanded', 'false');
-            }
+            closeMenu();
         } else {
             // Open menu
-            button.setAttribute('aria-expanded', 'true');
-            navigation.classList.add('toggled');
-            if (menu) {
-                menu.setAttribute('aria-expanded', 'true');
-            }
+            openMenu();
+        }
+    });
+
+    function openMenu() {
+        button.setAttribute('aria-expanded', 'true');
+        navigation.classList.add('toggled');
+        document.body.classList.add('mobile-menu-open');
+        if (menu) {
+            menu.setAttribute('aria-expanded', 'true');
+        }
+    }
+
+    function closeMenu() {
+        button.setAttribute('aria-expanded', 'false');
+        navigation.classList.remove('toggled');
+        document.body.classList.remove('mobile-menu-open');
+        if (menu) {
+            menu.setAttribute('aria-expanded', 'false');
+        }
+    }
+
+    // Handle close button if it exists (X icon inside menu)
+    document.addEventListener('click', function (event) {
+        if (event.target.closest('.menu-close')) {
+            closeMenu();
         }
     });
 
@@ -39,11 +56,7 @@
         var isClickInside = navigation.contains(event.target) || button.contains(event.target);
 
         if (!isClickInside && navigation.classList.contains('toggled')) {
-            button.setAttribute('aria-expanded', 'false');
-            navigation.classList.remove('toggled');
-            if (menu) {
-                menu.setAttribute('aria-expanded', 'false');
-            }
+            closeMenu();
         }
     });
 })();

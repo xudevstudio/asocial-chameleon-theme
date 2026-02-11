@@ -225,17 +225,38 @@
 
             <!-- Bottom Row: Navigation -->
 			<nav id="site-navigation" class="main-navigation">
+                <div class="mobile-menu-header">
+                    <button class="menu-close" aria-label="Close menu">
+                        <span class="close-icon">&times;</span>
+                    </button>
+                </div>
 				<?php
 				wp_nav_menu(
 					array(
 						'theme_location' => 'menu-1',
 						'menu_id'        => 'primary-menu',
 						'menu_class'     => 'nav-menu', // Class for styling
-                        'container'      => false,
+                        'container'      => 'div',
+                        'container_class' => 'mobile-menu-container',
                         'fallback_cb'    => false, // Don't show pages if no menu fits
 					)
 				);
 				?>
+                <div class="mobile-menu-footer">
+                    <div class="mobile-social-links">
+                        <?php 
+                        // You can add social icons here later if requested
+                        ?>
+                    </div>
+                    <?php if ( class_exists( 'WooCommerce' ) ) : ?>
+                        <div class="mobile-menu-account">
+                            <a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ); ?>">
+                                <i class="material-icons-outlined">account_circle</i>
+                                <?php esc_html_e( 'My Account', 'asocial-chameleon' ); ?>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                </div>
 			</nav>
 
 

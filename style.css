@@ -3787,55 +3787,208 @@ html {
         margin-top: 10px !important;
     }
 
-    /* Mobile Navigation Menu */
-    .main-navigation {
+    /* Mobile Navigation Menu (Premium Redesign) */
+    body.mobile-menu-open {
+        overflow: hidden !important;
+        position: fixed;
         width: 100%;
-        order: 5;
+    }
+
+    .main-navigation {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 99999 !important;
+        background: radial-gradient(circle at top right, rgba(29, 17, 43, 0.98), rgba(13, 13, 13, 0.99)) !important;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        display: flex;
+        flex-direction: column;
+        transform: translateX(-100%);
+        transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        visibility: hidden;
+    }
+
+    .main-navigation.toggled {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
+    /* Mobile Menu Header */
+    .mobile-menu-header {
+        display: flex;
+        justify-content: flex-end;
+        padding: 30px 25px;
+        width: 100%;
+    }
+
+    .menu-close {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .menu-close:hover {
+        background: #9b59b6;
+        border-color: #9b59b6;
+        transform: rotate(90deg);
+    }
+
+    .close-icon {
+        font-size: 32px;
+        line-height: 1;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Mobile Menu Container */
+    .mobile-menu-container {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px 40px;
+        display: flex;
+        align-items: center;
+        width: 100%;
     }
 
     .main-navigation ul {
-        display: none;
-        flex-direction: column;
-        width: 100vw;
-        background: #ffffff;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        z-index: 9999;
-        padding: 0;
-        margin: 0;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        border-top: 1px solid #f1f1f1;
-        list-style: none;
-    }
-
-    .main-navigation.toggled ul {
-        display: flex;
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        position: static !important;
+        gap: 0 !important;
     }
 
     .main-navigation li {
-        width: 100%;
-        text-align: left;
-        margin: 0;
-        border-bottom: 1px solid #f5f5f5;
+        width: 100% !important;
+        border: none !important;
+        margin-bottom: 5px !important;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .main-navigation.toggled li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Staggered animation for menu items */
+    .main-navigation.toggled li:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .main-navigation.toggled li:nth-child(2) {
+        transition-delay: 0.15s;
+    }
+
+    .main-navigation.toggled li:nth-child(3) {
+        transition-delay: 0.2s;
+    }
+
+    .main-navigation.toggled li:nth-child(4) {
+        transition-delay: 0.25s;
+    }
+
+    .main-navigation.toggled li:nth-child(5) {
+        transition-delay: 0.3s;
+    }
+
+    .main-navigation.toggled li:nth-child(6) {
+        transition-delay: 0.35s;
+    }
+
+    .main-navigation.toggled li:nth-child(7) {
+        transition-delay: 0.4s;
+    }
+
+    .main-navigation.toggled li:nth-child(8) {
+        transition-delay: 0.45s;
     }
 
     .main-navigation a {
-        display: block;
-        padding: 15px 20px;
-        width: 100%;
-        font-size: 16px;
-        color: #333;
-        text-decoration: none;
-        font-weight: 500;
+        font-family: 'Outfit', sans-serif;
+        font-size: 28px !important;
+        font-weight: 700 !important;
+        color: #fff !important;
+        padding: 12px 0 !important;
+        text-transform: capitalize !important;
+        letter-spacing: -0.5px !important;
+        position: relative;
+        display: inline-block !important;
+        width: auto !important;
+        transition: color 0.3s ease !important;
     }
 
-    .main-navigation a:hover {
-        background: #f9f9f9;
+    .main-navigation a:hover,
+    .main-navigation .current-menu-item>a {
+        color: #9b59b6 !important;
+        padding-left: 0 !important;
+        background: transparent !important;
+    }
+
+    .main-navigation a::after {
+        content: '';
+        position: absolute;
+        bottom: 8px;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #9b59b6, #3498db);
+        transition: width 0.3s ease;
+        display: block !important;
+        margin: 0 !important;
+    }
+
+    .main-navigation a:hover::after,
+    .main-navigation .current-menu-item>a::after {
+        width: 100% !important;
+    }
+
+    /* Mobile Menu Footer */
+    .mobile-menu-footer {
+        padding: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        width: 100%;
+    }
+
+    .mobile-menu-account a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #fff !important;
+        font-size: 18px !important;
+        font-weight: 500 !important;
+        text-decoration: none;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    }
+
+    .mobile-menu-account a:hover {
+        opacity: 1;
+        color: #9b59b6 !important;
+    }
+
+    .mobile-menu-account i {
+        font-size: 24px;
         color: #9b59b6;
-        padding-left: 25px;
-        transition: all 0.2s ease;
     }
 
     /* Hero Section Mobile */

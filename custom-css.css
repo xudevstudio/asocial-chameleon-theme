@@ -7808,3 +7808,144 @@ ul.products li.product .product-content-wrap,
         padding: 30px 20px;
     }
 }
+
+/* --- Mobile Menu UI/UX & Header Fixes (Task: Improve Mobile UI) --- */
+@media (min-width: 768px) {
+
+    /* Hide the mobile-only account link on desktop */
+    .mobile-account-link {
+        display: none !important;
+    }
+}
+
+@media (max-width: 767px) {
+
+    /* 1. Header Icon Alignment */
+    .header-top-row {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0 15px;
+        /* Ensure padding for edges */
+    }
+
+    /* Order: Hamburger (Left), Logo (Center), Cart (Right) */
+    .menu-toggle {
+        order: 1;
+        flex: 0 0 auto !important;
+        /* Prevent shrinking */
+        margin-right: 10px;
+        width: auto !important;
+    }
+
+    .site-branding {
+        order: 2;
+        flex-grow: 1;
+        flex-shrink: 1;
+        /* Allow shrinking if needed */
+        text-align: center;
+        margin: 0 !important;
+        overflow: hidden;
+        /* Prevent spillover */
+        display: flex;
+        justify-content: center;
+        max-width: 200px !important;
+        /* Force maximum width */
+        width: auto !important;
+        /* Override any fixed width */
+    }
+
+    /* Ensure Logo is centered/sized correctly */
+    .site-branding .logo-image {
+        margin: 0 auto;
+        max-height: 30px !important;
+        /* Smaller logo for mobile */
+        width: auto !important;
+        max-width: 150px !important;
+        /* Prevent it from being too wide */
+        object-fit: contain;
+    }
+
+    .header-actions {
+        order: 3;
+        flex: 0 0 auto !important;
+        /* Prevent shrinking */
+        display: flex !important;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-left: 10px;
+        width: auto !important;
+    }
+
+    /* Hide the Header Account Icon on Mobile (since it's now in the menu) */
+    .header-account-inline {
+        display: none !important;
+    }
+
+    /* Hide Search Bar on Mobile to prevent crowding */
+    .header-search {
+        display: none !important;
+    }
+
+    /* Ensure Cart Icon is visible */
+    .header-cart-inline {
+        display: block !important;
+    }
+
+    /* 2. Mobile Menu Styling */
+    .main-navigation.toggled .nav-menu {
+        background-color: #ffffff;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        padding: 0;
+    }
+
+    .main-navigation ul li {
+        border-bottom: 1px solid #f0f0f0;
+        margin: 0 !important;
+    }
+
+    .main-navigation ul li a {
+        display: block;
+        /* Full width touch target */
+        padding: 16px 20px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+        transition: background 0.2s;
+    }
+
+    .main-navigation ul li a:hover,
+    .main-navigation ul li.current_page_item>a {
+        background-color: #f9f9f9;
+        color: #9b59b6;
+        /* Brand Color */
+        padding-left: 25px;
+        /* Slight movement effect */
+    }
+
+    /* 3. Mobile Account Link Styling (Bottom of Menu) */
+    .main-navigation ul li.mobile-account-link {
+        border-top: 4px solid #f0f0f0;
+        background-color: #fafafa;
+        margin-top: 10px !important;
+    }
+
+    .main-navigation ul li.mobile-account-link a {
+        color: #9b59b6 !important;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* Center align for emphasis */
+        padding: 20px;
+    }
+
+    .main-navigation ul li.mobile-account-link .material-icons-outlined {
+        font-size: 24px;
+        color: #9b59b6;
+        margin-right: 8px;
+        /* Added margin for spacing */
+    }
+}
