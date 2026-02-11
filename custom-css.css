@@ -916,24 +916,7 @@ Removed to preserve gradient
         font-size: 24px;
     }
 
-    /* Force stack on mobile and tablet */
-    .brand-stats {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 20px !important;
-        width: 100% !important;
-    }
-
-    .stat-item {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 !important;
-        box-sizing: border-box !important;
-    }
-
-    .stat-value {
-        font-size: 32px;
-    }
+    /* Stats are now handled by consolidated rules in header.php or bottom of this file */
 }
 
 /* --- Top Rated Collection Slider Section --- */
@@ -7590,19 +7573,9 @@ ul.products li.product .product-content-wrap,
 }
 
 
-/* Refined Mobile Stats Fix */
+/* Refined Mobile Stats Fix - Handled in header.php for high specificity */
 @media (max-width: 767px) {
-    .brand-stats {
-        display: block !important;
-        width: 100% !important;
-        overflow: visible !important;
-    }
-
-    .stat-item {
-        width: 100% !important;
-        margin-bottom: 30px !important;
-        display: block !important;
-    }
+    /* Rules moved to consolidated block */
 }
 
 /* ==========================================================================

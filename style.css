@@ -8341,10 +8341,10 @@ h3.section-title {
 .our-story-section [class*='stat'],
 [class*='story'] .stats,
 [class*='story'] [class*='stat'] {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
-    gap: 20px !important;
-    margin-top: 30px !important;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
 }
 
 /* Mobile responsive */
@@ -8376,7 +8376,8 @@ h3.section-title {
     }
 
     .our-story-section .stats,
-    [class*='story'] .stats {
+    [class*='story'] .stats,
+    [class*='story'] .brand-stats {
         grid-template-columns: 1fr !important;
     }
 }

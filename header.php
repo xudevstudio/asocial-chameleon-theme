@@ -581,6 +581,24 @@
         top: 15px !important;
         display: block !important;
     }
+    /* Mobile Responsiveness Fix for Brand Story Stats */
+    @media (max-width: 991px) {
+        body .our-story-section div.brand-stats {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 20px !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 30px auto !important;
+        }
+        body .our-story-section div.brand-stats .stat-item {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 0 15px 0 !important;
+            box-sizing: border-box !important;
+            display: block !important;
+        }
+    }
     </style>
 
     <script>
