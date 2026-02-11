@@ -917,8 +917,15 @@ Removed to preserve gradient
     }
 
     .brand-stats {
-        grid-template-columns: 1fr;
-        gap: 15px;
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .stat-item {
+        width: 100%;
+        box-sizing: border-box;
+        /* Ensure padding doesn't overflow width */
     }
 
     .stat-value {
@@ -7385,6 +7392,7 @@ body.single-product div.product {
     height: 40px !important;
     /* Force consistent height */
 }
+
 /* ========================================
    HEADER CART BUTTON STYLES
    ======================================== */
@@ -7426,7 +7434,7 @@ body.single-product div.product {
     border-radius: 50%;
     text-align: center;
     padding: 0 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     border: 1px solid #fff;
     pointer-events: none;
 }
@@ -7469,7 +7477,9 @@ body.single-product div.product {
 }
 
 /* 4. Fix Coupon Toggle Spacing if icon removed */
-.woocommerce-info, .woocommerce-message, .woocommerce-error {
+.woocommerce-info,
+.woocommerce-message,
+.woocommerce-error {
     padding-left: 20px !important;
 }
 
@@ -7492,7 +7502,8 @@ body.single-product div.product {
 
 /* Ensure only one custom arrow is shown if duplicates exist */
 .select2-container .select2-selection--single .select2-selection__arrow::after {
-    content: '' !important; /* Reset content if needed, main theme likely handles this */
+    content: '' !important;
+    /* Reset content if needed, main theme likely handles this */
 }
 
 /* If the issue is with the native select vs select2 wrapper */
@@ -7500,7 +7511,8 @@ body.single-product div.product {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-image: none !important; /* Hide native background arrow */
+    background-image: none !important;
+    /* Hide native background arrow */
 }
 
 
@@ -7510,15 +7522,19 @@ body.single-product div.product {
    ======================================== */
 .woocommerce ul.products li.product .woocommerce-LoopProduct-link {
     display: block;
-    overflow: hidden; /* Clips the zooming image */
+    overflow: hidden;
+    /* Clips the zooming image */
     position: relative;
-    border-radius: 8px; /* Optional: smooth corners if needed */
+    border-radius: 8px;
+    /* Optional: smooth corners if needed */
 }
 
 .woocommerce ul.products li.product .product-content-wrap {
     position: relative;
-    z-index: 5; /* Keeps text above image */
-    background: #ffffff; /* Ensures transparency doesn't show image */
+    z-index: 5;
+    /* Keeps text above image */
+    background: #ffffff;
+    /* Ensures transparency doesn't show image */
 }
 
 /* Ensure image stays below text specifically on hover */
@@ -7532,7 +7548,8 @@ body.single-product div.product {
 ul.products li.product .woocommerce-LoopProduct-link,
 .woocommerce ul.products li.product .woocommerce-LoopProduct-link {
     display: block;
-    overflow: hidden !important; /* Force clipping */
+    overflow: hidden !important;
+    /* Force clipping */
     position: relative;
     border-radius: 8px;
 }
@@ -7547,10 +7564,12 @@ ul.products li.product .product-content-wrap,
 
 /* Mobile Responsiveness Fixes */
 @media (max-width: 767px) {
+
     /* Fix Our Story Stats Overflow */
     .elementor-section .elementor-container {
         flex-wrap: wrap !important;
     }
+
     .elementor-section .elementor-column {
         width: 100% !important;
         margin-bottom: 20px;
@@ -7575,6 +7594,7 @@ ul.products li.product .product-content-wrap,
         width: 100% !important;
         overflow: visible !important;
     }
+
     .stat-item {
         width: 100% !important;
         margin-bottom: 30px !important;
@@ -7684,8 +7704,13 @@ ul.products li.product .product-content-wrap,
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 #asocial-modal-dynamic-content {
@@ -7693,8 +7718,13 @@ ul.products li.product .product-content-wrap,
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* Modal Content Interior */
@@ -7769,8 +7799,8 @@ ul.products li.product .product-content-wrap,
     .asocial-modal-container {
         padding-bottom: 20px;
     }
+
     .asocial-modal-content-wrapper {
         padding: 30px 20px;
     }
 }
-
