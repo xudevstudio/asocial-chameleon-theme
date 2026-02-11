@@ -5089,6 +5089,34 @@ body {
     }
 }
 
+/* Mobile Fix for "Our Newest Arrivals" Buttons */
+@media (max-width: 767px) {
+
+    /* Force 1-column layout for this section to allow full-width buttons */
+    .newest-arrivals-section ul.products,
+    .newest-arrivals-section .products {
+        grid-template-columns: 1fr !important;
+        display: grid !important;
+    }
+
+    .newest-arrivals-section .product-buttons-group .button {
+        width: 100% !important;
+        max-width: none !important;
+        /* Override any button max-width */
+        min-width: 0 !important;
+        /* Override any min-width if causing issues */
+        display: block !important;
+        margin-bottom: 8px !important;
+        padding: 12px 15px !important;
+        text-align: center !important;
+    }
+
+    .newest-arrivals-section .product-buttons-group {
+        width: 100% !important;
+        display: block !important;
+    }
+}
+
 /* 4. Single Product Mobile Stack Fix */
 @media (max-width: 768px) {
     .single-product .product-grid-modern {

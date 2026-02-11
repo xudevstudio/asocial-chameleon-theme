@@ -599,6 +599,30 @@
             display: block !important;
         }
     }
+
+    /* Mobile Fix for "Our Newest Arrivals" Buttons - Nuclear Option */
+    @media (max-width: 767px) {
+        body .newest-arrivals-section ul.products,
+        body .newest-arrivals-section .products {
+            grid-template-columns: 1fr !important;
+            display: grid !important;
+        }
+
+        body .newest-arrivals-section .product-buttons-group .button {
+            width: 100% !important;
+            max-width: none !important;
+            min-width: 0 !important;
+            display: block !important;
+            margin-bottom: 8px !important;
+            padding: 12px 15px !important;
+            text-align: center !important;
+        }
+        
+        body .newest-arrivals-section .product-buttons-group {
+            width: 100% !important;
+            display: block !important;
+        }
+    }
     </style>
 
     <script>
