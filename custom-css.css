@@ -916,16 +916,19 @@ Removed to preserve gradient
         font-size: 24px;
     }
 
+    /* Force stack on mobile and tablet */
     .brand-stats {
-        grid-template-columns: 1fr !important;
-        gap: 20px;
-        width: 100%;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        width: 100% !important;
     }
 
     .stat-item {
-        width: 100%;
-        box-sizing: border-box;
-        /* Ensure padding doesn't overflow width */
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
     }
 
     .stat-value {
