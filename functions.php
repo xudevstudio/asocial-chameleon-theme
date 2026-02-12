@@ -718,7 +718,7 @@ function asocial_chameleon_related_products_limit( $args ) {
 
 /**
  * Global URL Fixer for Local Environment Mismatches
- */ Replaces .local domains with the current server domain for assets and links
+ * Replaces .local domains with the current server domain for assets and links
  */
 function asocial_chameleon_fix_environment_urls( $url ) {
     if ( is_admin() || ! is_string( $url ) ) {
