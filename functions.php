@@ -717,29 +717,8 @@ function asocial_chameleon_related_products_limit( $args ) {
 }
 
 /**
- * Add "My Account" link to mobile menu.
- */
-function asocial_chameleon_add_account_to_menu( $items, $args ) {
-    if ( $args->theme_location == 'menu-1' ) {
-        // Build the list item for My Account
-        $account_link = get_permalink( get_option( 'woocommerce_myaccount_page_id' ) );
-        $account_title = __('My Account', 'asocial-chameleon');
-        
-        // Use a specific class for styling and hiding on desktop
-        $items .= '<li class="menu-item mobile-account-link">';
-        $items .= '<a href="' . esc_url( $account_link ) . '">';
-        $items .= '<span class="material-icons-outlined" style="vertical-align: middle; margin-right: 8px;">account_circle</span>'; 
-        $items .= esc_html( $account_title );
-        $items .= '</a>';
-        $items .= '</li>';
-    }
-    return $items;
-}
-add_filter( 'wp_nav_menu_items', 'asocial_chameleon_add_account_to_menu', 10, 2 );
-
-/**
  * Global URL Fixer for Local Environment Mismatches
- * Replaces .local domains with the current server domain for assets and links
+ */ Replaces .local domains with the current server domain for assets and links
  */
 function asocial_chameleon_fix_environment_urls( $url ) {
     if ( is_admin() || ! is_string( $url ) ) {
