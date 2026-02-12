@@ -188,6 +188,12 @@
                             <span class="cart-icon" style="position: relative; display: inline-block;">
                                 <!-- Shopping Cart Icon with Gradient -->
                                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="accountGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#9b59b6;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#00d2ff;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
                                     <path d="M7 18C5.9 18 5.01 18.9 5.01 20C5.01 21.1 5.9 22 7 22C8.1 22 9 21.1 9 20C9 18.9 8.1 18 7 18ZM1 2V4H3L6.6 11.59L5.25 14.04C5.09 14.32 5 14.65 5 15C5 16.1 5.9 17 7 17H19V15H7.42C7.29 15 7.17 14.89 7.17 14.75L7.2 14.63L8.1 13H15.55C16.3 13 16.96 12.59 17.3 11.97L21.16 4.96C21.25 4.8 21.3 4.62 21.3 4.43C21.3 4.19 21.1 4 20.85 4H5.21L4.27 2H1ZM17 18C15.9 18 15.01 18.9 15.01 20C15.01 21.1 15.9 22 17 22C18.1 22 19 21.1 19 20C19 18.9 18.1 18 17 18Z" fill="url(#accountGradient)"/>
                                 </svg>
                                 <?php 
@@ -207,12 +213,6 @@
                             <span class="account-icon">
                                 <!-- Professional User Icon with Gradient -->
                                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <linearGradient id="accountGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#9b59b6;stop-opacity:1" />
-                                            <stop offset="100%" style="stop-color:#00d2ff;stop-opacity:1" />
-                                        </linearGradient>
-                                    </defs>
                                     <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="url(#accountGradient)"/>
                                 </svg>
                             </span>
