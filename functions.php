@@ -350,29 +350,13 @@ function asocial_chameleon_continue_shopping_redirect() {
 }
 
 /**
- * Add Continue Shopping Button to Checkout Page
+ * Force standard Checkout Title and styles
  */
 add_action( 'woocommerce_before_checkout_form', 'asocial_chameleon_checkout_continue_shopping_button', 5 );
 function asocial_chameleon_checkout_continue_shopping_button() {
-    echo '<div style="margin-top: 40px; margin-bottom: 30px; text-align: center;">';
-    echo '<a href="' . esc_url( home_url() ) . '" class="button premium-continue-shopping-btn" style="
-        display: inline-block;
-        padding: 18px 50px;
-        font-size: 18px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: #fff;
-        border: none;
-        border-radius: 50px;
-        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-        transition: all 0.3s ease;
-        text-decoration: none;
-        cursor: pointer;
-    " onmouseover="this.style.transform=\'translateY(-3px)\'; this.style.boxShadow=\'0 15px 40px rgba(102, 126, 234, 0.5)\';" onmouseout="this.style.transform=\'translateY(0)\'; this.style.boxShadow=\'0 10px 30px rgba(102, 126, 234, 0.4)\';">';
-    echo '<span style="margin-right: 10px;">🛍️</span>';
-    echo esc_html__( 'Continue Shopping', 'asocial-chameleon' );
+    echo '<div class="checkout-actions-top">';
+    echo '<a href="' . esc_url( home_url() ) . '" class="premium-continue-btn">';
+    echo '<span class="btn-icon">←</span> ' . esc_html__( 'Continue Shopping', 'asocial-chameleon' );
     echo '</a>';
     echo '</div>';
 }
@@ -752,3 +736,29 @@ function asocial_chameleon_add_account_to_menu( $items, $args ) {
     return $items;
 }
 add_filter( 'wp_nav_menu_items', 'asocial_chameleon_add_account_to_menu', 10, 2 );
+
+/**
+ * Global URL Fixer for Local Environment Mismatches
+ * Replaces .local domains with the current server domain for assets and links
+ */
+function asocial_chameleon_fix_environment_urls( $url ) {
+    if ( is_admin() || ! is_string( $url ) ) {
+        return $url;
+    }
+
+    $current_host = $_SERVER['HTTP_HOST'];
+    
+    // Only fix if current host is NOT .local but the URL contains .local
+    if ( strpos( $current_host, '.local' ) === false && strpos( $url, 'asocialchameleon.local' ) !== false ) {
+        $url = str_replace( 'asocialchameleon.local', $current_host, $url );
+    }
+    
+    return $url;
+}
+add_filter( 'home_url', 'asocial_chameleon_fix_environment_urls', 99 );
+add_filter( 'site_url', 'asocial_chameleon_fix_environment_urls', 99 );
+add_filter( 'style_loader_src', 'asocial_chameleon_fix_environment_urls', 99 );
+add_filter( 'script_loader_src', 'asocial_chameleon_fix_environment_urls', 99 );
+add_filter( 'theme_mod_custom_logo_desktop', 'asocial_chameleon_fix_environment_urls', 99 );
+add_filter( 'theme_mod_custom_logo_mobile', 'asocial_chameleon_fix_environment_urls', 99 );
+add_filter( 'theme_mod_site_favicon', 'asocial_chameleon_fix_environment_urls', 99 );

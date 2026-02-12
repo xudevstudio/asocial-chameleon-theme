@@ -307,12 +307,27 @@ a:hover {
     }
 
     /* Compact Account for Mobile */
-    .account-customlocation {
-        padding: 6px 12px;
+    .account-customlocation,
+    .header-cart-inline a {
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .header-account-inline,
+    .header-cart-inline {
+        margin-left: 10px !important;
     }
 
     .amount {
-        font-size: 13px;
+        display: none;
+        /* Hide amount text in icons only view on mobile */
     }
 
     /* Ensure no horizontal overflow */
@@ -9187,4 +9202,293 @@ body.single-product .summary {
     border-color: #fff;
     transform: scale(1.1) translateY(-5px);
     box-shadow: 0 8px 25px rgba(155, 89, 182, 0.5);
+}
+
+/* --- Checkout Page Premium UI --- */
+.checkout-actions-top {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.premium-continue-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 30px;
+    background: transparent;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.premium-continue-btn:hover {
+    background: #000;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.woocommerce-checkout h3 {
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 32px !important;
+    text-transform: uppercase !important;
+    letter-spacing: -1px !important;
+    margin-bottom: 25px !important;
+    color: #0d0d0d !important;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.woocommerce-checkout h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #9b59b6, #3498db);
+}
+
+/* Form Styles */
+.woocommerce-checkout .form-row input.input-text,
+.woocommerce-checkout .form-row select,
+.woocommerce-checkout .form-row textarea {
+    padding: 15px !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    background-color: #f8fafc !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 16px !important;
+    transition: all 0.3s ease !important;
+}
+
+.woocommerce-checkout .form-row input.input-text:focus {
+    background-color: #fff !important;
+    border-color: #9b59b6 !important;
+    box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.1) !important;
+    outline: none !important;
+}
+
+.woocommerce-checkout .woocommerce-billing-fields__field-wrapper,
+.woocommerce-checkout .woocommerce-additional-fields__field-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+}
+
+.woocommerce-checkout .form-row-wide {
+    grid-column: span 2;
+}
+
+/* Your Order Table */
+#order_review_heading {
+    margin-top: 50px !important;
+}
+
+.woocommerce-checkout-review-order-table {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+.woocommerce-checkout-review-order-table thead th {
+    background: #f8fafc !important;
+    padding: 20px !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    font-size: 14px !important;
+}
+
+.woocommerce-checkout-review-order-table td,
+.woocommerce-checkout-review-order-table th {
+    padding: 20px !important;
+    border-top: 1px solid #e2e8f0 !important;
+}
+
+/* Mobile Checkout Fixes */
+@media (max-width: 768px) {
+    .woocommerce-checkout h3 {
+        font-size: 26px !important;
+    }
+
+    .woocommerce-checkout .woocommerce-billing-fields__field-wrapper {
+        display: block;
+    }
+
+    .premium-continue-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* --- Checkout Page Premium UI --- */
+.checkout-actions-top {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.premium-continue-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 30px;
+    background: transparent;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.premium-continue-btn:hover {
+    background: #000;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.woocommerce-checkout h3 {
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 32px !important;
+    text-transform: uppercase !important;
+    letter-spacing: -1px !important;
+    margin-bottom: 25px !important;
+    color: #0d0d0d !important;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.woocommerce-checkout h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #9b59b6, #3498db);
+}
+
+/* Form Styles */
+.woocommerce-checkout .form-row input.input-text,
+.woocommerce-checkout .form-row select,
+.woocommerce-checkout .form-row textarea {
+    padding: 15px !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    background-color: #f8fafc !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 16px !important;
+    transition: all 0.3s ease !important;
+}
+
+.woocommerce-checkout .form-row input.input-text:focus {
+    background-color: #fff !important;
+    border-color: #9b59b6 !important;
+    box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.1) !important;
+    outline: none !important;
+}
+
+.woocommerce-checkout .woocommerce-billing-fields__field-wrapper,
+.woocommerce-checkout .woocommerce-additional-fields__field-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+}
+
+.woocommerce-checkout .form-row-wide {
+    grid-column: span 2;
+}
+
+/* Your Order Table */
+#order_review_heading {
+    margin-top: 50px !important;
+}
+
+.woocommerce-checkout-review-order-table {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+.woocommerce-checkout-review-order-table thead th {
+    background: #f8fafc !important;
+    padding: 20px !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    font-size: 14px !important;
+}
+
+.woocommerce-checkout-review-order-table td,
+.woocommerce-checkout-review-order-table th {
+    padding: 20px !important;
+    border-top: 1px solid #e2e8f0 !important;
+}
+
+/* Mobile Checkout Fixes */
+@media (max-width: 768px) {
+    .woocommerce-checkout h3 {
+        font-size: 26px !important;
+    }
+
+    .woocommerce-checkout .woocommerce-billing-fields__field-wrapper {
+        display: block;
+    }
+
+    .premium-continue-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* --- Mobile Menu Account Link --- */
+.desktop-hide {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .desktop-hide {
+        display: block !important;
+    }
+
+    .mobile-menu-account {
+        display: block !important;
+        background: rgba(255, 255, 255, 0.05);
+        margin: 20px 15px !important;
+        border-radius: 12px;
+        border: 1px solid rgba(155, 89, 182, 0.2) !important;
+    }
+
+    .mobile-menu-account a {
+        padding: 15px !important;
+        color: #fff !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-menu-account a:hover {
+        background: rgba(155, 89, 182, 0.1);
+    }
+
+    .mobile-menu-account .material-icons-outlined {
+        color: #9b59b6;
+        font-size: 24px;
+    }
 }

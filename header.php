@@ -242,20 +242,21 @@
 					)
 				);
 				?>
+                <div class="mobile-menu-account desktop-hide" style="margin-top: auto; padding: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <?php if ( class_exists( 'WooCommerce' ) ) : ?>
+                        <a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ); ?>" style="display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 14px;">
+                            <span class="material-icons-outlined">account_circle</span>
+                            <?php esc_html_e( 'My Account', 'asocial-chameleon' ); ?>
+                        </a>
+                    <?php endif; ?>
+                </div>
                 <div class="mobile-menu-footer">
                     <div class="mobile-social-links">
                         <?php 
                         // You can add social icons here later if requested
                         ?>
                     </div>
-                    <?php if ( class_exists( 'WooCommerce' ) ) : ?>
-                        <div class="mobile-menu-account">
-                            <a href="<?php echo esc_url( get_permalink( get_option( 'woocommerce_myaccount_page_id' ) ) ); ?>">
-                                <i class="material-icons-outlined">account_circle</i>
-                                <?php esc_html_e( 'My Account', 'asocial-chameleon' ); ?>
-                            </a>
-                        </div>
-                    <?php endif; ?>
+                    <?php // Removed redundant My Account link - now handled in wp_nav_menu_items via functions.php ?>
                 </div>
 			</nav>
 
