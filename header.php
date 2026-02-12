@@ -441,6 +441,17 @@
     .woocommerce-product-gallery .woocommerce-product-gallery__image img {
         width: 100% !important;
         height: auto !important;
+    }
+    
+    /* CRITICAL FIX: Ensure active slide is always visible */
+    .woocommerce-product-gallery .woocommerce-product-gallery__image.flex-active-slide {
+        opacity: 1 !important;
+        z-index: 10 !important;
+        display: block !important;
+    }
+    
+    .woocommerce-product-gallery .woocommerce-product-gallery__image.flex-active-slide img {
+        opacity: 1 !important;
         display: block !important;
     }
 
@@ -602,6 +613,15 @@
         right: 15px !important;
         top: 15px !important;
         display: block !important;
+    }
+    
+    /* 8. Mobile Menu Text Color - White */
+    @media (max-width: 768px) {
+        .main-navigation ul li a,
+        .main-navigation .menu-item a,
+        .main-navigation a {
+            color: #ffffff !important;
+        }
     }
     /* Mobile Responsiveness Fix for Brand Story Stats */
     @media (max-width: 991px) {

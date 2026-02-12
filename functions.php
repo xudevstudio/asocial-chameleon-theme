@@ -706,12 +706,11 @@ function asocial_chameleon_get_product_variations() {
 }
 
 /**
- * Limit Related Products to 4
- * Ensures strictly one row of 4 products.
+ * Change Related Products Count & Columns
  */
-add_filter( 'woocommerce_output_related_products_args', 'asocial_chameleon_related_products_limit', 20 );
-function asocial_chameleon_related_products_limit( $args ) {
-    $args['posts_per_page'] = 4;
+add_filter( 'woocommerce_output_related_products_args', 'asocial_chameleon_related_products_args', 20 );
+function asocial_chameleon_related_products_args( $args ) {
+    $args['posts_per_page'] = 4; // 1 row of 4
     $args['columns'] = 4;
     return $args;
 }
