@@ -436,23 +436,10 @@
         height: auto !important;
     }
 
-    /* REMOVED: display: block !important on images. This broke the slider. */
-    /* Only ensure images fill their container */
+    /* Let FlexSlider handle image visibility - DO NOT force display */
     .woocommerce-product-gallery .woocommerce-product-gallery__image img {
         width: 100% !important;
         height: auto !important;
-    }
-    
-    /* CRITICAL FIX: Ensure active slide is always visible */
-    .woocommerce-product-gallery .woocommerce-product-gallery__image.flex-active-slide {
-        opacity: 1 !important;
-        z-index: 10 !important;
-        display: block !important;
-    }
-    
-    .woocommerce-product-gallery .woocommerce-product-gallery__image.flex-active-slide img {
-        opacity: 1 !important;
-        display: block !important;
     }
 
     /* Force thumbnails strip layout - SINGLE ROW SLIDER */
