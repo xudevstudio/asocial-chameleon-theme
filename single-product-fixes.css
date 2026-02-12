@@ -167,11 +167,7 @@ body.single-product .woocommerce-product-gallery__image.active:not(:first-child)
     box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2) !important;
 }
 
-/* Hide duplicate gallery images from FlexSlider */
-body.single-product .flex-control-thumbs {
-    display: none !important;
-}
-
+/* FlexSlider viewport height limit */
 body.single-product .flex-viewport {
     max-height: 600px !important;
 }
