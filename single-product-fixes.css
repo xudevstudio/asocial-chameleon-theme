@@ -658,7 +658,27 @@ body.single-product .upsells.products ul.products {
     list-style: none !important;
 }
 
-@media (min-width: 768px) {
+/* Mobile: 1 Column */
+@media (max-width: 480px) {
+
+    body.single-product .related.products ul.products,
+    body.single-product .upsells.products ul.products {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+}
+
+/* Tablet: 2 Columns */
+@media (min-width: 481px) and (max-width: 767px) {
+
+    body.single-product .related.products ul.products,
+    body.single-product .upsells.products ul.products {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* Desktop Small: 3 Columns */
+@media (min-width: 768px) and (max-width: 1023px) {
 
     body.single-product .related.products ul.products,
     body.single-product .upsells.products ul.products {
