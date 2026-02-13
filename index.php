@@ -262,10 +262,6 @@ get_header();
                      * @hooked woocommerce_template_loop_price - 10
                      */
                     do_action( 'woocommerce_after_shop_loop_item_title' );
-        
-                    echo '<div class="product-price">';
-                    woocommerce_template_loop_price();
-                    echo '</div>';
 
                     // Add Buttons
                     if ( function_exists( 'asocial_chameleon_add_product_buttons' ) ) {
@@ -461,9 +457,6 @@ get_header();
                     echo '<div class="product-content-wrap">';
                     do_action( 'woocommerce_shop_loop_item_title' );
                     do_action( 'woocommerce_after_shop_loop_item_title' );
-                    echo '<div class="product-price">';
-                    woocommerce_template_loop_price();
-                    echo '</div>';
 
                     // Add Buttons
                     if ( function_exists( 'asocial_chameleon_add_product_buttons' ) ) {
