@@ -8958,3 +8958,36 @@ button.add_to_cart_button:not(.premium-action-btn),
     line-height: 24px !important;
     overflow: hidden !important;
 }
+
+/* ========================================
+   FIX PRICE VISIBILITY - SHOW FULL AMOUNT
+   ======================================== */
+
+/* Remove strict height/overflow that was hiding amounts */
+.price, .amount,
+.woocommerce ul.products li.product .price,
+.woocommerce ul.products li.product .price * {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    line-height: 1.5 !important;
+    margin-bottom: 5px !important;
+}
+
+/* Ensure price text color is visible */
+.price, .amount, bdi {
+    color: #000 !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+}
+
+/* Fix vertical alignment without hiding content */
+.product-info-bottom {
+    margin-top: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+}
