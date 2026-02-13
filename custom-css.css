@@ -1025,87 +1025,105 @@ Removed to preserve gradient
     transform: scale(1.05);
 }
 
-/* Product Content */
+/* Product Content - Centered with tighter spacing */
 .top-rated-swiper .product-content {
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+    padding: 20px 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    /* Center everything */
+    justify-content: center !important;
+    flex-grow: 1 !important;
+    text-align: center !important;
 }
 
 .top-rated-swiper .product-title {
-    font-size: 16px;
-    font-weight: 700;
-    margin: 0 0 10px;
-    color: #2c3e50;
-    line-height: 1.4;
-    min-height: 44px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-align: center;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    margin: 0 0 8px !important;
+    /* Reduced margin */
+    color: #2c3e50 !important;
+    line-height: 1.3 !important;
+    min-height: auto !important;
+    /* Remove fixed min-height */
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-align: center !important;
 }
 
 .top-rated-swiper .product-title a {
-    color: #2c3e50;
-    text-decoration: none;
-    transition: color 0.3s ease;
+    color: #2c3e50 !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease !important;
 }
 
 .top-rated-swiper .product-card:hover .product-title a {
-    color: #9b59b6;
+    color: #9b59b6 !important;
 }
 
-/* Product Description */
+/* Product Description - Centered and compact */
 .top-rated-swiper .product-description {
-    font-size: 13px;
-    color: #666;
-    line-height: 1.5;
-    margin: 0 0 12px;
-    text-align: center;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    min-height: 40px;
+    font-size: 14px !important;
+    color: #666 !important;
+    line-height: 1.4 !important;
+    margin: 0 0 10px !important;
+    /* Reduced margin */
+    text-align: center !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    min-height: auto !important;
+    /* Remove fixed min-height */
 }
 
-/* Product Rating */
+/* Product Rating - Centered */
 .top-rated-swiper .product-rating {
-    margin: 10px 0;
-    text-align: center;
+    margin: 5px 0 10px !important;
+    /* Reduced margin */
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
 }
 
 .top-rated-swiper .product-rating .star-rating {
-    margin: 0 auto;
+    margin: 0 auto !important;
 }
 
-/* Product Price - Simple Text */
+/* Product Price - Centered and Larger */
 .top-rated-swiper .product-price {
-    display: block;
-    text-align: center;
-    margin: 15px 0;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin: 5px 0 20px !important;
+    /* Adjusted margin */
 }
 
 .top-rated-swiper .product-price .price {
     color: #27ae60 !important;
-    font-weight: 700;
-    font-size: 22px;
+    font-weight: 800 !important;
+    font-size: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
 }
 
 .top-rated-swiper .product-price .price del {
-    color: #999;
-    font-size: 18px;
-    margin-right: 8px;
-    font-weight: 500;
+    color: #999 !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    text-decoration: line-through !important;
 }
 
 .top-rated-swiper .product-price .price ins {
-    text-decoration: none;
-    color: #27ae60;
+    text-decoration: none !important;
+    color: #27ae60 !important;
 }
 
 .top-rated-swiper .product-price .woocommerce-Price-amount,
@@ -1115,28 +1133,117 @@ Removed to preserve gradient
 
 /* Product Button - Clean Modern Design */
 .top-rated-swiper .product-button {
-    display: block;
-    width: 100%;
-    margin-top: auto;
-    background: #8e44ad;
-    color: #fff;
-    border-radius: 8px;
-    padding: 12px 20px;
-    font-weight: 600;
-    text-transform: capitalize;
-    font-size: 14px;
-    letter-spacing: 0.3px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    box-shadow: 0 2px 8px rgba(142, 68, 173, 0.25);
-    border: none;
-    text-align: center;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-top: auto !important;
+    background: #8e44ad !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    padding: 12px 20px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    font-size: 13px !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 12px rgba(142, 68, 173, 0.2) !important;
+    border: none !important;
+    text-align: center !important;
+    cursor: pointer !important;
 }
 
 .top-rated-swiper .product-button:hover {
-    background: #732d91;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(142, 68, 173, 0.35);
+    background: #732d91 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(142, 68, 173, 0.3) !important;
+}
+
+/* Mobile Specific Fixes - Centering, Price Visibility, Button Visibility */
+/* Mobile Specific Fixes - Centering, Price Visibility, Button Visibility */
+@media (max-width: 768px) {
+    .top-rated-swiper .product-card {
+        min-height: auto !important;
+        height: auto !important;
+        padding-bottom: 20px !important;
+    }
+
+    /* Fix Title Height & Spacing */
+    .top-rated-swiper .product-title {
+        font-size: 16px !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin-bottom: 5px !important;
+        line-height: 1.3 !important;
+    }
+
+    /* Fix Content Alignment & Spacing */
+    .top-rated-swiper .product-content {
+        padding: 10px 12px !important;
+        justify-content: flex-start !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 5px !important;
+    }
+
+    /* Fix Price Visibility & Spacing */
+    .top-rated-collection .woocommerce-Price-amount.amount,
+    .top-rated-swiper .product-price .woocommerce-Price-amount,
+    .top-rated-swiper .product-price .amount,
+    .top-rated-swiper .product-price .price span,
+    .related.products .product-price,
+    .top-rated-swiper .product-price {
+        display: inline-block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color: #27ae60 !important;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
+        margin: 5px 0 !important;
+    }
+
+    /* Fix invisible buttons on mobile override */
+    .top-rated-swiper .product-buttons-group,
+    .top-rated-swiper .premium-loop-actions {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        width: 100% !important;
+        margin-top: 10px !important;
+        padding: 0 15px !important;
+    }
+
+    /* Buy Now Button - Purple */
+    .top-rated-swiper .buy-now-button,
+    .top-rated-swiper .btn-buy-now,
+    .top-rated-swiper .product-buttons-group a[href*="checkout"],
+    .top-rated-swiper .premium-loop-actions a[href*="checkout"] {
+        background: #8e44ad !important;
+        color: #fff !important;
+        display: flex !important;
+        visibility: visible !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 12px 20px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Add to Cart Button - Green */
+    .top-rated-swiper .add-to-cart-button,
+    .top-rated-swiper .ajax_add_to_cart,
+    .top-rated-swiper .product-buttons-group a[href*="add-to-cart"],
+    .top-rated-swiper .premium-loop-actions a[href*="add-to-cart"] {
+        background: #27ae60 !important;
+        color: #fff !important;
+        display: flex !important;
+        visibility: visible !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 12px 20px !important;
+        border-radius: 8px !important;
+    }
 }
 
 /* Swiper Navigation Arrows - Clean Design */
@@ -7947,5 +8054,44 @@ ul.products li.product .product-content-wrap,
         color: #9b59b6;
         margin-right: 8px;
         /* Added margin for spacing */
+    }
+}
+/* ======================================== 
+   MOBILE PRICE VISIBILITY FIX 
+   ======================================== */
+@media (max-width: 768px) {
+    .product-price,
+    .price,
+    .woocommerce-Price-amount,
+    .woocommerce-Price-currencySymbol {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: auto !important;
+        font-size: 16px !important;
+        color: #1a1a1a !important;
+    }
+    
+    /* Ensure Product Card Content is Visible */
+    .product-content,
+    .product-info-bottom {
+        display: flex !important;
+        flex-direction: column !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* Fix White Text on White Background Issue */
+    .product-price .price-text,
+    .price span,
+    .amount {
+         color: #1a1a1a !important;
+    }
+    
+    /* Specifically for Hero/Banner Text if needed */
+    .hero-title, 
+    .hero-subtitle {
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 }

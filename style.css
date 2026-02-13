@@ -518,6 +518,7 @@ Removed to preserve gradient
     padding-left: 10%;
     padding-right: 10%;
     max-width: 100%;
+    text-align: center;
 }
 
 .hero-title {
@@ -1441,9 +1442,14 @@ Removed to preserve gradient
     font-size: 22px;
 }
 
+.newest-arrivals-section .price {
+    display: block !important;
+}
+
 /* Product Buttons Group - Modern Design */
 .newest-arrivals-section ul.products li.product .product-buttons-group {
     display: flex;
+    justify-content: center;
     gap: 10px;
     margin: 0 20px 20px;
     margin-top: auto;
@@ -1638,7 +1644,7 @@ Removed to preserve gradient
 
 /* Price */
 .popular-products-section ul.products li.product .price {
-    display: block;
+    display: block !important;
     color: #27ae60 !important;
     font-weight: 800;
     font-size: 22px;
@@ -1658,6 +1664,7 @@ Removed to preserve gradient
     display: flex;
     flex-direction: column;
     gap: 12px;
+    align-items: center;
 }
 
 .popular-products-section ul.products li.product .button {
@@ -3521,7 +3528,7 @@ html {
 
 /* Hide Description for cleaner look (User asked to reduce space) */
 .top-rated-collection .product-description {
-    display: none;
+    /* Product description styles */
 }
 
 /* Rating */
