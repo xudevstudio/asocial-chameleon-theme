@@ -8837,3 +8837,40 @@ body .premium-loop-actions .button .button-icon {
 .button-icon {
     font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', sans-serif !important;
 }
+
+/* ========================================
+   FIX DUPLICATE BUTTONS & MOBILE LAYOUT
+   ======================================== */
+
+/* 1. Hide DEFAULT WooCommerce Add to Cart Button to prevent duplicates */
+/* Our custom buttons use .add-to-cart-button (dashes), Woo uses .add_to_cart_button (underscores) */
+a.add_to_cart_button:not(.premium-action-btn),
+button.add_to_cart_button:not(.premium-action-btn),
+.woocommerce a.button.product_type_simple:not(.premium-action-btn),
+.woocommerce a.button.product_type_variable:not(.premium-action-btn) {
+    display: none !important;
+    visibility: hidden !important;
+    font-size: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+}
+
+/* 2. Force Mobile Products to 1 Column (Redundant check) */
+@media (max-width: 768px) {
+    .woocommerce ul.products,
+    .products,
+    ul.products {
+        grid-template-columns: 1fr !important;
+        display: grid !important;
+    }
+    
+    .woocommerce ul.products li.product,
+    .products li,
+    ul.products li.product {
+        width: 100% !important;
+        margin-right: 0 !important;
+    }
+}

@@ -308,20 +308,20 @@
     @media (max-width: 768px) {
         .woocommerce ul.products {
             display: grid !important;
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 15px !important;
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
         }
 
         .woocommerce ul.products li.product .product-title {
-            font-size: 14px !important;
-        }
-
-        .woocommerce ul.products li.product .product-price {
             font-size: 16px !important;
         }
 
+        .woocommerce ul.products li.product .product-price {
+            font-size: 18px !important;
+        }
+
         .woocommerce ul.products li.product .product-category-hint {
-            font-size: 10px !important;
+            font-size: 12px !important;
         }
     }
 
