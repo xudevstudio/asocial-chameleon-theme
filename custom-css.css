@@ -8904,3 +8904,57 @@ button.add_to_cart_button:not(.premium-action-btn),
         gap: 5px !important; /* Reduce gap between icon and text */
     }
 }
+
+/* ========================================
+   FIX PRODUCT CARD ALIGNMENT & PRICING
+   ======================================== */
+
+/* Ensure all product cards have equal height */
+.woocommerce ul.products li.product,
+.products li.product {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
+/* Make content wrap fill the available space */
+.product-content-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    justify-content: space-between !important;
+}
+
+/* Enforce fixed height for titles to align everything below */
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.woocommerce ul.products li.product .product-title {
+    min-height: 44px !important; /* Approx 2 lines of text */
+    max-height: 44px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    margin-bottom: 10px !important;
+    line-height: 1.3 !important;
+}
+
+/* Ensure Logo/Category hints don't break alignment */
+.product-category-hint {
+    min-height: 18px !important;
+    margin-bottom: 5px !important;
+}
+
+/* Push Price and Buttons to the bottom */
+.product-info-bottom,
+.price-wrap {
+    margin-top: auto !important;
+}
+
+/* Align Price in one line */
+.price, .amount {
+    display: block !important;
+    height: 24px !important; /* Fixed height for price */
+    line-height: 24px !important;
+    overflow: hidden !important;
+}
