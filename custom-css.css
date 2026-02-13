@@ -9145,3 +9145,47 @@ button.add_to_cart_button:not(.premium-action-btn),
     margin-bottom: 10px !important;
     height: 24px !important;
 }
+
+/* ========================================
+   FIX BUTTON CENTERING - REMOVE RIGHT SHIFT
+   ======================================== */
+
+.newest-arrivals-section .product-buttons-group,
+.product-buttons-group {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+/* Ensure no inherited margins on buttons */
+.newest-arrivals-section .button,
+.product-buttons-group .button {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Desktop: Center the flex container */
+@media (min-width: 992px) {
+    .newest-arrivals-section .product-buttons-group {
+        gap: 10px !important; /* Restore gap */
+        justify-content: center !important; /* Force center */
+    }
+}
+
+/* Mobile: Center the stacked buttons */
+@media (max-width: 991px) {
+    .newest-arrivals-section .product-buttons-group {
+        align-items: center !important;
+    }
+    
+    .newest-arrivals-section .button {
+        width: 100% !important;
+        max-width: 280px !important; /* Limit max width for better centering look */
+        margin: 0 auto !important; /* Auto margins to center block */
+    }
+}
