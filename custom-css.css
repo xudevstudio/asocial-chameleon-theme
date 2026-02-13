@@ -8767,3 +8767,44 @@ ul.products li.product .product-content-wrap,
     width: 100%;
     display: block;
 }
+
+/* ========================================
+   FIX BUTTON ICON SIZE - MAKE SMALLER
+   ======================================== */
+
+/* Reduce icon size for better appearance */
+.button-icon {
+    font-size: 16px !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Desktop icon size */
+@media (min-width: 769px) {
+    .button-icon {
+        font-size: 14px !important;
+    }
+}
+
+/* Mobile icon size */
+@media (max-width: 768px) {
+    .button-icon {
+        font-size: 16px !important;
+    }
+}
+
+/* Ensure consistent sizing across all buttons */
+.add-to-cart-button .button-icon,
+.buy-now-button .button-icon,
+.premium-action-btn .button-icon {
+    font-size: 14px !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* Fix for Top Rated Collection */
+.top-rated-swiper .button-icon {
+    font-size: 14px !important;
+}
