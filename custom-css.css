@@ -8991,3 +8991,27 @@ button.add_to_cart_button:not(.premium-action-btn),
     flex-direction: column !important;
     justify-content: flex-end !important;
 }
+
+/* ========================================
+   FIX PRICE FONT SIZE - ONE LINE
+   ======================================== */
+
+/* Reduce price font size to fit in one line */
+.price, .amount,
+.woocommerce ul.products li.product .price,
+.woocommerce ul.products li.product .product-price {
+    font-size: 14px !important; /* Reduced from 16px/18px */
+    white-space: nowrap !important; /* Force one line */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    line-height: 1.4 !important;
+    display: block !important;
+    font-weight: 700 !important;
+}
+
+/* Specific mobile adjustment if needed */
+@media (max-width: 768px) {
+    .woocommerce ul.products li.product .product-price {
+        font-size: 13px !important; /* Even smaller on mobile */
+    }
+}
