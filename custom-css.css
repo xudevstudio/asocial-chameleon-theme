@@ -8056,10 +8056,12 @@ ul.products li.product .product-content-wrap,
         /* Added margin for spacing */
     }
 }
+
 /* ======================================== 
    MOBILE PRICE VISIBILITY FIX 
    ======================================== */
 @media (max-width: 768px) {
+
     .product-price,
     .price,
     .woocommerce-Price-amount,
@@ -8071,7 +8073,7 @@ ul.products li.product .product-content-wrap,
         font-size: 16px !important;
         color: #1a1a1a !important;
     }
-    
+
     /* Ensure Product Card Content is Visible */
     .product-content,
     .product-info-bottom {
@@ -8085,11 +8087,11 @@ ul.products li.product .product-content-wrap,
     .product-price .price-text,
     .price span,
     .amount {
-         color: #1a1a1a !important;
+        color: #1a1a1a !important;
     }
-    
+
     /* Specifically for Hero/Banner Text if needed */
-    .hero-title, 
+    .hero-title,
     .hero-subtitle {
         opacity: 1 !important;
         visibility: visible !important;
@@ -8221,6 +8223,7 @@ ul.products li.product .product-content-wrap,
 
 /* Newest Arrivals & Popular Products Mobile */
 @media (max-width: 768px) {
+
     .newest-arrivals-section,
     .popular-products-section {
         padding: 40px 20px !important;
@@ -8485,6 +8488,7 @@ ul.products li.product .product-content-wrap,
 
 /* Tablet Responsive (768px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
+
     .newest-arrivals-section .products,
     .popular-products-section .products {
         grid-template-columns: repeat(2, 1fr) !important;
@@ -8597,11 +8601,12 @@ ul.products li.product .product-content-wrap,
 
 /* Desktop - Side by Side Buttons */
 @media (min-width: 769px) {
+
     .product-buttons-group,
     .premium-loop-actions {
         flex-direction: row;
     }
-    
+
     .add-to-cart-button,
     .buy-now-button,
     .premium-action-btn {
@@ -8612,6 +8617,7 @@ ul.products li.product .product-content-wrap,
 
 /* Mobile - Full Width Stacked Buttons */
 @media (max-width: 768px) {
+
     .product-buttons-group,
     .premium-loop-actions {
         flex-direction: column !important;
@@ -8672,6 +8678,7 @@ ul.products li.product .product-content-wrap,
 
 /* Desktop - Center buttons horizontally */
 @media (min-width: 769px) {
+
     .newest-arrivals-section .product-buttons-group,
     .newest-arrivals-section .premium-loop-actions,
     .popular-products-section .product-buttons-group,
@@ -8693,6 +8700,7 @@ ul.products li.product .product-content-wrap,
 
 /* Mobile - Stack buttons and center */
 @media (max-width: 768px) {
+
     .newest-arrivals-section .product-buttons-group,
     .newest-arrivals-section .premium-loop-actions,
     .popular-products-section .product-buttons-group,
@@ -8829,7 +8837,8 @@ body .premium-loop-actions .button .button-icon {
 /* Specific mobile adjustment */
 @media (max-width: 768px) {
     body .button-icon {
-        font-size: 15px !important; /* Slightly larger for touch */
+        font-size: 15px !important;
+        /* Slightly larger for touch */
     }
 }
 
@@ -8860,13 +8869,14 @@ button.add_to_cart_button:not(.premium-action-btn),
 
 /* 2. Force Mobile Products to 1 Column (Redundant check) */
 @media (max-width: 768px) {
+
     .woocommerce ul.products,
     .products,
     ul.products {
         grid-template-columns: 1fr !important;
         display: grid !important;
     }
-    
+
     .woocommerce ul.products li.product,
     .products li,
     ul.products li.product {
@@ -8880,11 +8890,13 @@ button.add_to_cart_button:not(.premium-action-btn),
    ======================================== */
 
 @media (max-width: 768px) {
+
     /* Force smaller icon size on mobile */
     body .button-icon,
     body .product-buttons-group .button .button-icon,
     body .premium-loop-actions .button .button-icon {
-        font-size: 14px !important; /* Reduced from 15px/16px */
+        font-size: 14px !important;
+        /* Reduced from 15px/16px */
         width: 16px !important;
         height: 16px !important;
         line-height: 16px !important;
@@ -8901,7 +8913,8 @@ button.add_to_cart_button:not(.premium-action-btn),
         padding: 10px 15px !important;
         font-size: 14px !important;
         min-height: 40px !important;
-        gap: 5px !important; /* Reduce gap between icon and text */
+        gap: 5px !important;
+        /* Reduce gap between icon and text */
     }
 }
 
@@ -8928,7 +8941,8 @@ button.add_to_cart_button:not(.premium-action-btn),
 /* Enforce fixed height for titles to align everything below */
 .woocommerce ul.products li.product .woocommerce-loop-product__title,
 .woocommerce ul.products li.product .product-title {
-    min-height: 44px !important; /* Approx 2 lines of text */
+    min-height: 44px !important;
+    /* Approx 2 lines of text */
     max-height: 44px !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
@@ -8952,9 +8966,11 @@ button.add_to_cart_button:not(.premium-action-btn),
 }
 
 /* Align Price in one line */
-.price, .amount {
+.price,
+.amount {
     display: block !important;
-    height: 24px !important; /* Fixed height for price */
+    height: 24px !important;
+    /* Fixed height for price */
     line-height: 24px !important;
     overflow: hidden !important;
 }
@@ -8964,7 +8980,8 @@ button.add_to_cart_button:not(.premium-action-btn),
    ======================================== */
 
 /* Remove strict height/overflow that was hiding amounts */
-.price, .amount,
+.price,
+.amount,
 .woocommerce ul.products li.product .price,
 .woocommerce ul.products li.product .price * {
     height: auto !important;
@@ -8978,7 +8995,9 @@ button.add_to_cart_button:not(.premium-action-btn),
 }
 
 /* Ensure price text color is visible */
-.price, .amount, bdi {
+.price,
+.amount,
+bdi {
     color: #000 !important;
     font-weight: 700 !important;
     font-size: 16px !important;
@@ -8997,11 +9016,14 @@ button.add_to_cart_button:not(.premium-action-btn),
    ======================================== */
 
 /* Reduce price font size to fit in one line */
-.price, .amount,
+.price,
+.amount,
 .woocommerce ul.products li.product .price,
 .woocommerce ul.products li.product .product-price {
-    font-size: 14px !important; /* Reduced from 16px/18px */
-    white-space: nowrap !important; /* Force one line */
+    font-size: 14px !important;
+    /* Reduced from 16px/18px */
+    white-space: nowrap !important;
+    /* Force one line */
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     line-height: 1.4 !important;
@@ -9012,7 +9034,8 @@ button.add_to_cart_button:not(.premium-action-btn),
 /* Specific mobile adjustment if needed */
 @media (max-width: 768px) {
     .woocommerce ul.products li.product .product-price {
-        font-size: 13px !important; /* Even smaller on mobile */
+        font-size: 13px !important;
+        /* Even smaller on mobile */
     }
 }
 
@@ -9023,34 +9046,40 @@ button.add_to_cart_button:not(.premium-action-btn),
 /* Reduce padding inside product card */
 .product-content,
 .product-content-wrap {
-    padding: 10px !important; /* Reduced from 15px */
+    padding: 10px !important;
+    /* Reduced from 15px */
 }
 
 /* Reduce margin below title */
 .woocommerce ul.products li.product .woocommerce-loop-product__title,
 .woocommerce ul.products li.product .product-title {
-    margin-bottom: 5px !important; /* Reduced from 10px */
-    min-height: 38px !important; /* Adjusted for smaller spacing */
+    margin-bottom: 2px !important;
+    /* Reduced from 5px */
+    min-height: 34px !important;
+    /* Adjusted for smaller spacing */
 }
 
 /* Reduce margin around price */
 .woocommerce ul.products li.product .price,
 .woocommerce ul.products li.product .product-price {
-    margin-bottom: 5px !important; /* Reduced from 10px */
+    margin-bottom: 5px !important;
+    /* Reduced from 10px */
     margin-top: 2px !important;
 }
 
 /* Reduce margin above buttons */
 .product-buttons-group,
 .premium-loop-actions {
-    margin-top: 8px !important; /* Reduced from 15px */
+    margin-top: 8px !important;
+    /* Reduced from 15px */
 }
 
 /* Compact button padding */
 .add-to-cart-button,
 .buy-now-button,
 .premium-action-btn {
-    padding: 8px 12px !important; /* Reduced padding */
+    padding: 8px 12px !important;
+    /* Reduced padding */
     min-height: 36px !important;
 }
 
@@ -9059,11 +9088,11 @@ button.add_to_cart_button:not(.premium-action-btn),
     .product-content {
         padding: 8px !important;
     }
-    
+
     .product-buttons-group {
         gap: 5px !important;
     }
-    
+
     .add-to-cart-button,
     .buy-now-button {
         padding: 6px 10px !important;
@@ -9079,9 +9108,11 @@ button.add_to_cart_button:not(.premium-action-btn),
 /* Target Newest Arrivals specifically to fix  upar niche issue */
 .newest-arrivals-section .product-content-wrap {
     display: grid !important;
-    grid-template-rows: auto auto 1fr auto !important; /* Title, Rating, Spacer, Price/Buttons */
-    height: 100% !important;
-    min-height: 320px !important; /* Verify this height matches your design */
+    grid-template-rows: auto auto auto auto !important;
+    /* Title, Rating, Price, Buttons */
+    height: auto !important;
+    min-height: 280px !important;
+    /* Reduced from 320px */
     align-content: start !important;
 }
 
@@ -9099,7 +9130,8 @@ button.add_to_cart_button:not(.premium-action-btn),
 
 /* 2. Price - Force Bottom Alignment */
 .newest-arrivals-section .product-info-bottom {
-    margin-top: auto !important; /* Pushes to bottom */
+    margin-top: 10px !important;
+    /* Reduced from auto */
     width: 100% !important;
 }
 
@@ -9110,14 +9142,17 @@ button.add_to_cart_button:not(.premium-action-btn),
         display: flex !important;
         flex-direction: row !important;
         gap: 8px !important;
-        flex-wrap: nowrap !important; /* Prevent wrapping */
+        flex-wrap: nowrap !important;
+        /* Prevent wrapping */
     }
-    
+
     .newest-arrivals-section .button {
         flex: 1 !important;
-        width: 50% !important; /* Equal width */
+        width: 50% !important;
+        /* Equal width */
         white-space: nowrap !important;
-        padding: 10px 5px !important; /* Reduce padding to fit */
+        padding: 10px 5px !important;
+        /* Reduce padding to fit */
         font-size: 13px !important;
     }
 }
@@ -9172,8 +9207,10 @@ button.add_to_cart_button:not(.premium-action-btn),
 /* Desktop: Center the flex container */
 @media (min-width: 992px) {
     .newest-arrivals-section .product-buttons-group {
-        gap: 10px !important; /* Restore gap */
-        justify-content: center !important; /* Force center */
+        gap: 10px !important;
+        /* Restore gap */
+        justify-content: center !important;
+        /* Force center */
     }
 }
 
@@ -9182,10 +9219,23 @@ button.add_to_cart_button:not(.premium-action-btn),
     .newest-arrivals-section .product-buttons-group {
         align-items: center !important;
     }
-    
+
     .newest-arrivals-section .button {
         width: 100% !important;
-        max-width: 280px !important; /* Limit max width for better centering look */
-        margin: 0 auto !important; /* Auto margins to center block */
+        max-width: 280px !important;
+        /* Limit max width for better centering look */
+        margin: 0 auto !important;
+        /* Auto margins to center block */
+    }
+}
+/* ======================================== 
+   NEWEST ARRIVALS SPACING FIX 
+   ======================================= */
+@media (max-width: 768px) {
+    .newest-arrivals-section .price {
+        margin-bottom: 5px !important; /* Reduced from 15px */
+    }
+    .newest-arrivals-section .product-buttons-group {
+        margin-top: 5px !important; /* Reduced from 15px */
     }
 }
