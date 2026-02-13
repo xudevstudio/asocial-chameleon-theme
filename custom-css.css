@@ -9015,3 +9015,59 @@ button.add_to_cart_button:not(.premium-action-btn),
         font-size: 13px !important; /* Even smaller on mobile */
     }
 }
+
+/* ========================================
+   REMOVE EXTRA SPACING - COMPACT LAYOUT
+   ======================================== */
+
+/* Reduce padding inside product card */
+.product-content,
+.product-content-wrap {
+    padding: 10px !important; /* Reduced from 15px */
+}
+
+/* Reduce margin below title */
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.woocommerce ul.products li.product .product-title {
+    margin-bottom: 5px !important; /* Reduced from 10px */
+    min-height: 38px !important; /* Adjusted for smaller spacing */
+}
+
+/* Reduce margin around price */
+.woocommerce ul.products li.product .price,
+.woocommerce ul.products li.product .product-price {
+    margin-bottom: 5px !important; /* Reduced from 10px */
+    margin-top: 2px !important;
+}
+
+/* Reduce margin above buttons */
+.product-buttons-group,
+.premium-loop-actions {
+    margin-top: 8px !important; /* Reduced from 15px */
+}
+
+/* Compact button padding */
+.add-to-cart-button,
+.buy-now-button,
+.premium-action-btn {
+    padding: 8px 12px !important; /* Reduced padding */
+    min-height: 36px !important;
+}
+
+/* Mobile specific compaction */
+@media (max-width: 768px) {
+    .product-content {
+        padding: 8px !important;
+    }
+    
+    .product-buttons-group {
+        gap: 5px !important;
+    }
+    
+    .add-to-cart-button,
+    .buy-now-button {
+        padding: 6px 10px !important;
+        font-size: 13px !important;
+        min-height: 32px !important;
+    }
+}
