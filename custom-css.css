@@ -8874,3 +8874,33 @@ button.add_to_cart_button:not(.premium-action-btn),
         margin-right: 0 !important;
     }
 }
+
+/* ========================================
+   FIX MOBILE ICON SIZE - MAKE SMALLER
+   ======================================== */
+
+@media (max-width: 768px) {
+    /* Force smaller icon size on mobile */
+    body .button-icon,
+    body .product-buttons-group .button .button-icon,
+    body .premium-loop-actions .button .button-icon {
+        font-size: 14px !important; /* Reduced from 15px/16px */
+        width: 16px !important;
+        height: 16px !important;
+        line-height: 16px !important;
+        margin-right: 6px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* Adjust button padding to be more compact */
+    body .newest-arrivals-section .product-buttons-group .button,
+    body .product-buttons-group .button,
+    body .premium-loop-actions .button {
+        padding: 10px 15px !important;
+        font-size: 14px !important;
+        min-height: 40px !important;
+        gap: 5px !important; /* Reduce gap between icon and text */
+    }
+}
