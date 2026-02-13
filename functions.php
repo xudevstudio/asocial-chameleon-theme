@@ -242,56 +242,22 @@ function asocial_chameleon_add_product_buttons() {
         }
     }
     
-    // Add to Cart Button
-    if ($is_variable) {
-        // For variable products: Open Selection Popup
-        echo '<a href="' . esc_url( get_permalink() ) . '" 
-                 class="button add-to-cart-button premium-action-btn variable-selection-trigger" 
-                 data-product_id="' . esc_attr( $product->get_id() ) . '" 
-                 data-action="add-to-cart"
-                 aria-label="' . esc_attr__( 'Select options', 'asocial-chameleon' ) . '" 
-                 rel="nofollow">';
-        echo '<span class="button-icon">🛒</span>';
-        echo '<span class="button-text">' . esc_html__( 'Add to Cart', 'asocial-chameleon' ) . '</span>';
-        echo '</a>';
-    } else {
-        // For simple products: Direct add to cart
-        echo '<a href="?add-to-cart=' . esc_attr( $product->get_id() ) . '" 
-                 data-quantity="1" 
-                 class="button add-to-cart-button premium-action-btn" 
-                 data-product_id="' . esc_attr( $product->get_id() ) . '" 
-                 data-product_sku="' . esc_attr( $product->get_sku() ) . '" 
-                 aria-label="' . esc_attr__( 'Add to cart', 'asocial-chameleon' ) . '" 
-                 rel="nofollow">';
-        echo '<span class="button-icon">🛒</span>';
-        echo '<span class="button-text">' . esc_html__( 'Add to Cart', 'asocial-chameleon' ) . '</span>';
-        echo '</a>';
-    }
+    // Add to Cart Button (Links to Product Page)
+    echo '<a href="' . esc_url( get_permalink() ) . '" 
+             class="button add-to-cart-button premium-action-btn" 
+             aria-label="' . esc_attr__( 'View Product', 'asocial-chameleon' ) . '" 
+             rel="nofollow">';
+    echo '<span class="button-icon">🛒</span>';
+    echo '<span class="button-text">' . esc_html__( 'Add to Cart', 'asocial-chameleon' ) . '</span>';
+    echo '</a>';
     
-    // Buy Now Button (Direct Checkout Premium)
-    if ($is_variable) {
-        // For variable products: Open Selection Popup
-        echo '<a href="' . esc_url( get_permalink() ) . '" 
-                 class="button buy-now-button premium-action-btn variable-selection-trigger" 
-                 data-product_id="' . esc_attr( $product->get_id() ) . '" 
-                 data-action="buy-now"
-                 rel="nofollow">';
-        echo '<span class="button-icon">⚡</span>';
-        echo '<span class="button-text">' . esc_html__( 'Buy Now', 'asocial-chameleon' ) . '</span>';
-        echo '</a>';
-    } else {
-        // For simple products: Direct buy now
-        $checkout_url = wc_get_checkout_url();
-        $buy_now_url = add_query_arg( array(
-            'add-to-cart' => $product->get_id(),
-            'buy-now'     => '1'
-        ), $checkout_url );
-        
-        echo '<a href="' . esc_url( $buy_now_url ) . '" class="button buy-now-button premium-action-btn" data-product_id="' . esc_attr( $product->get_id() ) . '" rel="nofollow">';
-        echo '<span class="button-icon">⚡</span>';
-        echo '<span class="button-text">' . esc_html__( 'Buy Now', 'asocial-chameleon' ) . '</span>';
-        echo '</a>';
-    }
+    // Buy Now Button (Links to Product Page)
+    echo '<a href="' . esc_url( get_permalink() ) . '" 
+             class="button buy-now-button premium-action-btn" 
+             rel="nofollow">';
+    echo '<span class="button-icon">⚡</span>';
+    echo '<span class="button-text">' . esc_html__( 'Buy Now', 'asocial-chameleon' ) . '</span>';
+    echo '</a>';
 
     // End button group wrapper
     echo '</div>';
@@ -372,7 +338,7 @@ function asocial_chameleon_add_product_description() {
         echo '<div class="woocommerce-loop-product__description">' . wp_kses_post( $short_description ) . '</div>';
     }
 }
-add_action( 'woocommerce_after_shop_loop_item_title', 'asocial_chameleon_add_product_description', 15 );
+// add_action( 'woocommerce_after_shop_loop_item_title', 'asocial_chameleon_add_product_description', 15 );
 
 
 /**

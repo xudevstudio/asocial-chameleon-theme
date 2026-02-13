@@ -1324,7 +1324,7 @@ Removed to preserve gradient
     font-size: 42px;
     font-weight: 800;
     color: #1a1a1a;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -1433,7 +1433,13 @@ Removed to preserve gradient
 .newest-arrivals-section ul.products li.product .price {
     display: block;
     text-align: center;
-    margin: 5px 15px 15px;
+    margin: 5px 15px 5px;
+}
+
+/* Hide product description in Newest Arrivals */
+.newest-arrivals-section ul.products li.product .woocommerce-loop-product__description,
+.newest-arrivals-section ul.products li.product .product-description {
+    display: none !important;
 }
 
 .newest-arrivals-section ul.products li.product .price .woocommerce-Price-amount {
@@ -1762,6 +1768,7 @@ Removed to preserve gradient
     .newest-arrivals-section ul.products li.product .product-buttons-group {
         flex-direction: column;
         gap: 8px;
+        align-items: center;
     }
 
     .newest-arrivals-section ul.products li.product .button {
