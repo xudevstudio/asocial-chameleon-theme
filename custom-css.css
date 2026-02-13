@@ -8808,3 +8808,32 @@ ul.products li.product .product-content-wrap,
 .top-rated-swiper .button-icon {
     font-size: 14px !important;
 }
+
+/* ========================================
+   STRONGER ICON SIZE FIX FOR CHROME LIVE
+   ======================================== */
+
+/* Force icon size down with high specificity */
+body .button-icon,
+body .product-buttons-group .button .button-icon,
+body .premium-loop-actions .button .button-icon {
+    font-size: 14px !important;
+    line-height: 1 !important;
+    height: auto !important;
+    width: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    vertical-align: middle !important;
+}
+
+/* Specific mobile adjustment */
+@media (max-width: 768px) {
+    body .button-icon {
+        font-size: 15px !important; /* Slightly larger for touch */
+    }
+}
+
+/* Ensure emoji font stack doesn't override size */
+.button-icon {
+    font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', sans-serif !important;
+}
