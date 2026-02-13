@@ -8653,3 +8653,117 @@ ul.products li.product .product-content-wrap,
     opacity: 1 !important;
     visibility: visible !important;
 }
+
+/* ========================================
+   CENTER BUTTONS IN NEWEST ARRIVALS & FIX ICONS
+   ======================================== */
+
+/* Center button container in product cards */
+.newest-arrivals-section .product-buttons-group,
+.newest-arrivals-section .premium-loop-actions,
+.popular-products-section .product-buttons-group,
+.popular-products-section .premium-loop-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto 0;
+    max-width: 100%;
+}
+
+/* Desktop - Center buttons horizontally */
+@media (min-width: 769px) {
+    .newest-arrivals-section .product-buttons-group,
+    .newest-arrivals-section .premium-loop-actions,
+    .popular-products-section .product-buttons-group,
+    .popular-products-section .premium-loop-actions {
+        flex-direction: row;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .newest-arrivals-section .add-to-cart-button,
+    .newest-arrivals-section .buy-now-button,
+    .popular-products-section .add-to-cart-button,
+    .popular-products-section .buy-now-button {
+        flex: 0 1 auto;
+        min-width: 140px;
+        max-width: 180px;
+    }
+}
+
+/* Mobile - Stack buttons and center */
+@media (max-width: 768px) {
+    .newest-arrivals-section .product-buttons-group,
+    .newest-arrivals-section .premium-loop-actions,
+    .popular-products-section .product-buttons-group,
+    .popular-products-section .premium-loop-actions {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .newest-arrivals-section .add-to-cart-button,
+    .newest-arrivals-section .buy-now-button,
+    .popular-products-section .add-to-cart-button,
+    .popular-products-section .buy-now-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Fix icon display in mobile - ensure icons are visible */
+    .button-icon {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px !important;
+        line-height: 1;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .button-text {
+        display: inline-block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* Ensure proper spacing between icon and text */
+    .add-to-cart-button,
+    .buy-now-button,
+    .premium-action-btn {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+    }
+}
+
+/* Ensure icons are always visible */
+.button-icon {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-flex !important;
+}
+
+/* Center product content */
+.newest-arrivals-section .product-content-wrap,
+.popular-products-section .product-content-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Center product title and price */
+.newest-arrivals-section .woocommerce-loop-product__title,
+.popular-products-section .woocommerce-loop-product__title {
+    text-align: center;
+    width: 100%;
+}
+
+.newest-arrivals-section .price,
+.popular-products-section .price {
+    text-align: center;
+    width: 100%;
+    display: block;
+}
