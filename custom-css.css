@@ -8503,3 +8503,153 @@ ul.products li.product .product-content-wrap,
         grid-template-columns: repeat(2, 1fr) !important;
     }
 }
+
+/* ========================================
+   PRODUCT BUTTONS STYLING FIX
+   ======================================== */
+
+/* Product Buttons Group - Desktop */
+.product-buttons-group,
+.premium-loop-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* Individual Button Styling */
+.add-to-cart-button,
+.buy-now-button,
+.premium-action-btn {
+    flex: 1;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+}
+
+/* Add to Cart Button */
+.add-to-cart-button,
+.premium-action-btn.add-to-cart-button {
+    background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+}
+
+.add-to-cart-button:hover {
+    background: linear-gradient(135deg, #8e44ad 0%, #7d3c98 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+    color: #fff !important;
+}
+
+/* Buy Now Button */
+.buy-now-button,
+.premium-action-btn.buy-now-button {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.buy-now-button:hover {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    color: #fff !important;
+}
+
+/* Button Icons */
+.button-icon {
+    font-size: 18px;
+    display: inline-block;
+}
+
+.button-text {
+    display: inline-block;
+    font-weight: 600;
+}
+
+/* Ensure buttons are visible */
+.product-buttons-group .button,
+.premium-loop-actions .button {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+}
+
+/* Top Rated Collection Buttons */
+.top-rated-swiper .product-buttons-group,
+.top-rated-swiper .premium-loop-actions {
+    margin-top: auto;
+    padding-top: 15px;
+}
+
+/* Desktop - Side by Side Buttons */
+@media (min-width: 769px) {
+    .product-buttons-group,
+    .premium-loop-actions {
+        flex-direction: row;
+    }
+    
+    .add-to-cart-button,
+    .buy-now-button,
+    .premium-action-btn {
+        flex: 1;
+        min-width: 0;
+    }
+}
+
+/* Mobile - Full Width Stacked Buttons */
+@media (max-width: 768px) {
+    .product-buttons-group,
+    .premium-loop-actions {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .add-to-cart-button,
+    .buy-now-button,
+    .premium-action-btn {
+        width: 100% !important;
+        flex: none !important;
+        padding: 14px 20px !important;
+        font-size: 15px !important;
+    }
+
+    .button-icon {
+        font-size: 20px !important;
+    }
+}
+
+/* Ensure Proper Z-index */
+.product-buttons-group,
+.premium-loop-actions {
+    position: relative;
+    z-index: 10;
+}
+
+/* Fix for WooCommerce Default Button Conflicts */
+.woocommerce ul.products li.product .button {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Remove any hiding from parent elements */
+.product-content,
+.product-content-wrap,
+.product-info-bottom {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
