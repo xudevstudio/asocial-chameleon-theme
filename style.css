@@ -1659,8 +1659,21 @@ Removed to preserve gradient
 }
 
 /* Price Elements */
+/* Price Elements - Force Inline */
 .popular-products-section ul.products li.product .price .woocommerce-Price-amount {
     color: #27ae60 !important;
+    display: inline-block !important;
+}
+
+.popular-products-section ul.products li.product .price del,
+.popular-products-section ul.products li.product .price ins {
+    display: inline-block !important;
+    margin: 0 5px !important;
+}
+
+.popular-products-section ul.products li.product .price del {
+    opacity: 0.6;
+    font-size: 0.9em;
 }
 
 /* New Buttons Group */
@@ -1678,6 +1691,8 @@ Removed to preserve gradient
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
+    /* Center horizontally */
     padding: 14px;
     border-radius: 50px;
     font-weight: 700;
@@ -1765,7 +1780,8 @@ Removed to preserve gradient
     }
 
     /* Button group responsive */
-    .newest-arrivals-section ul.products li.product .product-buttons-group {
+    .newest-arrivals-section ul.products li.product .product-buttons-group,
+    .popular-products-section ul.products li.product .product-buttons-group {
         flex-direction: column;
         gap: 8px;
         align-items: center;
@@ -1777,7 +1793,8 @@ Removed to preserve gradient
         font-size: 13px;
     }
 
-    .newest-arrivals-section ul.products li.product .button .button-icon {
+    .newest-arrivals-section ul.products li.product .button .button-icon,
+    .popular-products-section ul.products li.product .button .button-icon {
         font-size: 14px;
     }
 }
@@ -1792,8 +1809,8 @@ Removed to preserve gradient
 
     .newest-arrivals-section ul.products,
     .popular-products-section ul.products {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
     }
 
     .newest-arrivals-section ul.products li.product .button,
