@@ -1838,7 +1838,7 @@ Removed to preserve gradient
         justify-content: center !important;
         align-items: center !important;
         gap: 4px !important;
-        margin: 10px 0 !important;
+        margin: 5px 0 8px 0 !important;
         visibility: visible !important;
         opacity: 1 !important;
     }
@@ -1849,7 +1849,8 @@ Removed to preserve gradient
         margin: 0 !important;
     }
 
-    .newest-arrivals-section ul.products li.product .price .woocommerce-Price-amount,
+    .newest-arrivals-section ul.products li.product .price *,
+    .newest-arrivals-section ul.products li.product .price .amount,
     .newest-arrivals-section ul.products li.product .price bdi {
         font-size: 14px !important;
         white-space: nowrap !important;
@@ -1874,10 +1875,26 @@ Removed to preserve gradient
     }
 
     /* Buttons */
+    /* Fix Button Spacing & Alignment */
+    .newest-arrivals-section ul.products li.product .product-buttons-group {
+        gap: 5px !important;
+        margin-bottom: 10px !important;
+    }
+
     .newest-arrivals-section ul.products li.product .button {
+        width: calc(100% - 24px) !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 10px 12px !important;
+        line-height: 1.2 !important;
         font-size: 12px !important;
-        padding: 8px 12px !important;
-        width: 100% !important;
+    }
+
+    .newest-arrivals-section ul.products li.product .button .button-icon {
+        margin-right: 5px;
+        transform: translateY(0);
     }
 
     .popular-products-section ul.products li.product .button {
