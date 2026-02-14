@@ -1314,7 +1314,7 @@ Removed to preserve gradient
 
 /* --- Newest Arrivals Section --- */
 .newest-arrivals-section {
-    padding: 80px 4%;
+    padding: 20px 4%;
     text-align: center;
     background: #f9f9f9;
     width: 100%;
@@ -1324,7 +1324,7 @@ Removed to preserve gradient
     font-size: 42px;
     font-weight: 800;
     color: #1a1a1a;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -1339,7 +1339,7 @@ Removed to preserve gradient
     width: 100px;
     height: 5px;
     background: linear-gradient(90deg, #9b59b6, #3498db);
-    margin: 20px auto 0;
+    margin: 10px auto 0;
     border-radius: 3px;
 }
 
