@@ -1677,13 +1677,24 @@ Removed to preserve gradient
 }
 
 /* New Buttons Group */
+/* New Buttons Group - Desktop Row (Min-width 901px to avoid conflict) */
+@media (min-width: 901px) {
+    .popular-products-section ul.products li.product .product-buttons-group {
+        padding: 0 24px 30px;
+        margin-top: auto;
+        display: flex;
+        flex-direction: row !important;
+        /* Force row on desktop */
+        gap: 12px;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Default fallback (Mobile/Tablet will override this via max-width queries below) */
 .popular-products-section ul.products li.product .product-buttons-group {
-    padding: 0 24px 30px;
-    margin-top: auto;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    align-items: center;
 }
 
 .popular-products-section ul.products li.product .button {
@@ -1801,28 +1812,81 @@ Removed to preserve gradient
 
 @media (max-width: 480px) {
 
+    /* Hide Descriptions on Mobile */
+    .product-description,
+    .woocommerce-product-details__short-description {
+        display: none !important;
+    }
+
+    /* Fix Product Card Height */
+    .newest-arrivals-section ul.products li.product,
+    .popular-products-section ul.products li.product {
+        min-height: auto !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding-bottom: 20px !important;
+    }
+
+    /* Fix Mobile Pricing Wrapping */
+    .popular-products-section ul.products li.product .price,
+    .newest-arrivals-section ul.products li.product .price {
+        font-size: 14px !important;
+        white-space: nowrap !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 4px !important;
+        margin: 10px 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .popular-products-section ul.products li.product .price del,
+    .popular-products-section ul.products li.product .price ins {
+        display: inline-flex !important;
+        margin: 0 !important;
+    }
+
+    .newest-arrivals-section ul.products li.product .price .woocommerce-Price-amount,
+    .newest-arrivals-section ul.products li.product .price bdi {
+        font-size: 14px !important;
+        white-space: nowrap !important;
+        display: inline-block !important;
+        color: #1a1a1a !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Section Titles */
     .newest-arrivals-section .section-title,
     .popular-products-section .section-title {
         font-size: 24px;
         letter-spacing: 1px;
     }
 
+    /* Grid Layout */
     .newest-arrivals-section ul.products,
     .popular-products-section ul.products {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 15px !important;
     }
 
+    /* Buttons */
     .newest-arrivals-section ul.products li.product .button,
     .popular-products-section ul.products li.product .button {
-        font-size: 13px;
-        padding: 12px 25px;
+        font-size: 12px !important;
+        padding: 8px 12px !important;
+        width: 100% !important;
     }
+}
+}
 
-    .newest-arrivals-section ul.products li.product .woocommerce-loop-product__title,
-    .popular-products-section ul.products li.product .woocommerce-loop-product__title {
-        font-size: 16px;
-    }
+.newest-arrivals-section ul.products li.product .woocommerce-loop-product__title,
+.popular-products-section ul.products li.product .woocommerce-loop-product__title {
+    font-size: 16px;
+}
 }
 
 /* --- Features Bar --- */
