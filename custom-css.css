@@ -1500,7 +1500,7 @@ Removed to preserve gradient
 .newest-arrivals-section ul.products li.product .woocommerce-loop-product__title {
     font-size: 18px;
     font-weight: 700;
-    margin: 20px 20px 10px;
+    margin: 15px 15px 8px; /* Slightly reduced margins for desktop */
     color: #1a1a1a;
     line-height: 1.4;
     text-align: center;
@@ -1509,7 +1509,7 @@ Removed to preserve gradient
 .newest-arrivals-section ul.products li.product .price {
     display: block;
     text-align: center;
-    margin: 15px 20px;
+    margin: 12px 15px; /* Slightly reduced margins for desktop */
 }
 
 .newest-arrivals-section ul.products li.product .price .woocommerce-Price-amount {
@@ -1521,8 +1521,8 @@ Removed to preserve gradient
 /* Product Buttons Group - Modern Design */
 .newest-arrivals-section ul.products li.product .product-buttons-group {
     display: flex;
-    gap: 10px;
-    margin: 0 20px 20px;
+    gap: 8px; /* Slightly reduced gap for desktop buttons */
+    margin: 0 15px 15px; /* Slightly reduced margins for desktop */
     margin-top: auto;
 }
 
@@ -1825,7 +1825,20 @@ Removed to preserve gradient
 
     .newest-arrivals-section ul.products li.product,
     .popular-products-section ul.products li.product {
-        min-height: 380px;
+        min-height: 280px; /* Even further reduced min-height */
+        padding-bottom: 5px; /* Reduced padding at the bottom of the card */
+    }
+
+    /* Adjust title margin for Newest Arrivals on mobile */
+    .newest-arrivals-section ul.products li.product .woocommerce-loop-product__title {
+        margin: 8px 8px 4px !important; /* Further reduced margins on mobile */
+        font-size: 15px !important; /* Slightly smaller font for better fit */
+    }
+
+    /* Adjust title margin for Popular Products on mobile */
+    .popular-products-section ul.products li.product .woocommerce-loop-product__title {
+        margin: 8px 8px 4px !important; /* Consistent reduced margins on mobile */
+        font-size: 15px !important; /* Consistent slightly smaller font for better fit */
     }
 
     /* Fix Price Visibility & Spacing for Newest Arrivals on mobile */
@@ -1836,16 +1849,29 @@ Removed to preserve gradient
         height: auto !important;
         min-height: auto !important;
         overflow: visible !important;
-        margin: 10px auto !important; /* Reduced vertical margin, center horizontally */
+        margin: 4px auto 8px !important; /* Further reduced vertical margin, center horizontally */
         color: #27ae60 !important; /* Ensure color is set */
-        font-size: 20px !important; /* Ensure readability */
+        font-size: 17px !important; /* Ensure readability */
+    }
+
+    /* Fix Price Visibility & Spacing for Popular Products on mobile */
+    .popular-products-section ul.products li.product .price {
+        margin: 4px auto 8px !important; /* Consistent reduced vertical margin on mobile */
+        font-size: 17px !important; /* Consistent readability */
     }
 
     /* Button group responsive */
     .newest-arrivals-section ul.products li.product .product-buttons-group {
         flex-direction: column;
-        gap: 8px;
-        margin: 10px 15px 15px !important; /* Reduced top/bottom margin, adjusted side padding */
+        gap: 6px; /* Slightly reduced gap between buttons */
+        margin: 0 8px 8px !important; /* Further reduced margins */
+    }
+
+    /* Button group responsive for Popular Products */
+    .popular-products-section ul.products li.product .product-buttons-group {
+        flex-direction: column;
+        gap: 6px; /* Slightly reduced gap between buttons */
+        margin: 0 8px 8px !important; /* Further reduced margins */
     }
 
     .newest-arrivals-section ul.products li.product .button {
