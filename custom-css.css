@@ -1828,20 +1828,40 @@ Removed to preserve gradient
         min-height: 380px;
     }
 
+    /* Fix Price Visibility & Spacing for Newest Arrivals on mobile */
+    .newest-arrivals-section ul.products li.product .price {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
+        margin: 10px auto !important; /* Reduced vertical margin, center horizontally */
+        color: #27ae60 !important; /* Ensure color is set */
+        font-size: 20px !important; /* Ensure readability */
+    }
+
     /* Button group responsive */
     .newest-arrivals-section ul.products li.product .product-buttons-group {
         flex-direction: column;
         gap: 8px;
+        margin: 10px 15px 15px !important; /* Reduced top/bottom margin, adjusted side padding */
     }
 
     .newest-arrivals-section ul.products li.product .button {
         width: 100%;
         padding: 10px 14px;
         font-size: 13px;
+        /* Ensure vertical centering of text and icon */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
-    .newest-arrivals-section ul.products li.product .button .button-icon {
-        font-size: 14px;
+    .newest-arrivals-section ul.products li.product .button .button-icon,
+    .newest-arrivals-section ul.products li.product .button .button-text {
+        line-height: 1 !important; /* Explicitly set to 1 to help centering */
+        vertical-align: middle !important; /* Fallback for older browsers or if flex isn't enough */
     }
 }
 

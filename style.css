@@ -1838,7 +1838,7 @@ Removed to preserve gradient
         justify-content: center !important;
         align-items: center !important;
         gap: 4px !important;
-        margin: 5px 0 8px 0 !important;
+        margin: 0 0 5px 0 !important;
         visibility: visible !important;
         opacity: 1 !important;
     }
@@ -1878,7 +1878,8 @@ Removed to preserve gradient
     /* Fix Button Spacing & Alignment */
     .newest-arrivals-section ul.products li.product .product-buttons-group {
         gap: 5px !important;
-        margin-bottom: 10px !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
     }
 
     .newest-arrivals-section ul.products li.product .button {
