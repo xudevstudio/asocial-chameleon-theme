@@ -4532,9 +4532,9 @@ h2.section-title,
 /* Short Description */
 .product-short-description {
     font-size: 16px;
-    line-height: 1.8;
+    line-height: 1.4;
     color: #64748b;
-    margin-bottom: 2rem;
+    margin-bottom: 5px;
 }
 
 /* Add to Cart Form */
@@ -8996,12 +8996,12 @@ button.add_to_cart_button:not(.premium-action-btn),
     height: 100% !important;
 }
 
-/* Make content wrap fill the available space */
+/* Make content wrap fill the available space but keep content at top */
 .product-content-wrap {
     display: flex !important;
     flex-direction: column !important;
     flex: 1 !important;
-    justify-content: space-between !important;
+    justify-content: flex-start !important;
 }
 
 /* Enforce fixed height for titles to align everything below */
@@ -9173,13 +9173,11 @@ bdi {
 
 /* Target Newest Arrivals specifically to fix  upar niche issue */
 .newest-arrivals-section .product-content-wrap {
-    display: grid !important;
-    grid-template-rows: auto auto auto auto !important;
-    /* Title, Rating, Price, Buttons */
+    display: flex !important;
+    flex-direction: column !important;
     height: auto !important;
-    min-height: 280px !important;
-    /* Reduced from 320px */
-    align-content: start !important;
+    min-height: 0 !important;
+    justify-content: flex-start !important;
 }
 
 /* 1. Title - Fixed Height Area */
