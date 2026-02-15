@@ -9378,3 +9378,45 @@ bdi {
         object-fit: cover;
     }
 }
+
+
+/* ========================================
+   POPULAR PRODUCTS BUTTONS FIX
+   ======================================== */
+.popular-products-section .product-buttons-group {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    /* Space between buttons */
+    padding: 0 10px !important;
+    /* Prevent touching edges */
+    align-items: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.popular-products-section .product-buttons-group .button {
+    flex: 1 !important;
+    /* Equal width */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin: 0 !important;
+    /* Remove individual margins as we use gap */
+    white-space: nowrap !important;
+}
+
+/* Mobile Responsiveness for Popular Products Buttons */
+@media (max-width: 768px) {
+    .popular-products-section .product-buttons-group {
+        padding: 0 5px !important;
+        /* Slightly smaller padding on mobile */
+    }
+
+    .popular-products-section .product-buttons-group .button {
+        font-size: 13px !important;
+        /* Slightly smaller text if needed */
+        padding: 10px 5px !important;
+    }
+}
