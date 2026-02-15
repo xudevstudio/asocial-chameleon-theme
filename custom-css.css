@@ -9321,3 +9321,21 @@ bdi {
 .newest-arrivals-section .woocommerce-loop-product__title {
     margin-bottom: 5px !important;
 }
+
+/* ======================================== 
+   GLOBAL POPULAR PRODUCTS SPACING FIX (DESKTOP + MOBILE) 
+   ======================================= */
+.popular-products-section .product-content-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 0 !important;
+    justify-content: flex-start !important;
+}
+
+.popular-products-section .price,
+.popular-products-section .product-buttons-group,
+.popular-products-section .woocommerce-loop-product__title {
+    margin-bottom: 5px !important;
+    margin-top: 5px !important;
+}
