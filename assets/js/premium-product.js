@@ -241,73 +241,69 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /* ==========================================================================
-       5. Buy Now Logic (Single Product Page)
+       5. Buy Now Logic (Global Event Delegation)
        ========================================================================== */
-    const buyNowButtons = document.querySelectorAll('.buy-now-button');
-    buyNowButtons.forEach(button => {
-        if (button.closest('#asocial-selection-modal')) return;
+    document.body.addEventListener('click', function (e) {
+        const button = e.target.closest('.buy-now-button');
+        if (!button || button.closest('#asocial-selection-modal')) return;
 
-        button.addEventListener('click', function (e) {
-            // Try to find the form - first check if button is inside form, then check siblings
-            let form = this.closest('form.cart');
-            if (!form) {
-                // Button is outside form, look for form in the same wrapper
-                const wrapper = this.closest('.product-add-to-cart-wrapper') || this.closest('.product') || this.closest('.summary');
-                if (wrapper) {
-                    form = wrapper.querySelector('form.cart');
-                }
+        // Try to find the form - first check if button is inside form, then check siblings
+        let form = button.closest('form.cart');
+        if (!form) {
+            // Button is outside form, look for form in the same wrapper
+            const wrapper = button.closest('.product-add-to-cart-wrapper') || button.closest('.product-card') || button.closest('.product') || button.closest('.summary');
+            if (wrapper) {
+                form = wrapper.querySelector('form.cart');
             }
+        }
 
-            // Last resort: search if we are on a single product page for any cart form
-            if (!form && document.body.classList.contains('single-product')) {
-                form = document.querySelector('form.cart') || document.querySelector('.variations_form');
-            }
+        // Last resort: search if we are on a single product page's main form
+        if (!form && document.body.classList.contains('single-product')) {
+            form = document.querySelector('form.cart') || document.querySelector('.variations_form');
+        }
 
-            if (!form) {
-                // No form found, likely a loop page (Home/Shop/Category). 
-                // Let the normal <a> link navigation happen.
+        if (!form) {
+            // No form found, likely a loop page (Home/Shop/Category/Slider). 
+            // Let the normal <a> link navigation to single product page happen.
+            return;
+        }
+
+        // Form found, we are on a product page or have a form to submit.
+        // Prevent default link/button action and submit form.
+        e.preventDefault();
+
+        if (form.classList.contains('variations_form')) {
+            const vId = form.querySelector('input[name="variation_id"]');
+            if (!vId || !vId.value || vId.value == '0') {
+                variantUnselectedError(form);
                 return;
             }
+        }
 
-            // Form found, we are on a product page or have a form to submit.
-            // Prevent default link/button action and submit form.
-            e.preventDefault();
+        button.innerHTML = '<span class="button-text">Redirecting...</span>';
+        button.style.pointerEvents = 'none';
 
-            if (form.classList.contains('variations_form')) {
-                const vId = form.querySelector('input[name="variation_id"]');
-                if (!vId || !vId.value || vId.value == '0') {
-                    variantUnselectedError(form);
-                    return;
-                }
-            }
+        // Ensure buy-now flag is present
+        if (!form.querySelector('input[name="buy-now"]')) {
+            const bni = document.createElement('input'); bni.type = 'hidden'; bni.name = 'buy-now'; bni.value = '1';
+            form.appendChild(bni);
+        }
 
-            this.innerHTML = '<span class="button-text">Redirecting...</span>';
-            this.style.pointerEvents = 'none';
+        // CRITICAL: Ensure add-to-cart is present as a HIDDEN field if we call form.submit()
+        let atcInput = form.querySelector('input[name="add-to-cart"]');
+        const productId = atcInput ? atcInput.value : (form.querySelector('input[name="product_id"]')?.value || button.getAttribute('data-product_id'));
 
-            // Ensure buy-now flag is present
-            if (!form.querySelector('input[name="buy-now"]')) {
-                const bni = document.createElement('input'); bni.type = 'hidden'; bni.name = 'buy-now'; bni.value = '1';
-                form.appendChild(bni);
-            }
+        // If the existing 'add-to-cart' is not a hidden input, create/ensure one exists
+        if (!atcInput || atcInput.tagName !== 'INPUT') {
+            if (atcInput) atcInput.setAttribute('name', 'add-to-cart-dummy');
+            const newAtc = document.createElement('input');
+            newAtc.type = 'hidden';
+            newAtc.name = 'add-to-cart';
+            newAtc.value = productId;
+            form.appendChild(newAtc);
+        }
 
-            // CRITICAL: Ensure add-to-cart is present as a HIDDEN field if we call form.submit()
-            // because the original submit button (which usually carries the name 'add-to-cart')
-            // will not be sent in the POST data.
-            let atcInput = form.querySelector('input[name="add-to-cart"]');
-            const productId = atcInput ? atcInput.value : (form.querySelector('input[name="product_id"]')?.value || this.getAttribute('data-product_id'));
-
-            // If the existing 'add-to-cart' is not a hidden input, create/ensure one exists
-            if (!atcInput || atcInput.tagName !== 'INPUT') {
-                if (atcInput) atcInput.setAttribute('name', 'add-to-cart-dummy'); // Rename old if it was a button
-                const newAtc = document.createElement('input');
-                newAtc.type = 'hidden';
-                newAtc.name = 'add-to-cart';
-                newAtc.value = productId;
-                form.appendChild(newAtc);
-            }
-
-            setTimeout(() => { form.submit(); }, 100);
-        });
+        setTimeout(() => { form.submit(); }, 100);
     });
 
     function variantUnselectedError(form) {
