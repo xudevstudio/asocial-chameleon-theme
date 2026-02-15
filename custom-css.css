@@ -3646,9 +3646,9 @@ html {
 
 /* Title - Compact */
 .top-rated-collection .product-title {
-    margin: 4px 0 !important;
+    margin: 2px 0 0 0 !important;
     padding: 0;
-    line-height: 1.2;
+    line-height: 1.1;
 }
 
 .top-rated-collection .product-title a {

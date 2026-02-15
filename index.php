@@ -123,9 +123,11 @@ get_header();
                                             echo '<div class="product-description">' . wp_kses_post( wp_trim_words( $short_description, 15 ) ) . '</div>';
                                         }
                                         ?>
-                                        <div class="product-rating">
-                                            <?php woocommerce_template_loop_rating(); ?>
-                                        </div>
+                                        <?php if ( $product->get_rating_count() > 0 ) : ?>
+                                            <div class="product-rating">
+                                                <?php woocommerce_template_loop_rating(); ?>
+                                            </div>
+                                        <?php endif; ?>
                                         <div class="product-price">
                                             <?php woocommerce_template_loop_price(); ?>
                                         </div>
