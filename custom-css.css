@@ -9339,3 +9339,42 @@ bdi {
     margin-bottom: 5px !important;
     margin-top: 5px !important;
 }
+
+/* ========================================
+   RELATED PRODUCTS RESPONSIVENESS
+   ======================================== */
+@media (max-width: 768px) {
+    .related.products {
+        width: 100%;
+        padding: 20px 10px;
+        box-sizing: border-box;
+    }
+
+    .related.products>h2 {
+        font-size: 24px !important;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Force Grid Layout for Related Products */
+    .related.products ul.products {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        /* 2 Columns on Mobile */
+        gap: 15px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .related.products ul.products li.product {
+        width: 100% !important;
+        margin-bottom: 0 !important;
+        float: none !important;
+    }
+
+    /* Ensure images fit well */
+    .related.products ul.products li.product img {
+        height: auto !important;
+        object-fit: cover;
+    }
+}
