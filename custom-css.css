@@ -9205,14 +9205,13 @@ bdi {
     .newest-arrivals-section .product-buttons-group {
         display: flex !important;
         flex-direction: row !important;
-        gap: 8px !important;
+        gap: 12px !important;
         flex-wrap: nowrap !important;
         /* Prevent wrapping */
     }
 
     .newest-arrivals-section .button {
         flex: 1 !important;
-        width: 50% !important;
         /* Equal width */
         white-space: nowrap !important;
         padding: 10px 5px !important;
@@ -9271,8 +9270,8 @@ bdi {
 /* Desktop: Center the flex container */
 @media (min-width: 992px) {
     .newest-arrivals-section .product-buttons-group {
-        gap: 10px !important;
-        /* Restore gap */
+        gap: 12px !important;
+        /* Increased gap */
         justify-content: center !important;
         /* Force center */
     }
