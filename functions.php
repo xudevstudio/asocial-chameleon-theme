@@ -706,3 +706,16 @@ add_filter( 'script_loader_src', 'asocial_chameleon_fix_environment_urls', 99 );
 add_filter( 'theme_mod_custom_logo_desktop', 'asocial_chameleon_fix_environment_urls', 99 );
 add_filter( 'theme_mod_custom_logo_mobile', 'asocial_chameleon_fix_environment_urls', 99 );
 add_filter( 'theme_mod_site_favicon', 'asocial_chameleon_fix_environment_urls', 99 );
+
+/**
+ * Fix Email Reliability
+ * Ensure emails are sent from the Site Name and Admin Email, 
+ * reducing spam filtering issues on some SMTP servers.
+ */
+add_filter( 'wp_mail_from_name', function( $original_email_from ) {
+    return get_bloginfo( 'name' );
+} );
+
+add_filter( 'wp_mail_from', function( $original_email_address ) {
+    return get_option( 'admin_email' );
+} );
