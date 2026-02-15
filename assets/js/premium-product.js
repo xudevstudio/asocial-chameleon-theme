@@ -248,8 +248,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (button.closest('#asocial-selection-modal')) return;
 
         button.addEventListener('click', function (e) {
-            e.preventDefault();
-
             // Try to find the form - first check if button is inside form, then check siblings
             let form = this.closest('form.cart');
             if (!form) {
@@ -260,16 +258,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            // Last resort: search the entire page for the form
-            if (!form) {
+            // Last resort: search if we are on a single product page for any cart form
+            if (!form && document.body.classList.contains('single-product')) {
                 form = document.querySelector('form.cart') || document.querySelector('.variations_form');
             }
 
             if (!form) {
-                console.error('Buy Now: Could not find cart form');
-                // Don't show alert, just return silently
+                // No form found, likely a loop page (Home/Shop/Category). 
+                // Let the normal <a> link navigation happen.
                 return;
             }
+
+            // Form found, we are on a product page or have a form to submit.
+            // Prevent default link/button action and submit form.
+            e.preventDefault();
 
             if (form.classList.contains('variations_form')) {
                 const vId = form.querySelector('input[name="variation_id"]');
