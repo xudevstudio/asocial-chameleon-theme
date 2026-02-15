@@ -264,7 +264,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!form) {
             // No form found, likely a loop page (Home/Shop/Category/Slider). 
-            // Let the normal <a> link navigation to single product page happen.
+            // Force navigation to the href to ensure redirect works even if other scripts interfere.
+            if (button.tagName === 'A' && button.href) {
+                window.location.href = button.href;
+            }
             return;
         }
 
