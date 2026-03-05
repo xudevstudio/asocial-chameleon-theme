@@ -1,0 +1,30 @@
+# WordPress
+.DS_Store
+Thumbs.db
+
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# OS files
+desktop.ini
+.Spotlight-V100
+.Trashes
+
+# Build files
+*.map
