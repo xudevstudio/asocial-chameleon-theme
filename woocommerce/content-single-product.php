@@ -71,9 +71,11 @@ if ( post_password_required() ) {
                 </div>
 
                 <!-- Product Description -->
-                <div class="product-description">
-                    <?php woocommerce_template_single_excerpt(); ?>
-                </div>
+                <?php if ( $product->get_short_description() ) : ?>
+                    <div class="product-description">
+                        <?php woocommerce_template_single_excerpt(); ?>
+                    </div>
+                <?php endif; ?>
 
                 <!-- Price -->
                 <div class="product-price-wrapper">
