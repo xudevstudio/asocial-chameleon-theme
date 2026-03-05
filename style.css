@@ -8156,6 +8156,46 @@ ul.products li.product .product-price .price,
     line-height: 1.4 !important;
 }
 
+/* Price inline formatting — keep prices readable */
+/* Add dash before price via CSS */
+.product-price::before {
+    content: '– ';
+    font-weight: 700;
+    color: #000;
+}
+
+/* Force ALL nested price elements inline */
+.product-price,
+.product-price .price-text,
+.product-price .price-text *,
+.product-card .product-price .price,
+.product-card .product-price .price *,
+ul.products li.product .product-price,
+ul.products li.product .product-price * {
+    display: inline !important;
+    float: none !important;
+}
+
+/* Keep the .product-price container as block */
+.product-price,
+.product-card .product-price,
+ul.products li.product .product-price {
+    display: block !important;
+}
+
+.product-price .price-text ins,
+.product-card .product-price .price ins {
+    text-decoration: none !important;
+    background: none !important;
+}
+
+.product-price .price-text del,
+.product-card .product-price .price del {
+    opacity: 0.5 !important;
+    font-size: 0.85em !important;
+    margin-right: 4px !important;
+}
+
 /* Force Category Display */
 .woocommerce ul.products li.product .product-category-hint,
 .woocommerce-page ul.products li.product .product-category-hint,
@@ -8201,7 +8241,10 @@ ul.products li.product .product-title {
 .product-card .product-content,
 ul.products li.product .product-content {
     padding: 15px !important;
-    display: block !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    flex: 1 !important;
 }
 
 /* Responsive Grid - Desktop */
@@ -8233,9 +8276,9 @@ ul.products li.product .product-content {
     ul.products {
         display: grid !important;
         grid-template-columns: repeat(3, 1fr) !important;
-        gap: 15px !important;
+        gap: 12px !important;
         margin: 0 !important;
-        padding: 30px 0 !important;
+        padding: 15px 10px !important;
     }
 
     .woocommerce ul.products li.product,
@@ -8246,12 +8289,39 @@ ul.products li.product .product-content {
     }
 
     .woocommerce ul.products li.product .price,
-    ul.products li.product .product-price {
-        font-size: 16px !important;
+    ul.products li.product .product-price,
+    .product-card .product-price,
+    .product-card .product-price .price {
+        font-size: 14px !important;
     }
 
-    .woocommerce ul.products li.product .product-title {
-        font-size: 14px !important;
+    .woocommerce ul.products li.product .product-title,
+    .product-card .product-title {
+        font-size: 13px !important;
+        min-height: 42px !important;
+    }
+
+    .product-card .product-content,
+    ul.products li.product .product-content {
+        padding: 10px !important;
+    }
+
+    /* Buttons - stack vertically on tablet */
+    .product-buttons-group {
+        flex-direction: column !important;
+        gap: 6px !important;
+    }
+
+    .product-buttons-group .premium-action-btn {
+        font-size: 11px !important;
+        padding: 8px 10px !important;
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+
+    .product-buttons-group .button-icon {
+        font-size: 12px !important;
     }
 }
 
@@ -8263,9 +8333,9 @@ ul.products li.product .product-content {
     ul.products {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px !important;
+        gap: 10px !important;
         margin: 0 !important;
-        padding: 10px 0 !important;
+        padding: 10px 8px !important;
     }
 
     .woocommerce ul.products li.product,
@@ -8276,16 +8346,103 @@ ul.products li.product .product-content {
     }
 
     .woocommerce ul.products li.product .price,
-    ul.products li.product .product-price {
-        font-size: 14px !important;
+    ul.products li.product .product-price,
+    .product-card .product-price,
+    .product-card .product-price .price {
+        font-size: 13px !important;
+        margin: 6px 0 !important;
     }
 
-    .woocommerce ul.products li.product .product-title {
-        font-size: 13px !important;
+    .woocommerce ul.products li.product .product-title,
+    .product-card .product-title {
+        font-size: 12px !important;
+        min-height: 36px !important;
+    }
+
+    .product-card .product-content,
+    ul.products li.product .product-content {
+        padding: 8px !important;
     }
 
     .product-category-hint {
         font-size: 9px !important;
+    }
+
+    /* Buttons - stack vertically on mobile */
+    .product-buttons-group {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 5px !important;
+    }
+
+    .product-buttons-group .premium-action-btn {
+        font-size: 10px !important;
+        padding: 7px 8px !important;
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+        border-radius: 6px !important;
+    }
+
+    .product-buttons-group .button-icon {
+        font-size: 11px !important;
+    }
+
+    /* Product card image */
+    .product-card .product-image-link img,
+    ul.products li.product img {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: cover !important;
+    }
+
+    /* Short description hidden on mobile */
+    .product-short-description {
+        display: none !important;
+    }
+
+    /* Rating smaller on mobile */
+    .product-rating {
+        font-size: 11px !important;
+    }
+
+    .product-rating .star-rating {
+        font-size: 11px !important;
+    }
+}
+
+/* Responsive Grid - Very Small Mobile */
+@media (max-width: 360px) {
+
+    .woocommerce ul.products,
+    .woocommerce-page ul.products,
+    ul.products {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        padding: 8px 5px !important;
+    }
+
+    .woocommerce ul.products li.product .price,
+    ul.products li.product .product-price,
+    .product-card .product-price,
+    .product-card .product-price .price {
+        font-size: 12px !important;
+    }
+
+    .woocommerce ul.products li.product .product-title,
+    .product-card .product-title {
+        font-size: 11px !important;
+        min-height: 30px !important;
+    }
+
+    .product-buttons-group .premium-action-btn {
+        font-size: 9px !important;
+        padding: 6px 6px !important;
+    }
+
+    .product-card .product-content,
+    ul.products li.product .product-content {
+        padding: 6px !important;
     }
 }
 
