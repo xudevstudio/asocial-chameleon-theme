@@ -8157,13 +8157,6 @@ ul.products li.product .product-price .price,
 }
 
 /* Price inline formatting — keep prices readable */
-/* Add dash before price via CSS */
-.product-price::before {
-    content: '– ';
-    font-weight: 700;
-    color: #000;
-}
-
 /* Force ALL nested price elements inline */
 .product-price,
 .product-price .price-text,
