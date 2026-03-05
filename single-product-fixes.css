@@ -797,6 +797,9 @@ body.single-product .upsells.products .price {
     margin: 0 0.75rem 0.75rem 0.75rem !important;
     font-size: 1.1rem !important;
     font-weight: 700 !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
 }
 
 /* Show product descriptions in related products */
@@ -888,5 +891,43 @@ body.single-product .upsells.products .woocommerce-loop-product__description {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 10px !important;
         padding: 0 10px !important;
+    }
+}
+
+/* ========================================
+   RELATED PRODUCTS & UPSELLS BUTTON FIXES
+   ======================================== */
+body.single-product .related.products .product-buttons-group,
+body.single-product .upsells.products .product-buttons-group {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 0.75rem 0.75rem 0.75rem !important;
+    padding: 0 !important;
+}
+
+body.single-product .related.products .product-buttons-group .button,
+body.single-product .upsells.products .product-buttons-group .button {
+    flex: 1 1 45% !important;
+    margin: 0 !important;
+    padding: 8px 10px !important;
+    font-size: 12px !important;
+    border-radius: 6px !important;
+    text-align: center !important;
+    line-height: 1.2 !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    min-width: 0 !important;
+}
+
+@media (max-width: 768px) {
+
+    body.single-product .related.products .product-buttons-group .button,
+    body.single-product .upsells.products .product-buttons-group .button {
+        flex: 1 1 100% !important;
+        font-size: 13px !important;
+        padding: 10px 12px !important;
     }
 }
