@@ -285,8 +285,8 @@ body.single-product .woocommerce-product-details__short-description {
 body.single-product .price-container {
     display: flex !important;
     align-items: center !important;
-    gap: 1rem !important;
-    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+    flex-wrap: nowrap !important;
 }
 
 body.single-product .regular-price {
@@ -321,8 +321,10 @@ body.single-product .price {
     font-weight: 900 !important;
     color: #667eea !important;
     margin: 0 !important;
-    display: inline-block !important;
-    /* Force inline */
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    flex-wrap: nowrap !important;
 }
 
 body.single-product .price *,
@@ -701,13 +703,11 @@ body.single-product .upsells.products ul.products {
     body.single-product .related.products ul.products,
     body.single-product .upsells.products ul.products,
     .woocommerce ul.products {
-        /* Global targeting to be safe */
+        /* Ensure 4‑column layout on desktop */
         display: grid !important;
-        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        grid-template-columns: repeat(4, 1fr) !important;
         gap: 20px !important;
-        background: transparent !important;
         width: 100% !important;
-        float: none !important;
         justify-content: center !important;
     }
 
