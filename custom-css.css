@@ -8132,7 +8132,7 @@ ul.products li.product .product-content-wrap,
     .price,
     .woocommerce-Price-amount,
     .woocommerce-Price-currencySymbol {
-        display: block !important;
+        display: inline-block !important;
         visibility: visible !important;
         opacity: 1 !important;
         height: auto !important;
@@ -9579,3 +9579,4 @@ bdi {
     body p:contains("localhost") {
         display: none !important;
     }
+}
