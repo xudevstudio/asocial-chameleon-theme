@@ -9420,36 +9420,81 @@ bdi {
         padding: 10px 5px !important;
     }
 }
+
 /* ========================================
    NEWEST ARRIVALS MOBILE BUTTONS FIX
    ======================================== */
 @media (max-width: 768px) {
     .newest-arrivals-section .product-buttons-group {
         display: flex !important;
-        flex-direction: column !important; /* Stack buttons vertically */
-        gap: 10px !important; /* Space between buttons */
+        flex-direction: column !important;
+        /* Stack buttons vertically */
+        gap: 10px !important;
+        /* Space between buttons */
         align-items: center !important;
         width: 100% !important;
     }
 
     .newest-arrivals-section .product-buttons-group .button {
-        width: 100% !important; /* Full width */
-        margin: 0 !important; /* Reset margins, use gap instead */
+        width: 100% !important;
+        /* Full width */
+        margin: 0 !important;
+        /* Reset margins, use gap instead */
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
     }
-    
+
     /* Ensure Colors Match Desktop (Resetting any mobile overrides) */
     .newest-arrivals-section .add-to-cart-button {
-        background-color: #fff !important; 
+        background-color: #fff !important;
         color: #333 !important;
         border: 1px solid #e5e7eb !important;
     }
-    
+
     .newest-arrivals-section .buy-now-button {
         background: linear-gradient(135deg, #FF4757 0%, #FF6B81 100%) !important;
         color: #fff !important;
         border: none !important;
     }
+}
+
+/* --- UI Fixes for Price Dash and Mobile Images --- */
+
+/* Center the dash in variable product price range */
+.price {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    justify-content: center !important;
+}
+
+/* Center product images on mobile */
+@media (max-width: 768px) {
+
+    .product-card .product-image-link img,
+    .product-card .product-image-link {
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .product-card.product-card {
+        align-items: center !important;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+}
+
+/* Style for the wrapped price dash */
+.price-separator {
+    display: inline-block !important;
+    padding: 0 4px !important;
+    transform: translateY(-2px) !important;
+    vertical-align: middle !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-weight: normal !important;
 }

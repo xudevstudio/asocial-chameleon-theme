@@ -719,3 +719,46 @@ add_filter( 'wp_mail_from_name', function( $original_email_from ) {
 add_filter( 'wp_mail_from', function( $original_email_address ) {
     return get_option( 'admin_email' );
 } );
+
+/**
+ * Debug: Log Available Payment Gateways
+ */
+add_filter( 'woocommerce_available_payment_gateways', 'asocial_chameleon_debug_gateways', 9999 );
+function asocial_chameleon_debug_gateways( $gateways ) {
+    if ( is_checkout() && ! is_admin() ) {
+        error_log( 'Available Gateways: ' . print_r( array_keys( $gateways ), true ) );
+    }
+    return $gateways;
+}
+
+/**
+ * Fix Password Reset URL
+ * Ensures the lost password link leads to the correct page
+ */
+add_filter( 'lostpassword_url', 'asocial_chameleon_custom_lostpassword_url', 10, 2 );
+function asocial_chameleon_custom_lostpassword_url( $lostpassword_url, $redirect ) {
+    return wc_get_page_permalink( 'myaccount' ) . 'lost-password/';
+}
+
+/**
+ * Log outbound emails on local environment (for password reset tests)
+ */
+add_action( 'phpmailer_init', 'asocial_chameleon_log_local_emails' );
+function asocial_chameleon_log_local_emails( $phpmailer ) {
+    $log_file = WP_CONTENT_DIR . '/email_log.txt';
+    $log_content = date('Y-m-d H:i:s') . "\n";
+    $log_content .= "To: " . print_r($phpmailer->getToAddresses(), true) . "\n";
+    $log_content .= "Subject: " . $phpmailer->Subject . "\n";
+    $log_content .= "Body:\n" . strip_tags(str_replace('<br>', "\n", $phpmailer->Body)) . "\n";
+    $log_content .= "--------------------------------------------------------\n\n";
+    file_put_contents( $log_file, $log_content, FILE_APPEND );
+}
+
+/**
+ * Wrap WooCommerce price dash in a span to center it properly via CSS
+ */
+add_filter( 'woocommerce_format_price_range', 'asocial_chameleon_custom_price_range', 10, 3 );
+function asocial_chameleon_custom_price_range( $price, $from, $to ) {
+    /* Dash &ndash; wrapped in span for styling */
+    return sprintf( '%s <span class="price-separator">&ndash;</span> %s', $from, $to );
+}
