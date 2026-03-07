@@ -106,13 +106,15 @@ if ( post_password_required() ) {
                 <div class="product-add-to-cart-wrapper">
                     <?php woocommerce_template_single_add_to_cart(); ?>
                     
-                    <!-- Buy Now Button -->
-                    <?php if ( $product->is_purchasable() && $product->is_in_stock() ) : ?>
-                        <button type="button" class="button buy-now-button premium-action-btn" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>">
-                            <span class="button-icon">⚡</span>
-                            <span class="button-text"><?php esc_html_e( 'Buy Now', 'asocial-chameleon' ); ?></span>
-                        </button>
-                    <?php endif; ?>
+                    <div class="mobile-buttons-wrap">
+                        <!-- Buy Now Button -->
+                        <?php if ( $product->is_purchasable() && $product->is_in_stock() ) : ?>
+                            <button type="button" class="button buy-now-button premium-action-btn" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>">
+                                <span class="button-icon">⚡</span>
+                                <span class="button-text"><?php esc_html_e( 'Buy Now', 'asocial-chameleon' ); ?></span>
+                            </button>
+                        <?php endif; ?>
+                    </div>
                 </div>
 
                 <!-- Product Meta (SKU, Categories, Tags) -->

@@ -386,7 +386,12 @@ function asocial_chameleon_force_single_product_template( $template ) {
 /**
  * Disable ShopEngine template parts for single products
  */
-add_filter( 'shopengine/template/get_template_part', '__return_false', 9999 );
+add_action( 'template_redirect', 'asocial_chameleon_disable_shopengine_single', 99 );
+function asocial_chameleon_disable_shopengine_single() {
+    if ( is_product() ) {
+        add_filter( 'shopengine/template/get_template_part', '__return_false', 9999 );
+    }
+}
 
 /**
  * Remove ShopEngine hooks that duplicate the add-to-cart form
@@ -686,12 +691,7 @@ function asocial_chameleon_related_products_args( $args ) {
  * Replaces .local domains with the current server domain for assets and links
  */
 function asocial_chameleon_fix_environment_urls( $url ) {
-    if ( is_admin() || ! is_string( $url ) ) {
-        return $url;
-    }
-
-    $current_host = $_SERVER['HTTP_HOST'];
-    
+    $current_host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
     // Only fix if current host is NOT .local but the URL contains .local
     if ( strpos( $current_host, '.local' ) === false && strpos( $url, 'asocialchameleon.local' ) !== false ) {
         $url = str_replace( 'asocialchameleon.local', $current_host, $url );
@@ -760,5 +760,5 @@ function asocial_chameleon_log_local_emails( $phpmailer ) {
 add_filter( 'woocommerce_format_price_range', 'asocial_chameleon_custom_price_range', 10, 3 );
 function asocial_chameleon_custom_price_range( $price, $from, $to ) {
     /* Dash &ndash; wrapped in span for styling */
-    return sprintf( '%s <span class="price-separator">&ndash;</span> %s', $from, $to );
+    return str_replace( '&ndash;', '<span class="price-separator">&ndash;</span>', $price );
 }
